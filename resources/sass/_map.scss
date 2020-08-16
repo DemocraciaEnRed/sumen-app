@@ -1,0 +1,24 @@
+.report-marker {
+  background-image: url('/img/marker.svg');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 230px;
+  .mapboxgl-popup-content{
+    padding: 20px 15px 15px;
+    .report-popup{
+      p.report-title{
+        line-height: normal;
+        font-size: 0.875rem;
+        margin-bottom:10px;
+        font-family: $headings-font-family;
+        font-weight: 700;
+      }
+    }
+  }
+}
