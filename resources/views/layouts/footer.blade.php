@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row text-smaller text-center text-lg-left">
     <div class="col-lg-3 mb-2 mb-lg-0">
-      <img src="{{asset('img/participes-color.svg')}}" class="footer-logo" alt="">
+      <img src="{{asset('img/nuestrasMendoza.svg')}}" class="footer-logo" alt="">
       <p class="">
        Plataforma de monitoreo ciudadano que te permite hacer seguimiento de objetivos y metas de gobiernos
       </p>

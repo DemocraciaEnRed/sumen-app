@@ -45,7 +45,7 @@
 					<hr>
 					<div class="my-3">
 						<collapse>
-							<h5 slot="title" class="is-700 my-2">Estados de las metas</h5>
+							<h5 slot="title" class="is-700 my-2">Estados de los proyectos</h5>
 								@forelse ($objective->goals as $goal)
 								<div slot="content">
 									<div class="my-1 d-flex justify-content-between align-items-center goal-container">
@@ -57,7 +57,7 @@
 									</div>
 								</div>
 								@empty
-									<p slot="content" class="text-muted">No hay metas del objetivo</p>
+									<p slot="content" class="text-muted">No hay proyectos de la meta</p>
 								@endforelse
 						</collapse>
 					</div>
@@ -109,7 +109,7 @@
 								</div>
 							</div>
 							@empty
-							<p class="my-2 text-muted">No hay archivos adjuntos al objetivo</p>
+							<p class="my-2 text-muted">No hay archivos adjuntos en la meta</p>
 							@endforelse
 						</div>
 					</collapse>
@@ -137,7 +137,7 @@
 						</div>
 					</div>
 					@empty
-					<p class="my-2 text-muted">No hay reportes del objetivo</p>
+					<p class="my-2 text-muted">No hay reportes de la meta</p>
 					@endforelse
 					<div class="text-center">
 						{{$reports->links()}}
@@ -158,7 +158,7 @@
 						</div>
 					</div>
 					@empty
-					<p class="my-2 text-muted">No hay archivos adjuntos al objetivo</p>
+					<p class="my-2 text-muted">No hay archivos adjuntos a la meta</p>
 					@endforelse --}}
 
 				</div>

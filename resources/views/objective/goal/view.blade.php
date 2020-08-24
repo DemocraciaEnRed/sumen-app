@@ -27,7 +27,9 @@
 							<i class="far fa-2x fa-fw fa-dot-circle text-{{$goal->status}}"></i>
 						</div>
 						<div class="w-100">
-							<span class="text-{{$goal->status}}">Meta {{$goal->statusLabel()}}</span>
+							<span class="text-{{$goal->status}}">Proyecto {{$goal->statusLabel()}}</span>
+							<span class="text-smaller btn btn-link">Solicitar información</span>
+
 							<h4 class="is-700 m-0">
 								{{$goal->title}}
 							</h4>
@@ -75,7 +77,7 @@
  
           <hr>
 							<collapse>
-						<h5 slot="title" class="is-700 my-2">Hitos de la meta</h5>
+						<h5 slot="title" class="is-700 my-2">Hitos del proyecto</h5>
 						<div slot="content">
 							@forelse ($goal->milestones as $milestone)
               <div class="card my-2 shadow-sm ">

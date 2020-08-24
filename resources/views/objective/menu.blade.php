@@ -36,11 +36,11 @@
     <p class="text-smaller text-muted mt-2 mb-0">Visualizar</p>
   </div>
   <ul class="list-unstyled objective-goals-list">
-    <li class="list-item py-2 pl-4 pr-3 {{ $currentRoute == 'objectives.index' ? 'active' : null}} "><a href="{{route('objectives.index',['objectiveId' => $objective->id])}}">Vista general del objetivo</a></li>
+    <li class="list-item py-2 pl-4 pr-3 {{ $currentRoute == 'objectives.index' ? 'active' : null}} "><a href="{{route('objectives.index',['objectiveId' => $objective->id])}}">Vista general de la meta</a></li>
     @forelse ($objective->goals as $goal)
     <li class="list-item py-2 pl-4 pr-3 {{ $currentRoute == 'goals.index' && $currentRouteGoalId == $goal->id ? 'active' : null }}"><i class="far fa-dot-circle fa-fw text-{{$goal->status}}"></i>&nbsp;<a href="{{route('goals.index',['goalId' => $goal->id])}}">{{$goal->title}}</a></li>
     @empty
-    <li class="list-item py-2 pl-4 pr-3 text-muted">No hay metas</li>
+    <li class="list-item py-2 pl-4 pr-3 text-muted">No hay proyectos</li>
     @endforelse
   </ul>
 </div>

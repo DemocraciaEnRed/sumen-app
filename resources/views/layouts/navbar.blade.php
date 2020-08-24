@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark p-2 bg-primary">
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">
-      <img src="{{asset('img/participes-white.svg')}}" width="120" class="img-fluid" alt="{{ config('app.name', 'Laravel') }}">
+      <img src="{{asset('img/LogoSumen.svg')}}" width="120" class="img-fluid" alt="{{ config('app.name', 'Laravel') }}">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

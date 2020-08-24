@@ -7,7 +7,7 @@
             <span class="h4 is-600"><i class="far fa-file"></i>&nbsp;&nbsp;{{reportsTotal}}</span><br><span class="text-smaller">Reportes</span>
             </div>
           <div class="col-6">
-            <span class="h4 is-600"><i class="fas fa-medal"></i>&nbsp;&nbsp;{{goalsTotal}}</span><br><span class="text-smaller">Metas</span>
+            <span class="h4 is-600"><i class="fas fa-medal"></i>&nbsp;&nbsp;{{goalsTotal}}</span><br><span class="text-smaller">Proyectos</span>
             </div>
         </div>
         <div class="row">

@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="d-flex align-items-center is-clickable" @click="showMore = !showMore">
         <div class="mr-4 category-icon-container" :style="`background-color: ${objective.category.background_color}`">
-          <i class="fa-lg fa-fw" :class="objective.category.icon" :style="`color: ${objective.category.color}`"></i>
+          <i class="fa-lg fa-fw text-center" :class="objective.category.icon" :style="`color: ${objective.category.color}`"></i>
         </div>
         <div class="w-100">
           <span class="text-smallest" :style="`color:${objective.category.color}`">{{objective.category.title}}</span><br>
@@ -17,7 +17,7 @@
           <goals-doughnut :chartData="chartData" :styles="chartStyle"></goals-doughnut>
           </div>
           <div class="text-center mx-2">
-            <span class="is-700 is-size-5"><i class="fas fa-medal fa-fw text-primary"></i>{{objective.goals_count}}</span><br><span class="text-smaller">metas</span>
+            <span class="is-700 is-size-5"><i class="fas fa-medal fa-fw text-primary"></i>{{objective.goals_count}}</span><br><span class="text-smaller">proyectos</span>
           </div>
 
         </div>
@@ -29,7 +29,7 @@
         <hr>
         <div class="row my-2">
           <div class="col-md-6 col-lg-8">
-            <b>Ultimas metas</b>
+            <b>Ultimos proyectos</b>
             <div class="my-1 d-flex justify-content-between align-items-center goal-container" v-for="goal in objective.latest_goals" :key="`goals_${goal.id}`">
               <span class="text-truncate w-100"><a :href="goal.url" class="text-dark">{{goal.title}}</a></span>
               <div class="progress my-0 mx-1'" style="height: 10px; width: 150px">
@@ -46,8 +46,10 @@
             </div>  
           </div>
         </div>
+        
         <div class="mt-4 text-right">
-          <a :href="objective.url" class="btn btn-outline-primary">Ver más&nbsp;<i class="fas fa-arrow-right"></i></a>
+          <a :href="objective.url" class="btn btn-outline-primary">Suscribirse &nbsp;<i class="fas fa-eye  ml-2"></i></a>
+          <a :href="objective.url" class="btn btn-success">Ir a meta&nbsp;<i class="fas fa-arrow-right ml-2"></i></a>
         </div>
       </div>
     </div>

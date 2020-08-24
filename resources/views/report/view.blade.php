@@ -76,7 +76,7 @@
   @include('report.data')
   @include('report.files')
   @include('report.album')
-  @include('report.map')
+  {{-- @include('report.map') --}}
   <div class="card shadow-sm mb-3" id="comentarios">
     <div class="card-body p-3 p-lg-5">
       <report-comments fetch-url="{{ route('apiService.reports.comments',['reportId' => $report->id]) }}"
