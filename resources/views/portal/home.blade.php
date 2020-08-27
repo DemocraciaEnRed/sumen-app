@@ -16,7 +16,8 @@
 <div class="container push-to-header" style="margin-top: -250px">
   <div class="row justify-content-between mb-3 mb-md-4 flex-column-reverse flex-md-row">
     <div class="col-md-5 text-center text-md-left mb-3 mb-md-0">
-      <h5 class="text-white">En esta plataforma  podés participar y ver el avance de los proyectos en tu ciudad! </h5>
+      <h5 class="text-white">  Monitoreo de Planes de Metas<br>
+En esta plataforma podés participar y ver el avance de los proyectos en tu ciudad! </h5>
       <a href="#" class="btn btn-success mt-2">Conocer más <i class="fas fa-arrow-right ml-2"></i></a>
     </div>
     <div class="col-md-5 align-self-center">
@@ -74,7 +75,7 @@
   <portal-last-objectives fetch-url="{{route('apiService.objectives',['order_by'=>'updated_at,DESC','with'=>'objective_latest_goals,objective_latest_reports,objective_stats,','size' => 5])}}"></portal-last-objectives>
   <p class="mb-4 text-right"><a href="{{route('objectives')}}" class="btn btn-outline-primary">Ver mas metas <i class="fas fa-arrow-right"></i></a></p>
   <h4 class="is-400 mb-3">Mapa de proyectos</h4>
-  <map-reports fetch-url="{{route('apiService.reports',['mappable' => true, 'size'=> 15])}}" access-token="{{config('services.mapbox.key')}}" :paginated="false" map-style="{{config('services.mapbox.style')}}">
+  <map-reports fetch-url="{{route('apiService.reports',['mappable' => true, 'size'=> 17])}}" access-token="{{config('services.mapbox.key')}}" :paginated="false" map-style="{{config('services.mapbox.style')}}">
 
 </div>
 @endsection

@@ -37,7 +37,7 @@ export default {
    },
    zoom: {
      type: Number,
-     default: 4
+     default: 7
    }
   },
   components: { Mapbox },

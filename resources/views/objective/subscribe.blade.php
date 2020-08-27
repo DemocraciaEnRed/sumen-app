@@ -7,7 +7,7 @@
           <h6 class="is-600 text-white">¡Recibí notificaciones de las metas y los reportes!</h6>
           <form action="{{route('objectives.subscribers.form',['objectiveId' => 1])}}" method="POST">
             @csrf
-            <button class="btn btn-sm btn-info is-600"><i class="fas fa-plus fa-fw"></i><i class="fas fa-eye fa-fw"></i>&nbsp;Suscribirme</button>
+            <button class="btn btn-sm btn-success is-600"><i class="fas fa-plus fa-fw"></i><i class="fas fa-eye fa-fw"></i>&nbsp;Suscribirme</button>
           </form>
         </div>
       </div>
@@ -29,10 +29,10 @@
 @else
 <div class="card bg-primary border-0 mb-3">
     <div class="card-body d-flex justify-content-between align-items-center">      
-      <i class="fas fa-bullhorn fa-2x text-white animate__animated animate__tada animate__infinite m-2 mr-3"></i>
+      <i class="fas fa-bullhorn fa-2x text-white animate__animated animate__tada animate__infinite mr-3"></i>
       <div class="text-right">
         <h6 class="is-600 text-white">¡Recibí notificaciones del objetivo, las metas y los reportes!</h6>
-        <a href="{{route('login')}}" class="btn btn-sm btn-info is-600"><i class="fas fa-plus fa-fw"></i><i class="fas fa-eye fa-fw"></i>&nbsp;Subscribirme</a>
+        <a href="{{route('login')}}" class="btn btn-sm btn-success is-600"><i class="fas fa-plus fa-fw"></i><i class="fas fa-eye fa-fw"></i>&nbsp;Subscribirme</a>
       </div>
     </div>
   </div>

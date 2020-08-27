@@ -17,8 +17,8 @@
         </div>
         <div v-else>
           <button @click="toggleLike(report.testimony_url, $event)" class="btn btn-outline-success btn-sm my-1" v-if="report.testimony === null">Estoy de acuerdo&nbsp;<i class="fas fa-check"></i>&nbsp;{{report.positive_testimonies_count}}</button>
-          <button @click="toggleLike(report.testimony_url, $event)" class="btn btn-outline-danger btn-sm my-1" v-if="report.testimony === null">Desacuerdo&nbsp;<i class="fas fa-times"></i>&nbsp;{{report.negative_testimonies_count}}</button>
           <button @click="toggleLike(report.testimony_url, $event)" class="btn btn-success btn-sm my-1" v-else>Estoy de acuerdo&nbsp;<i class="fas fa-check"></i>&nbsp;{{report.positive_testimonies_count}}</button>
+          <button @click="toggleLike(report.testimony_url, $event)" class="btn btn-outline-danger btn-sm my-1" v-if="report.testimony === null">Desacuerdo&nbsp;<i class="fas fa-times"></i>&nbsp;{{report.negative_testimonies_count}}</button>
           <button @click="toggleLike(report.testimony_url, $event)" class="btn btn-danger btn-sm my-1" v-else>Desacuerdo&nbsp;<i class="fas fa-times"></i>&nbsp;{{report.negative_testimonies_count}}</button>
           
           <a :href="`${report.url}#comentarios`" class="btn btn-outline-secondary btn-sm my-1">&nbsp;<i class="far fa-comment"></i>&nbsp;{{report.comments_count}}</a>

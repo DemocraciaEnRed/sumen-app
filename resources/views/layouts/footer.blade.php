@@ -4,12 +4,13 @@
     <div class="col-lg-3 mb-2 mb-lg-0">
       <img src="{{asset('img/nuestrasMendoza.svg')}}" class="footer-logo" alt="">
       <p class="">
-       Plataforma de monitoreo ciudadano que te permite hacer seguimiento de objetivos y metas de gobiernos
+      Monitoreo de Planes de Metas
+En esta plataforma podés participar y ver el avance de los proyectos en tu ciudad! 
       </p>
     </div>
     <div class="col-lg-2 mb-2 mb-lg-0">
-      <p class="mb-1 mb-lg-2"><b>Sobre partícipes</b></p>
-      <p class="mb-1"><a href="{{route('about.general')}}">¿Qué es partícipes?</a></p>
+      <p class="mb-1 mb-lg-2"><b>Sobre Sumen</b></p>
+      <p class="mb-1"><a href="{{route('about.general')}}">¿Qué es Sumen?</a></p>
       <p class="mb-1"><a href="{{route('about.faq')}}">Preguntas frecuentes</a></p>
     </div>
     <div class="col-lg-2 mb-2 mb-lg-0">

@@ -32,15 +32,15 @@ export default {
    },
    lat: {
      type: Number,
-     default: -36.13810,
+     default: -34.7634682,
    },
    long: {
      type: Number,
-     default: -63.67392,
+     default: -69.6665037,
    },
    zoom: {
      type: Number,
-     default: 4
+     default: 7
    },
    paginated: {
      type: Boolean,

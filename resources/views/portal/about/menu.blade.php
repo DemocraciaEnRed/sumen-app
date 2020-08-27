@@ -6,8 +6,9 @@
   <a href="{{route('about.general')}}" class="category {{ $currentRoute == 'about.general' ? 'text-primary' : null }}"><i class="fas fa-eye fa-fw"></i>&nbsp;Acerca de</a>
   @if($currentRoute == 'about.general')
   <scrollactive class="menu-link" active-class="is-active">
-    <a class="item-link scrollactive-item" href="#que-es">¿Qué es partícipes?</a>
-    <a class="item-link scrollactive-item" href="#quienes-somos">¿Quienes somos Partícipes Rosario?</a>
+    <a class="item-link scrollactive-item" href="#que-es">¿Qué es SumenxParticipes Digital?
+</a>
+    <a class="item-link scrollactive-item" href="#quienes-somos">¿Qué es Nuestra Mendoza?</a>
     <a class="item-link scrollactive-item" href="#como-participo">¿Cómo participo?</a>
     <a class="item-link scrollactive-item" href="#mas-alla">Más allá de nuestra ciudad</a>
   </scrollactive>

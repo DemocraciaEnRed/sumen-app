@@ -28,7 +28,7 @@
 						</div>
 						<div class="w-100">
 							<span class="text-{{$goal->status}}">Proyecto {{$goal->statusLabel()}}</span>
-							<span class="text-smaller btn btn-link">Solicitar información</span>
+							<span class="text-smaller btn btn-sm btn-link ml-2">Solicitar información</span>
 
 							<h4 class="is-700 m-0">
 								{{$goal->title}}
