@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow-sm border-secondary ml-0 ml-sm-3 mb-3">
+  <div class="card shadow-sm border-secondary w-100 ml-0 ml-sm-3 mb-3">
     <div class="card-body text-secondary">
       <p class="mb-3 float-lg-right ml-lg-4  text-secondary text-right"><i class="text-primary" :class="`fas ${getReportIcon(report.type)}`"></i>&nbsp;{{report.type_label}}</p>
       <p class="text-smaller my-2"><i :class="`far fa-dot-circle text-${report.goal.status}`"></i>&nbsp;<a :href="report.goal.url" class="text-secondary">{{report.goal.title}}</a></p>
@@ -11,17 +11,12 @@
       <div class="div d-flex justify-content-between mt-4">
         <div v-if="report.testimony === undefined">
           <a :href="loginUrl" class="btn btn-outline-success btn-sm my-1">Estoy de acuerdo&nbsp;<i class="fas fa-check"></i>&nbsp;{{report.positive_testimonies_count}}</a>
-          <a :href="loginUrl" class="btn btn-outline-danger btn-sm my-1">Desacuerdo&nbsp;<i class="fas fa-check"></i>&nbsp;{{report.negative_testimonies_count}}</a>
-
-          <a :href="loginUrl" class="btn btn-outline-secondary btn-sm my-1">&nbsp;<i class="far fa-comment"></i>&nbsp;{{report.comments_count}}</a>
+          <a :href="loginUrl" class="btn btn-outline-info btn-sm my-1">Quiero sumar información&nbsp;<i class="far fa-comment"></i>&nbsp;{{report.comments_count}}</a>
         </div>
         <div v-else>
           <button @click="toggleLike(report.testimony_url, $event)" class="btn btn-outline-success btn-sm my-1" v-if="report.testimony === null">Estoy de acuerdo&nbsp;<i class="fas fa-check"></i>&nbsp;{{report.positive_testimonies_count}}</button>
           <button @click="toggleLike(report.testimony_url, $event)" class="btn btn-success btn-sm my-1" v-else>Estoy de acuerdo&nbsp;<i class="fas fa-check"></i>&nbsp;{{report.positive_testimonies_count}}</button>
-          <button @click="toggleLike(report.testimony_url, $event)" class="btn btn-outline-danger btn-sm my-1" v-if="report.testimony === null">Desacuerdo&nbsp;<i class="fas fa-times"></i>&nbsp;{{report.negative_testimonies_count}}</button>
-          <button @click="toggleLike(report.testimony_url, $event)" class="btn btn-danger btn-sm my-1" v-else>Desacuerdo&nbsp;<i class="fas fa-times"></i>&nbsp;{{report.negative_testimonies_count}}</button>
-          
-          <a :href="`${report.url}#comentarios`" class="btn btn-outline-secondary btn-sm my-1">&nbsp;<i class="far fa-comment"></i>&nbsp;{{report.comments_count}}</a>
+          <a :href="`${report.url}#comentarios`" class="btn btn-outline-info btn-sm my-1"><i class="far fa-comment"></i>&nbsp;{{report.comments_count}}</a>
         </div>
         <div>
           <a :href="report.url" class="btn btn-link btn-sm">Detalles<i class="fas fa-arrow-right fa-fw"></i></a>
@@ -47,6 +42,10 @@ export default {
   },
   methods: {
     toggleLike: function(url, event){
+      if(!this.report.user_verified){
+        this.$toasted.info('Debe verificar su cuenta para poder participar', {icon: 'exclamation-triangle'})
+        return
+      }
       event.target.disabled = true;
       this.$http.post(url)
       .then( response => {

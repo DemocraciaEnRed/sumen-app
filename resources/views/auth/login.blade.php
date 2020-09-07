@@ -5,7 +5,7 @@
 	<div class="row justify-content-center">
 		<div class="col-md-10 col-lg-8">
 			<div class="text-center">
-				<img src="{{asset('img/participes-white.svg')}}" width="300" class="img-fluid mb-5 mt-2"
+				<img src="{{asset('img/logo-sumen.svg')}}" width="150" class="img-fluid mb-5 mt-2"
 					alt="{{ config('app.name', 'Laravel') }}">
 			</div>
 			@if ($errors->any())

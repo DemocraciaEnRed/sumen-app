@@ -56,10 +56,10 @@ class DefaultDemoSeeder extends Seeder
 
         $admin = new User();
         $admin->name = 'Admin';
-        $admin->surname = 'Sumen';
+        $admin->surname = 'Participes';
         $admin->email = 'admin@admin.com';
         $admin->email_verified_at = now();
-        $admin->password = Hash::make('sumenapp');
+        $admin->password = Hash::make('participes');
         $admin->remember_token = Str::random(10);
         $admin->save();
         $admin->roles()->attach(Role::where('name', 'user')->first());
@@ -74,7 +74,7 @@ class DefaultDemoSeeder extends Seeder
             $user->surname = "Usuario${i}";
             $user->email = "user${i}@user.com";
             $user->email_verified_at = now();
-            $user->password = Hash::make('sumenapp');
+            $user->password = Hash::make('participes');
             $user->remember_token = Str::random(10);
             $user->save();
             $user->roles()->attach($usrRole);
@@ -84,10 +84,10 @@ class DefaultDemoSeeder extends Seeder
         $organizations = array();
         for ($i=0; $i < 25; $i++) { 
             $picture = new ImageFile();
-            $picture->name = 'default-avatar.png';
+            $picture->name = 'default-organization.png';
             $picture->size = '100';
             $picture->mime = 'image/png';
-            $picture->path = 'img/default-avatar.png';
+            $picture->path = '/img/default-organization.png';
             $organization = new Organization();
             $organization->name = $faker->company;
             $organization->description = $faker->text;
@@ -110,10 +110,19 @@ class DefaultDemoSeeder extends Seeder
 
             $community = new Community();
             $community->label = '¡Unite al Telegram!';
-            $community->icon = 'fas fa-headphones';
-            $community->color = #0088cc;
+            $community->icon = 'fab fa-telegram';
+            $community->color = '#30689c';
             $community->url = 'https://google.com';
             $objective->communities()->save($community);
+
+            $theTeam = $faker->randomElements($users,6);
+            for ($y=0; $y < 6; $y++) { 
+                $objective->members()->attach($theTeam[$y], ['role' => $faker->randomElement(['manager','reporter'])]);
+            }
+            
+            $objective->subscribers()->attach($faker->randomElements($users,4));
+
+
             for ($y=0; $y < 7; $y++) { 
                 $goal = new Goal();
                 $goal->title = $faker->sentence;
@@ -150,6 +159,7 @@ class DefaultDemoSeeder extends Seeder
                     $report->title = $faker->sentence();
                     $report->content = $faker->realText(450);
                     $newStatus = $faker->randomElement(['ongoing','delayed','inactive']);
+                    $report->previous_status = $goal->status;
                     $report->status = $newStatus;
                     $goal->status = $newStatus;
                     $goal->save();
@@ -160,6 +170,7 @@ class DefaultDemoSeeder extends Seeder
                             break;
                         case 'progress':
                             $reportProgress = $faker->numberBetween(0,$auxProgressRemaining);
+                            $report->previous_progress = $goal->indicator_progress;
                             $report->progress = $reportProgress;
                             $auxProgressRemaining -= $reportProgress;
                             $goal->indicator_progress += $reportProgress;
@@ -185,7 +196,7 @@ class DefaultDemoSeeder extends Seeder
                     }
                     $report->created_at = $reportDate;
                     $report->updated_at = $reportDate;
-                    $report->author()->associate($admin);
+                    $report->author()->associate($faker->randomElement($theTeam));
                     $report->goal()->associate($goal);
                     $report->save();
                 }
@@ -198,6 +209,7 @@ class DefaultDemoSeeder extends Seeder
                     $report->tags = $faker->words(3);
                     $report->title = $faker->sentence();
                     $report->content = $faker->realText(450);
+                    $report->previous_status = $goal->status;
                     $report->status = 'reached';
                     $report->progress = $goal->indicator_goal;
                     $report->date = $faker->date();
@@ -206,18 +218,11 @@ class DefaultDemoSeeder extends Seeder
                     $goal->save();
                     $report->created_at = $reportDate;
                     $report->updated_at = $reportDate;
-                    $report->author()->associate($admin);
+                    $report->author()->associate($faker->randomElement($theTeam));
                     $report->goal()->associate($goal);
                     $report->save();
                 }
             }
-            for ($y=0; $y < 3; $y++) { 
-                $objective->members()->attach($faker->randomElements($users,2), ['role' => $faker->randomElement(['manager','reporter'])]);
-            }
-            for ($y=0; $y < 2; $y++) { 
-                $objective->subscribers()->attach($faker->randomElements($users,2));
-            }
-
         }
     }
 }

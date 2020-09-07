@@ -9,7 +9,7 @@ $countUnreadNotifications = count(Auth::user()->unreadNotifications)
 <a href="{{route('panel.notifications.unread') }}" class="item-link {{ $currentRoute == 'panel.notifications.unread' ? 'is-active' : null }}">Pendientes <span class="badge badge-primary badge-pill align-middle {{$countUnreadNotifications > 0 ?: 'd-none'}}" >{{$countUnreadNotifications}}</span></a>
 <a href="{{route('panel.notifications') }}" class="item-link {{ $currentRoute == 'panel.notifications' ? 'is-active' : null }}">Todas</a>
 </div>
-<h6 class="category"><i class="fas fa-marker fa-fw"></i>&nbsp;Mis objetivos</h6>
+<h6 class="category"><i class="fas fa-marker fa-fw"></i>&nbsp;Mis metas</h6>
 <div class="menu-link">
 <a href="{{route('panel.objectives') }}" class="item-link {{ $currentRoute == 'panel.objectives' ? 'is-active' : null }}">Listar</a>
 </div>
@@ -22,5 +22,5 @@ $countUnreadNotifications = count(Auth::user()->unreadNotifications)
 <a href="{{route('panel.account.email') }}" class="item-link {{ $currentRoute == 'panel.account.email' ? 'is-active' : null }}">Cambiar mi email</a>
 <a href="{{route('panel.account.avatar') }}" class="item-link {{ $currentRoute == 'panel.account.avatar' ? 'is-active' : null }}">Cambiar mi avatar</a>
 <a href="{{route('panel.account.access') }}" class="item-link {{ $currentRoute == 'panel.account.access' ? 'is-active' : null }}">Cambiar contraseña</a>
-<a href="{{route('panel.account.notifications') }}" class="item-link {{ $currentRoute == 'panel.account.notifications' ? 'is-active' : null }}">Preferencias de envio</a>
+<a href="{{route('panel.account.notifications') }}" class="item-link {{ $currentRoute == 'panel.account.notifications' ? 'is-active' : null }}">Preferencias de envío</a>
 </div>

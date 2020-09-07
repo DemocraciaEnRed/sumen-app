@@ -2,9 +2,9 @@
 <div class="container">
   <div class="row text-smaller text-center text-lg-left">
     <div class="col-lg-3 mb-2 mb-lg-0">
-      <img src="{{asset('img/nuestrasMendoza.svg')}}" class="footer-logo" alt="">
+      <img src="{{asset('img/nuestras-mendoza.svg')}}" class="footer-logo" alt="">
       <p class="">
-      Monitoreo de Planes de Metas
+       Monitoreo de Planes de Metas<br>
 En esta plataforma podés participar y ver el avance de los proyectos en tu ciudad! 
       </p>
     </div>
@@ -15,7 +15,7 @@ En esta plataforma podés participar y ver el avance de los proyectos en tu ciud
     </div>
     <div class="col-lg-2 mb-2 mb-lg-0">
       <p class="mb-1 mb-lg-2"><b>Legales</b></p>
-      <p class="mb-1"><a href="{{route('about.legal')}}#terminos">Terminos y condiciones</a></p>
+      <p class="mb-1"><a href="{{route('about.legal')}}#términos">Términos y condiciones</a></p>
       <p class="mb-1"><a href="{{route('about.legal')}}#privacidad">Pólitica de privacidad</a></p>
     </div>
     <div class="col-lg-2 mb-2 mb-lg-0">

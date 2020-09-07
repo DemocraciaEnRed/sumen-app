@@ -26,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 
+        'email','password', 'remember_token', 'trace'
     ];
 
     /**
@@ -37,6 +37,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getFullnameAttribute(){
+        return $this->surname . ', ' . $this->name;
+    }
 
     public function roles()
     {

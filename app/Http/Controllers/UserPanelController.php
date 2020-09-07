@@ -27,32 +27,12 @@ class UserPanelController extends Controller
         $this->middleware('check_role:user');
     }
 
-    public function base64ExtractData($data,$types){
-        if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
-            $data = substr($data, strpos($data, ',') + 1);
-            $type = strtolower($type[1]); // jpg, png, gif
-
-            if (!in_array($type, $types)) {
-                abort(500,'Bad mime type');
-            }
-
-            if ($data === false) {
-                abort(500,'base64_decode failed');                
-            }
-            return $type;
-        } else {
-            abort(500,'did not match data URI with image data');                
-        }
-    }
-
     public function index(Request $request){
         return view('panel.index');
     }
 
     public function viewListObjectives(Request $request){
-        $objectives = Objective::whereHas('members', function ($q) use($request) {
-                $q->where('user_id', $request->user()->id);
-            })->paginate(5);
+        $objectives = $request->user()->objectives()->paginate(5);
         return view('panel.objectives.list', ['objectives' => $objectives]);
     }
 
@@ -66,7 +46,7 @@ class UserPanelController extends Controller
     public function formUnsubSubscription(Request $request, $objectiveId){
         $request->user()->subscriptions()->detach($objectiveId);
         // $subscriptions = $request->user()->subscriptions()->paginate(5);
-        return redirect()->route('panel.subscriptions')->with('success','Se desuscribió correctamente del objetivo');
+        return redirect()->route('panel.subscriptions')->with('success','Se desuscribió correctamente de la meta');
     }
 
     public function viewListUnreadNotifications(Request $request){
@@ -77,6 +57,10 @@ class UserPanelController extends Controller
     public function formMarkAllUnreadNotifications(Request $request){
         $request->user()->unreadNotifications()->update(['read_at' => now()]);
         return redirect()->route('panel.notifications')->with('success','Todas las notificaciones pendientes fueron marcadas como leidas');
+    }
+    public function formDeleteAllNotifications(Request $request){
+        $request->user()->notifications()->delete();
+        return redirect()->route('panel.notifications')->with('success','Todas las notificaciones fueron eliminadas');
     }
 
     public function viewListNotifications(Request $request){
@@ -152,7 +136,7 @@ class UserPanelController extends Controller
             $user->avatar->thumbnail_path = $filePathThumbnail;
             $user->avatar->save();
         }
-        return response()->json(['message' => 'El avatar se subio correctamente'], 200);
+        return response()->json(['message' => 'El avatar se subió correctamente'], 200);
     }
 
     public function viewAccountAccess(Request $request){
@@ -188,11 +172,18 @@ class UserPanelController extends Controller
 
     public function formAccountEmail(Request $request){
         $rules = [
-            'email' => 'required|email',
+            'old_email' => 'required|email',
+            'new_email' => 'required|email',
+            'password' =>  ['required', new MatchOldPassword],
         ];
         $request->validate($rules);
-        User::find(auth()->user()->id)->update(['email'=> $request->input('email')]);
-        return redirect()->route('panel.account.email')->with('success','Se cambió su correo electrónico');
+        // dd($request->input());
+        $user = User::find(auth()->user()->id);
+        $user->email = $request->input('new_email');
+        $user->email_verified_at = null;
+        $user->save();
+        $user->sendEmailVerificationNotification();
+        return redirect()->route('verification.notice')->with('success','Se cambió su correo electrónico. Debe verificar su correo electronico, para eso, revise su casilla de correo electrónico para continuar.');
     }
 
     public function viewAccountNotifications(Request $request){

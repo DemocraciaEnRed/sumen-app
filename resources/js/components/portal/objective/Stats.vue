@@ -22,7 +22,7 @@
       <div class="col-lg-4 text-center">
         <div class="row mb-2">
           <div class="col-6">
-            <span class="h4 is-600"><i class="far fa-dot-circle fa-fw text-reached"></i>&nbsp;{{goalsReached}}</span><br><span class="text-smaller">Alcanzadas</span>
+            <span class="h4 is-600"><i class="far fa-dot-circle fa-fw text-reached"></i>&nbsp;{{goalsReached}}</span><br><span class="text-smaller">Alcanzados</span>
             </div>
           <div class="col-6">
             <span class="h4 is-600"><i class="far fa-dot-circle fa-fw text-ongoing"></i>&nbsp;{{goalsOngoing}}</span><br><span class="text-smaller">En progreso</span>
@@ -30,10 +30,10 @@
         </div>
         <div class="row">
           <div class="col-6">
-            <span class="h4 is-600"><i class="far fa-dot-circle fa-fw text-delayed"></i>&nbsp;{{goalsDelayed}}</span><br><span class="text-smaller">Demoradas</span>
+            <span class="h4 is-600"><i class="far fa-dot-circle fa-fw text-delayed"></i>&nbsp;{{goalsDelayed}}</span><br><span class="text-smaller">Demorados</span>
             </div>
           <div class="col-6">
-            <span class="h4 is-600"><i class="far fa-dot-circle fa-fw text-inactive"></i>&nbsp;{{goalsInactive}}</span><br><span class="text-smaller">Inactivas</span>
+            <span class="h4 is-600"><i class="far fa-dot-circle fa-fw text-inactive"></i>&nbsp;{{goalsInactive}}</span><br><span class="text-smaller">Inactivos</span>
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@ export default {
   computed: {
     chartData: function(){
       return {
-        labels: ['Alcanzadas','En progreso','Demoradas','Inactivas'],
+        labels: ['Alcanzados','En progreso','Demorados','Inactivos'],
         data: [
           this.goalsReached,
           this.goalsOngoing,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Objective;
 use App\Goal;
 use App\Report;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Resources\Objective as ObjectiveResource;
 use App\Http\Resources\Report as ReportResource;
@@ -30,10 +31,10 @@ class ObjectiveController extends Controller
         return view('objective.view',['objective' => $objective,'reports' => $reports]);
     }
 
-     public function viewList(Request $request){
-       
+    public function viewList(Request $request){
+        $categories = Category::all();
         return view('portal.catalogs.objectives',[
-            
+            'categories' => $categories
         ]);
     }
 
@@ -42,14 +43,27 @@ class ObjectiveController extends Controller
         $pageSize = $request->query('size',10);
         $orderBy = $request->query('order_by');
         $hidden = $request->query('hidden',false);
+        $category = $request->query('category',null);
+        $title = $request->query('s',null);
         
         $objectives = Objective::query();
         if(!is_null($orderBy)){
             $orderByParams = explode(',',$orderBy);
             $objectives->orderBy($orderByParams[0],$orderByParams[1]);
         }
+        if(!is_null($category)){
+            $objectives->where('category_id',$category);
+        }
+        if(!is_null($title)){
+            $titleExploded = explode(' ', $title);
+            $objectives->where(function ($query) use ($titleExploded) {
+                foreach ($titleExploded as $keyword) {
+                $query->orWhere('trace', 'like', "%{$keyword}%");
+                }
+            });
+        }
         $objectives->where('hidden',false);
-        $objectives = $objectives->paginate($pageSize);
+        $objectives = $objectives->paginate($pageSize)->withQueryString();
         return ObjectiveResource::collection($objectives);
     }
 
@@ -100,18 +114,10 @@ class ObjectiveController extends Controller
         $countGoalsOngoin = Goal::where('objective_id',$objectiveId)->where('status','ongoing')->count();
         $countGoalsDelayed = Goal::where('objective_id',$objectiveId)->where('status','delayed')->count();
         $countGoalsInactive = Goal::where('objective_id',$objectiveId)->where('status','inactive')->count();
-        $countGoalsInactive = Goal::where('objective_id',$objectiveId)->where('status','inactive')->count();
         $reportsTotal =$objective->reports()->count(); 
         $filesTotal =$objective->files()->count(); 
         $subscribersTotal =$objective->subscribers()->count(); 
-        // $reportsTotal = Report::->where('objective_id',$objectiveId)->where('created_at','>=',Carbon::now()->subdays(15))->count();
-        // $reportsData = Report::->where('objective_id',$objectiveId)->where('created_at', '>=', Carbon::now()->subdays(15))
-        //                     ->groupBy(DB::raw('DATE(created_at)'))
-        //                     ->orderBy('date', 'ASC')
-        //                     ->get(array(
-        //                         DB::raw('DATE(created_at) as "date"'),
-        //                         DB::raw('COUNT(*) as "count"')
-        //                     ));
+
         return response()->json([
             'message' => 'Ok',
             'data' => [
@@ -136,10 +142,10 @@ class ObjectiveController extends Controller
         $isSubscriber = $objective->isSubscriber($request->user()->id);
         if($isSubscriber){
             $objective->subscribers()->detach($request->user()->id);
-            $msg = 'Te has desubscripto del objetivo';
+            $msg = 'Te has desuscripto de la meta';
         } else {
             $objective->subscribers()->attach($request->user()->id);
-            $msg = '¡Te has subscripto al objetivo!';
+            $msg = '¡Te has suscripto de la meta!';
         }
         return redirect()->back()->with('success',$msg);
 

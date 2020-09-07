@@ -3,9 +3,9 @@
 @section('panelContent')
 
 <section>
-<h1 class="">Notificaciones pendientes</h1>
+<h3 class="is-700">Notificaciones pendientes</h3>
 {{-- <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. In eius ad officia tempora, temporibus repudiandae id ipsum neque deserunt rerum esse delectus consectetur voluptates eveniet quaerat commodi ducimus mollitia dolorem.</p> --}}
-<ul class="list-group">
+<ul class="list-group my-3">
  @if(count($notifications) > 0)
     @foreach($notifications as $notification)
     <notification-item form-url="{{ route('apiService.notification.mark.one',['id' => $notification->id])}}" :notification='@json($notification)'>
@@ -16,10 +16,8 @@
    <li class="list-group-item">¡Ka-boom! ¡No tenes notificaciones sin leer!</li>
   @endif
 </ul>
-<br>
   {{ $notifications->links() }}
-   @if(count($notifications) > 0)
-
+   @if(!$notifications->isEmpty())
   <hr>
   <div class="card">
     <div class="card-body d-flex justify-content-between">

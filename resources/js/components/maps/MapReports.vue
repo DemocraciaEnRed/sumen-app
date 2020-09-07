@@ -32,15 +32,15 @@ export default {
    },
    lat: {
      type: Number,
-     default: -34.7634682,
+     default: -36.13810,
    },
    long: {
      type: Number,
-     default: -69.6665037,
+     default: -63.67392,
    },
    zoom: {
      type: Number,
-     default: 7
+     default: 4
    },
    paginated: {
      type: Boolean,
@@ -112,7 +112,7 @@ export default {
         return marker
       })
       if(this.reports.length == 0){
-        this.$toasted.show('El objetivo no cuenta con reportes geolocalizados', {icon: 'exclamation-triangle'})
+        this.$toasted.show('La meta no cuenta con reportes geolocalizados', {icon: 'exclamation-triangle'})
       } else {
         // this.$toasted.success('¡Se cargaron los marcadores!',{icon: 'map-marker-alt', duration: 2000})
       }

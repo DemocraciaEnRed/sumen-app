@@ -22,6 +22,7 @@ class InitDB extends Migration
             $table->string('surname');
             $table->string('notification_preferences')->default('database,mail');
             $table->string('password');
+            $table->text('trace')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -107,6 +108,7 @@ class InitDB extends Migration
             $table->json('map_geometries')->nullable();
             $table->boolean('archived')->default(false);
             $table->boolean('hidden')->default(true);
+            $table->text('trace')->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', 0);
         });
@@ -134,6 +136,7 @@ class InitDB extends Migration
             $table->decimal('map_zoom',4,2)->nullable();
             $table->json('map_center')->nullable();
             $table->json('map_geometries')->nullable();
+            $table->text('trace')->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', 0);
         });
@@ -148,8 +151,8 @@ class InitDB extends Migration
         });
         Schema::create('objective_organization', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('objective_id')->constrained('objectives');
-            $table->foreignId('organization_id')->constrained('organizations');
+            $table->foreignId('objective_id')->constrained('objectives')->onDelete('cascade');
+            $table->foreignId('organization_id')->constrained('organizations')->onDelete('cascade');
         });
         Schema::create('objective_user', function (Blueprint $table) {
             $table->id();
@@ -167,13 +170,15 @@ class InitDB extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id')->constrained('users');
-            $table->foreignId('goal_id')->constrained('goals');
+            $table->foreignId('goal_id')->constrained('goals')->onDelete('cascade');
             $table->string('type');
             $table->string('title',550);
             $table->text('content');
             $table->datetime('date');
             $table->json('tags')->nullable();
+            $table->string('previous_status')->nullable();
             $table->string('status')->nullable();
+            $table->integer('previous_progress')->nullable();
             $table->integer('progress')->nullable();
             $table->decimal('map_lat', 10, 8)->nullable();
             $table->decimal('map_long', 11, 8)->nullable();
@@ -181,6 +186,7 @@ class InitDB extends Migration
             $table->json('map_center')->nullable();
             $table->json('map_geometries')->nullable();
             $table->foreignId('milestone_achieved')->nullable()->constrained('milestones');
+            $table->text('trace')->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', 0);
         });
@@ -190,6 +196,7 @@ class InitDB extends Migration
             $table->text('content');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->nullableMorphs('commentable'); 
+            $table->boolean('edited')->default(false);
             $table->timestamps();
             $table->softDeletes('deleted_at', 0);
         });
@@ -215,12 +222,11 @@ class InitDB extends Migration
             $table->id();
             $table->foreignId('event_id')->constrained('events')->onDelete('cascade');
             $table->foreignId('objective_id')->constrained('objectives')->onDelete('cascade');
-            $table->timestamps();
         });
         Schema::create('action_logs', function (Blueprint $table) {
             $table->id();
             $table->longText('message');
-            $table->longText('context');
+            $table->json('context');
             $table->string('level')->index();
             $table->string('level_name');
             $table->string('channel')->index();
@@ -240,24 +246,26 @@ class InitDB extends Migration
     {
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('notifications');
         Schema::dropIfExists('roles');
         Schema::dropIfExists('role_user');
         Schema::dropIfExists('failed_jobs');
-        Schema::dropIfExists('notifications');
         Schema::dropIfExists('organizations');
-        Schema::dropIfExists('organization_users');
         Schema::dropIfExists('categories');
         Schema::dropIfExists('files');
-        Schema::dropIfExists('images');
-        Schema::dropIfExists('milestones');
-        Schema::dropIfExists('goals');
+        Schema::dropIfExists('image_files');
         Schema::dropIfExists('objectives');
-        Schema::dropIfExists('objective_goal');
-        Schema::dropIfExists('objective_milestone');
+        Schema::dropIfExists('communities');
+        Schema::dropIfExists('goals');
+        Schema::dropIfExists('milestones');
+        Schema::dropIfExists('objective_organization');
+        Schema::dropIfExists('objective_user');
         Schema::dropIfExists('objective_subscriber');
         Schema::dropIfExists('reports');
+        Schema::dropIfExists('comments');
         Schema::dropIfExists('testimonies');
+        Schema::dropIfExists('events');
+        Schema::dropIfExists('event_objective');
         Schema::dropIfExists('action_logs');
-
     }
 }

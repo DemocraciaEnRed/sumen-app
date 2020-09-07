@@ -24,7 +24,7 @@
 			<div class="card shadow-sm">
 				<div class="card-body">
 					<div class="d-flex align-items-center mb-3">
-						<div class="mr-3 category-icon-container" style="background-color: {{$objective->category->backgroundColor()}}">
+						<div class="mr-3 category-icon-container" style="background-color: {{$objective->category->background_color}}">
 							<i class="fa-2x fa-fw {{$objective->category->icon}}" style="color: {{$objective->category->color}}"></i>
 						</div>
 						<div class="w-100">
@@ -41,60 +41,66 @@
 								</portal-objective-stats>
 							</div>
 						</div>
-					<p>{{nl2br(e($objective->content))}}</p>
+					<p>{!! nl2br(e($objective->content)) !!}</p>
 					<hr>
 					<div class="my-3">
-						<collapse>
-							<h5 slot="title" class="is-700 my-2">Estados de los proyectos</h5>
-								@forelse ($objective->goals as $goal)
-								<div slot="content">
-									<div class="my-1 d-flex justify-content-between align-items-center goal-container">
-										<span class="text-truncate w-100">{{$goal->title}}</span>
-										<div class="progress my-0 mx-1" style="height: 10px; width: 150px">
-											<div class="progress-bar bg-{{$goal->status}}" role="progressbar" style="width: {{$goal->progressPercentage()}}%" aria-valuenow="{{$goal->progressPercentage()}}" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-										<span class="goal-percentage text-smallest is-700 ml-1">{{$goal->progressPercentage()}}%</span>
+						<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseGoalStatus">
+						<h5 class="is-700 h5 text-body my-2 float-left">Estados de los proyectos</h5>
+						<h5 class="is-700 h5 text-body my-2 float-right"><i class="fas fa-angle-down fa-lg"></i></h5>
+						</div>
+						<div id="collapseGoalStatus" class="collapse">
+							@forelse ($objective->goals as $goal)
+							<div slot="content">
+								<div class="my-1 d-flex justify-content-between align-items-center goal-container">
+									<span class="text-truncate w-100">{{$goal->title}}</span>
+									<div class="progress my-0 mx-1" style="height: 10px; width: 150px">
+										<div class="progress-bar bg-{{$goal->status}}" role="progressbar" style="width: {{$goal->progress_percentage}}%" aria-valuenow="{{$goal->progress_percentage}}" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
+									<span class="goal-percentage text-smallest is-700 ml-1">{{$goal->progress_percentage}}%</span>
 								</div>
-								@empty
-									<p slot="content" class="text-muted">No hay proyectos de la meta</p>
-								@endforelse
-						</collapse>
+							</div>
+							@empty
+								<p slot="content" class="text-muted">No hay proyectos de la meta</p>
+							@endforelse
+						</div>
 					</div>
-					@if(!empty($objective->organizations))
+					@if(!$objective->organizations->isEmpty())
 					<hr>
-						<collapse>
-								<h5 slot="title" class="is-700 my-2">Organizaciones</h5>
-								<div slot="content">
-									<objective-organizations-carrousel :slides='@json($objective->organizations)'>	
-									</objective-organizations-carrousel>
-								</div>
-						</collapse>
+					<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseOrganizations">
+						<h5 class="is-700 h5 text-body my-2 float-left">Organizaciones</h5>
+						<h5 class="is-700 h5 text-body my-2 float-right"><i class="fas fa-angle-down fa-lg"></i></h5>
+					</div>
+					<div id="collapseOrganizations" class="collapse show">
+						<objective-organizations-carrousel :slides='@json($objective->organizations)'>	
+						</objective-organizations-carrousel>
+					</div>
 					@endif
 					@if(!empty($objective->members))
 					<hr>
-						<collapse>
-								<h5 slot="title" class="is-700 my-2">Miembros del equipo</h5>
-								<div slot="content">
-								<div class="my-1 row justify-content-center">
-									@foreach ($objective->members as $member)
-											
-									<div class="col-6 col-sm-4 col-md-3 text-center py-1">
-    								<p class="mb-1">@include('utils.avatar',['avatar' => $member->avatar, 'size' => 50, 'thumbnail' => true])</p>
-										<span class="is-700 text-smaller">{{$member->name}} {{$member->surname}}</span>
-										<br><span class="text-smaller text-muted">{{$member->pivot->role == 'reporter' ? 'Reporta' : 'Coordina'}}</span>
-									</div>
-									@endforeach
+					<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseMembers">
+						<h5 class="is-700 h5 text-body my-2 float-left">Miembros del equipo</h5>
+						<h5 class="is-700 h5 text-body my-2 float-right"><i class="fas fa-angle-down fa-lg"></i></h5>
+					</div>
+					<div id="collapseMembers" class="collapse">
+						<div class="my-1 row justify-content-center">
+								@foreach ($objective->members as $member)
+								<div class="col-6 col-sm-4 col-md-3 text-center py-1">
+									<p class="mb-1">@include('utils.avatar',['avatar' => $member->avatar, 'size' => 50, 'thumbnail' => true])</p>
+									<span class="is-700 text-smaller">{{$member->name}} {{$member->surname}}</span>
+									<br><span class="text-smaller text-muted">{{$member->pivot->role == 'reporter' ? 'Reporta' : 'Coordina'}}</span>
 								</div>
-								</div>
-						</collapse>
+								@endforeach
+							</div>
+					</div>
 					@endif
 					<hr>
-					<collapse>
-						<h5 slot="title" class="is-700 my-2">Archivos</h5>
-						<div slot="content">
+					<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseFiles">
+						<h5 class="is-700 h5 text-body my-2 float-left">Archivos</h5>
+						<h5 class="is-700 h5 text-body my-2 float-right"><i class="fas fa-angle-down fa-lg"></i></h5>
+					</div>
+					<div id="collapseFiles" class="collapse">
 							@forelse ($objective->files as $file)
-							<div class="card mb-2 shadow-sm">
+							<div class="card my-2 shadow-sm">
 								<div class="card-body p-2 pl-4 pr-4 d-flex">
 									<div class="mr-3 mt-2">
 										<i class="far fa-file fa-lg"></i>
@@ -109,58 +115,14 @@
 								</div>
 							</div>
 							@empty
-							<p class="my-2 text-muted">No hay archivos adjuntos en la meta</p>
+							<p class="my-2 text-muted">No hay archivos adjuntos a la meta</p>
 							@endforelse
-						</div>
-					</collapse>
+					</div>
 					<hr>
 					<h5 class="is-700 mt-2 mb-4">Reportes</h5>
-					<report-list fetch-url="{{route('apiService.objectives.reports',['objectiveId'=> $objective->id, 'size' => 3, 'with' =>'report_goal,report_latest_comments,report_actions', 'detailed' => true,  'order_by'=>'created_at,DESC'])}}" login-url="{{route('login')}}">
+					<report-list fetch-url="{{route('apiService.objectives.reports',['objectiveId'=> $objective->id, 'size' => 3, 'with' =>'report_goal,report_latest_comments,report_actions', 'detailed' => true,  'order_by'=>'date,DESC'])}}" login-url="{{route('login')}}">
 						@include('partials.loading')
 					</report-list>
-					{{-- @forelse ($reports as $report)
-					<div class="card my-4 shadow-sm border-secondary">
-						<div class="card-body text-secondary">
-								<p class="mb-3 float-lg-right ml-lg-4  text-secondary text-right"><i class="{{$report->typeIcon()}} text-primary"></i>&nbsp;{{$report->typeLabel()}}</p>
-								<h5 class="is-700 my-2"><a href="{{route('reports.index',['reportId' => $report->id])}}"class="text-secondary">{{$report->title}}</a></h5>
-								<p class="text-smaller mb-0">{{nl2br(e(Str::limit($objective->content, 280, $end=' [...]')))}}</p>
-								<p class="text-muted text-smaller my-2">Publicado {{$report->created_at->diffForHumans()}} por {{$report->author->name}} {{$report->author->surname}}</p>
-								<div class="div d-flex justify-content-between mt-4">
-									<div class="div">
-										<a href="#" class="btn btn-outline-success btn-sm is-600">Estoy de acuerdo&nbsp;<i class="fas fa-check"></i>&nbsp;<span class="text-secondary is-700">{{$report->testimonies->count()}}</span></a>
-										<a href="#" class="btn btn-outline-info btn-sm is-600">Quiero sumar información&nbsp;<i class="far fa-comment"></i>&nbsp;<span class="text-secondary is-700">{{$report->comments->count()}}</span></a>
-									</div>
-									<div>
-										<a href="{{route('reports.index',['reportId' => $report->id])}}" class="btn btn-outline-primary btn-sm">Detalles&nbsp;<i class="fas fa-arrow-right"></i></a>
-									</div>
-								</div>
-						</div>
-					</div>
-					@empty
-					<p class="my-2 text-muted">No hay reportes de la meta</p>
-					@endforelse
-					<div class="text-center">
-						{{$reports->links()}}
-					</div> --}}
-					{{-- @forelse ($objective->files as $file)
-					<div class="card mb-2 shadow-sm">
-						<div class="card-body p-2 pl-4 pr-4 d-flex">
-							<div class="mr-3 mt-2">
-								<i class="far fa-file fa-lg"></i>
-							</div>
-							<div class="flex-fill">
-								<p class="mb-0 text-smaller word-wrap-anywhere">{{ $file->name }}</p>
-								<p class="text-card text-smaller text-muted mb-0">{{ $file->mime }}</p>
-							</div>
-							<div class="ml-3 mt-2">
-								<a href="{{ asset($file->path) }}" class="card-link text-smaller"><i class="fas fa-download fa-lg"></i></a>
-							</div>
-						</div>
-					</div>
-					@empty
-					<p class="my-2 text-muted">No hay archivos adjuntos a la meta</p>
-					@endforelse --}}
-
 				</div>
 			</div>
 		</div>

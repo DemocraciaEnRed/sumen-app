@@ -22,8 +22,10 @@
 					<i v-show="type == 'milestone'" class="mt-1 animate__animated animate__rubberBand fas fa-medal fa-2x fa-fw"></i>
 				</div>
 				<div>
-					<h5 class="">Un reporte de <span class="font-weight-bold">{{typeLabel}}</span></h5>
-					<strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
+					<h5 class="">Acerca del reporte de <span class="font-weight-bold">{{typeLabel}}</span></h5>
+					<span v-show="type == 'post'">Un reporte el de novedad utilizado para contar noticias generales, relacionadas a el proyecto. Es el reporte mas simple. <b>Importante:</b> No utilice este tipo de reporte si quiere especificar que el proyecto progresa en su indicador o que se completo un hito.</span>
+					<span v-show="type == 'progress'">Un reporte de avance implica un aumento en el valor del indicador. Al realizar un reporte de avance, automaticamente el proyecto aumenta su valor de indicador especificado en el reporte.</span>
+					<span v-show="type == 'milestone'">Un reporte de hito implica que se ha cumplido uno de los hitos que han sido cargados en el proyecto. <b>Importante:</b> El hito que se completa debe haber sido cargado en el proyecto previamente. No puede crear un reporte de hito sin asociar el hito que se completa</span>
 				</div>
 			</div>
 			<div class="form-group">
@@ -43,22 +45,22 @@
       	<div class="col">
 					<div class="form-group">
 						<label>Fecha del reporte</label>
-						<input name="date" type="date" class="form-control" />
+						<input name="date" type="date" class="form-control" :value="today"/>
           	<small class="form-text text-muted">Fecha en que ocurre el reporte. No puede ser una fecha futura.</small>
 					</div>
 				</div>
 				<div class="col">
 					<div class="form-group">
-						<label>Nuevo estado de la meta</label>
+						<label>Nuevo estado de el proyecto</label>
 							<div class="form-group">
 								<select class="custom-select" name="status">
 										<option value="" selected>- Mantener estado "{{statusLabel}}" -</option>
 									 	<option v-if="goal.status != 'ongoing'" value="ongoing">En progreso</option>
-										<option v-if="goal.status != 'delayed'" value="delayed" >Demorada</option>
-										<option v-if="goal.status != 'inactive'" value="inactive" >Inactiva</option>
-										<option v-if="goal.status != 'reached'" value="reached" disabled>Alcanzada</option>
+										<option v-if="goal.status != 'delayed'" value="delayed" >Demorado</option>
+										<option v-if="goal.status != 'inactive'" value="inactive" >Inactivo</option>
+										<option v-if="goal.status != 'reached'" value="reached">Alcanzado</option>
 								</select>
-	          	<small class="form-text text-muted">Si el reporte indica un nuevo estado de la meta, puede definirlo aqui, si la meta no cambia su estado, puede dejarlo en "Mantener el estado"</small>
+	          	<small class="form-text text-muted">Si cambió el estado de el proyecto, actualizalo acá. En caso de que se mantenga, selecciona "mantener estado"</small>
 							</div>
           	<small class="form-text text-muted"></small>
 					</div>
@@ -66,8 +68,8 @@
 			</div>
 			<section v-if="type == 'progress'">
 				<div class="form-group">
-					<label>Avance de la meta</label>
-					<p class="text-muted">Defina cuantas unidades de {{goal.indicator_unit}} se agrega al progreso de la meta</p>
+					<label>Avance de el proyecto</label>
+					<p class="text-muted">Defina cuantas unidades de {{goal.indicator_unit}} se agrega al progreso de el proyecto</p>
 					<div class="form-row">
 						<div class="col-md-10">
       				<input type="range" class="custom-range mt-2" v-model.number="rangeInput" min="0" :max="goal.indicator_goal - goal.indicator_progress">
@@ -82,7 +84,7 @@
 							<div class="card">
 								<div class="card-body text-center">
 								<h4 class="card-title text-primary font-weight-bold">{{progressNow}}%</h4>
-								<h6 class="card-subtitle">Porcentaje actual de la meta</h6> 
+								<h6 class="card-subtitle">Porcentaje actual de el proyecto</h6> 
 								</div>
 							</div>
 						</div>
@@ -98,7 +100,7 @@
 							<div class="card">
 								<div class="card-body text-center">
 								<h4 class="card-title text-primary font-weight-bold">{{progressTotal}}%</h4>
-								<h6 class="card-subtitle">Porcentaje nuevo de la meta</h6> 
+								<h6 class="card-subtitle">Porcentaje nuevo de el proyecto</h6> 
 								</div>
 							</div>
 						</div>
@@ -106,14 +108,14 @@
 					<div class="alert alert-warning" v-if="rangeInput <= 0">
 						<i class="fas fa-exclamation-triangle fa-fw"></i>&nbsp;¡No puede crear un reporte de avance y que el avance sea 0 o negativo!
 					</div>
-					<div class="alert alert-info" v-if="progressTotal > 100">
-						<i class="fas fa-info-circle fa-fw"></i>&nbsp;<b>¡Atencion!</b> Esta por sobrepasar el 100% de la meta. Esté seguro que es lo que desea.
+					<div class="alert alert-info" v-if="over100">
+						<i class="fas fa-info-circle fa-fw"></i>&nbsp;<b>¡Atencion!</b> Esta por sobrepasar el 100% de el proyecto. Esté seguro que es lo que desea.
 					</div>
 			</section>
 			<section v-if="type == 'milestone'">
 				<div class="form-group">
 					<label>¿En que fecha se alcanzó el hito?</label>
-						<input name="milestone_date" type="date" class="form-control" />
+						<input name="milestone_date" type="date" class="form-control" :value="today" />
           	<small class="form-text text-muted">Si la fecha en que el hito se alcanzó es distinta a la fecha del reporte, por favor, ingrese la fecha aquí. De no definirla, se define la fecha de hito alcanzado la misma fecha que el reporte.</small>
 				</div>
 				<div class="form-group">
@@ -134,10 +136,25 @@
 				<p class="form-text text-muted">Nota: A diferencia de las fotos del reporte, estas no se presentan con previsualizaciones.</p>
 				<input-file name="files[]" multiple></input-file>
 			</div>
+			<div class="form-group">
+				<div class="card">
+					<div class="card-body">
+						<label class="is-700 "><i class="fas fa-paper-plane"></i>&nbsp;Enviar notificación a suscriptores</label>
+						<div class="custom-control custom-switch" v-if="!objective.hidden">
+							<input type="checkbox" class="custom-control-input" name="notify" id="notify" value="true">
+							<label class="custom-control-label is-clickable" for="notify">Notificar a los suscriptores</label>
+						</div>
+						<div class="alert alert-warning" v-else>
+							<i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
+						</div>
+						<small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema, de que hay un nuevo reporte.</small>
+					</div>
+					</div>
+				</div>
 			<br>
 			<div class="form-group">
 				<input type="hidden" name="_token" :value="crsfToken" />
-				<button type="submit" class="btn btn-sm btn-primary">Crear reporte</button>
+				<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Crear reporte</button>
 			</div>
 		</section>
   </form>
@@ -182,11 +199,11 @@ export default {
 				case 'ongoing':
 					return 'En progreso'
 				case 'delayed':
-					return 'Demorada'
+					return 'Demorado'
 				case 'inactive':
-					return 'Inactiva'
+					return 'Inactivo'
 				case 'reached':
-					return 'Alcanzada'
+					return 'Alcanzado'
 			}
 		},
 		progressNow: function(){
@@ -199,7 +216,25 @@ export default {
 		progressTotal: function(){
 			if(this.rangeInput <= 0) return this.progressNow
 			return (((this.goal.indicator_progress + this.rangeInput) / this.goal.indicator_goal)*100).toFixed()
-		}
+		},
+		over100: function(){
+			return ((this.rangeInput + this.goal.indicator_progress) > this.goal.indicator_goal)
+		},
+		
+		today: function(){
+			var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+			if (month.length < 2) 
+					month = '0' + month;
+			if (day.length < 2) 
+					day = '0' + day;
+
+			return [year, month, day].join('-');
+
+			}
 	},
   watch: {}
 };

@@ -3,8 +3,8 @@
 @section('adminContent')
 
 <section>
-  <h1 class="">Crear objetivo</h1>
-  <p>Para crear un nuevo objetivo, completá los campos a continuación:</p>
+  <h3 class="is-700">Crear meta</h3>
+  <p class="lead">Para crear una nueva meta, completá los campos a continuación:</p>
   <hr>
   @if ($errors->any())
     <div class="alert alert-danger">
@@ -19,15 +19,16 @@
   <form method="POST" action="{{ route('admin.objectives.create.form') }}">
     @csrf
     <div class="form-group">
-      <label>Titulo del objetivo</label>
-      <input type="text" class="form-control" name="title" placeholder="Ingrese un nombre">
+      <label><b>Titulo de la meta</b></label>
+      <input type="text" class="form-control" name="title" placeholder="Ingrese un nombre" maxlength="550">
+      <small class="text-muted">Hasta 550 caracteres.</small>
     </div>
     <div class="form-group">
-      <label>Descripción del objetivo</label>
+      <label><b>Descripción de la meta</b></label>
       <textarea name="content" class="form-control" rows="4"></textarea>
     </div>
     <div class="form-group">
-      <label>Categoria del objetivo</label>
+      <label><b>Categoria de la meta</b></label>
       <select class="custom-select" name="category">
         @foreach ($categories as $category)
         <option value="{{$category->id}}">{{$category->title}}</option>
@@ -39,7 +40,7 @@
       <input-tags name="tags"></input-tags>
     </div>
     <div class="form-group">
-      <label>Organizaciones relacionadas con el objetivo</label>
+      <label>Organizaciones relacionadas con la meta</label>
       <div>
         @foreach($organizations as $organization)
           <div class="custom-control custom-checkbox form-check-inline">
@@ -50,14 +51,14 @@
       </div>
     </div>
     <div class="alert alert-light">
-      Luego de hacer clic en el boton <b>Crear</b>, sera redireccionado al panel de control del objetivo.<br>
-      Recuerde: El objetivo se va a crear como <u>oculto</u>.
+      Luego de hacer clic en el boton <b>Crear</b>, sera redireccionado al panel de control de la meta.<br>
+      Recuerde: La meta se va a crear como <u>oculta</u>.
     </div>
     <button type="submit" class="btn btn-primary">Crear</button>
   </form>
   @else
   <div class="alert alert-warning" role="alert">
-    No puede crear objetivos sin categorias. Debe ir al panel de <a href="{{ route('admin.categories') }}">Categorias</a>
+    No puede crear metas sin categorías. Debe ir al panel de <a href="{{ route('admin.categories') }}">Categorías</a>
   </div>
   @endif
 </section>

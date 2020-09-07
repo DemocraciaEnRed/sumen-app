@@ -28,7 +28,7 @@ Es un nuevo canal de comunicación con los ciudadanos; priorizando la transparen
 </p>
 <p>A través de <b>Sumen</b> las gestiones de gobierno pueden difundir las acciones que llevan adelante y su grado de progreso de forma fácil y dinámica.
 </p>
-  <h6 class="is-600 mb-3">¿ Por qué es necesario Partícipes?</h5>
+  <h6 class="is-600 mb-3">¿ Por qué es necesario Sumen?</h5>
   <p>De esta manera se promueve una ciudadanía activa, y una mejor relación entre gobierno y sociedad. Estas prácticas sirven para mejorar e incidir las políticas públicas y construyen un Estado más transparente.</p>
 </section>
 <hr>

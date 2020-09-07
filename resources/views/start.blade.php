@@ -135,14 +135,14 @@
               <h4><i class="fas fa-info-circle"></i>&nbsp;Acerca de la demo</h4>
               <p class="">Puede comenzar una demo haciendo clic en <b>Con DEMO</b>. La misma cuenta con:</p>
               <ul class="mb-0">
-                <li>5 categorias</li>
+                <li>5 categorías</li>
                 <li>25 organizaciones</li>
                 <li>50 usuarios</li>
-                <li>20 objetivos</li>
-                <li>7 metas por objetivos</li>
-                <li>6 usuarios miembros del equipo de cada objetivo</li>
-                <li>4 usuarios suscriptos por cada objetivo</li>
-                <li>Entre 1 y 9 reportes por meta, siendo, al azar, que sean, de novedad, progreso, o hito.</li>
+                <li>20 metas</li>
+                <li>7 proyectos por meta</li>
+                <li>6 usuarios miembros del equipo de cada meta</li>
+                <li>4 usuarios suscriptos por cada meta</li>
+                <li>Entre 1 y 9 reportes por proyecto, siendo, al azar, que sean, de novedad, progreso, o hito.</li>
                 <li>Un 60% de que el reporte sea geolocalizado</li>
                 <li>Un 40% de que haya un reporte que cambie el estado de la meta a completada</li>
               </ul>

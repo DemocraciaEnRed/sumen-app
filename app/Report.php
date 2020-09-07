@@ -12,6 +12,7 @@ class Report extends Model
     protected $table = 'reports';
     public $incrementing = true; // if IDs are auto-incrementing.
     public $timestamps = true; // if the model should be timestamped.
+    protected $appends = ['type_label','status_label','previous_status_label','type_icon'];
 
     protected $dates = [
         'date',
@@ -71,12 +72,22 @@ class Report extends Model
     {
         return $this->testimonies()->where('value', false);
     }
+    public function getPositiveTestimoniesAttribute()
+    {
+        return $this->testimonies()->where('value', true)->count();
+    }
+
+    public function getNegativeTestimoniesAttribute()
+    {
+        return $this->testimonies()->where('value', false)->count();
+    }
 
     public function userTestimony($userId)
     {
         return $this->testimonies()->where('user_id', $userId);
     }
-    public function typeLabel()
+    
+    public function getTypeLabelAttribute()
     {
         switch($this->type){
             case 'post':
@@ -92,27 +103,45 @@ class Report extends Model
                 return 'Sin etiqueta';
         }
     }
-    public function statusLabel()
+    public function getStatusLabelAttribute()
     {
         switch($this->status){
             case 'reached':
-                return 'Alcanzada';
+                return 'Alcanzado';
                 break;
             case 'ongoing':
                 return 'En progreso';
                 break;
             case 'delayed':
-                return 'Demorada';
+                return 'Demorado';
                 break;
             case 'inactive':
-                return 'Inactiva';
+                return 'Inactivo';
                 break;
-
             default:
                 return '???';
         }
     }
-    public function typeIcon()
+    public function getPreviousStatusLabelAttribute()
+    {
+        switch($this->previous_status){
+            case 'reached':
+                return 'Alcanzado';
+                break;
+            case 'ongoing':
+                return 'En progreso';
+                break;
+            case 'delayed':
+                return 'Demorado';
+                break;
+            case 'inactive':
+                return 'Inactivo';
+                break;
+            default:
+                return '???';
+        }
+    }
+    public function getTypeIconAttribute()
     {
         switch($this->type){
             case 'post':

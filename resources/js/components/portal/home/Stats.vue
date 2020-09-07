@@ -2,19 +2,19 @@
   <section v-if="!isLoading">
       <div class="row">
         <div class="col">
-          <p class=" text-center"><span class="h4 is-700"><i class="far fa-dot-circle fa-fw text-reached"></i>&nbsp;{{goalsReached}}</span><br><span class="text-smaller">Alcanzadas</span></p>
+          <p class=" text-center"><span class="h4 is-700"><i class="far fa-dot-circle fa-fw text-reached"></i>&nbsp;{{goalsReached}}</span><br><span class="text-smaller">Alcanzados</span></p>
           </div>
         <div class="col">
           <p class=" text-center"><span class="h4 is-700"><i class="far fa-dot-circle fa-fw text-ongoing"></i>&nbsp;{{goalsOngoing}}</span><br><span class="text-smaller">En progreso</span></p>
           </div>
         <div class="col">
-          <p class=" text-center"><span class="h4 is-700"><i class="far fa-dot-circle fa-fw text-delayed"></i>&nbsp;{{goalsDelayed}}</span><br><span class="text-smaller">Demoradas</span></p>
+          <p class=" text-center"><span class="h4 is-700"><i class="far fa-dot-circle fa-fw text-delayed"></i>&nbsp;{{goalsDelayed}}</span><br><span class="text-smaller">Demorados</span></p>
           </div>
         <div class="col">
-          <p class=" text-center"><span class="h4 is-700"><i class="far fa-dot-circle fa-fw text-inactive"></i>&nbsp;{{goalsInactive}}</span><br><span class="text-smaller">Inactivas</span></p>
+          <p class=" text-center"><span class="h4 is-700"><i class="far fa-dot-circle fa-fw text-inactive"></i>&nbsp;{{goalsInactive}}</span><br><span class="text-smaller">Inactivos</span></p>
           </div>
       </div>
-      <div class="progress mb-2">
+      <div class="progress mb-3">
         <div class="progress-bar bg-reached" role="progressbar" :style="`width: ${goalsReachedPercent}%`" :aria-valuenow="goalsReached" aria-valuemin="0" aria-valuemax="100">{{goalsReachedPercent}}%</div>
         <div class="progress-bar bg-ongoing" role="progressbar" :style="`width: ${goalsOngoingPercent}%`" :aria-valuenow="goalsOngoing" aria-valuemin="0" aria-valuemax="100">{{goalsOngoingPercent}}%</div>
         <div class="progress-bar bg-delayed" role="progressbar" :style="`width: ${goalsDelayedPercent}%`" :aria-valuenow="goalsDelayed" aria-valuemin="0" aria-valuemax="100">{{goalsDelayedPercent}}%</div>
@@ -22,7 +22,7 @@
       </div>
       <div class="row">
         <div class="col-sm-4 align-self-center text-center">
-          <p class="mb-2 mb-sm-0"><span class="h5 is-700"><i class="far fa-file text-primary"></i>&nbsp;&nbsp;{{reportsTotal}}</span><br class="d-none d-sm-block"><span class="d-sm-none">&nbsp;&nbsp;</span><span class="">Reportes en los<br class="d-none d-sm-block">últimos 15 dias</span></p>
+          <p class="mb-2 mb-sm-0"><span class="h5 is-700"><i class="far fa-file text-primary"></i>&nbsp;&nbsp;{{reportsTotal}}</span><br class="d-none d-sm-block"><span class="d-sm-none">&nbsp;&nbsp;</span><span class="text-smaller">Reportes en los<br class="d-none d-sm-block"><span class="d-sm-none">&nbsp;</span>últimos 15 dias</span></p>
         </div>
         <div class="col-sm-8">
           <reports-chart :chart-data="reportsData" :styles="chartStyle"/>
@@ -57,7 +57,7 @@ export default {
       reportsTotal: 0,
       reportsData: [],
       styles: {
-        height: '80'
+        height: '100'
       }
     }
   },

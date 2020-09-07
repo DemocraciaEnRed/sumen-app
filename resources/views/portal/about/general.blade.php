@@ -34,7 +34,7 @@ De esta forma, los vecinos pueden monitorear y ser parte de los avances.</p>
 <hr>
 <section id="mas-alla" class="py-4">
 <h4 class="is-600 mb-4">Más allá de nuestra ciudad</h4>
-<p>Esta plataforma surge del proyecto <b>Partícipes</b> de fortalecimiento de procesos de rendición de cuentas. Partícipes se lleva a cabo en <b>Córdoba, Buenos Aires, Rosario y Mendoza</b> y propone el  monitoreo ciudadano de políticas públicas, a través del uso de herramientas tecnológicas y nuevos canales de comunicación. Este proyecto es coordinado por la Fundación Avina y es financiado por la Unión Europea.
+<p>Esta plataforma surge del proyecto <b>Sumen</b> de fortalecimiento de procesos de rendición de cuentas. Sumen se lleva a cabo en <b>Córdoba, Buenos Aires, Rosario y Mendoza</b> y propone el  monitoreo ciudadano de políticas públicas, a través del uso de herramientas tecnológicas y nuevos canales de comunicación. Este proyecto es coordinado por la Fundación Avina y es financiado por la Unión Europea.
 </p>
 </section>
 @endsection

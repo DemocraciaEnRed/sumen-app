@@ -19,10 +19,6 @@ export default {
           }],
           xAxes: [{
             display: false,
-             barPercentage: 0.1,
-            gridLines: {
-            display:false
-        }
           }]
         }
       }
@@ -42,8 +38,6 @@ export default {
         {
           label: 'Reportes',
           backgroundColor: '#99C355',
-                  barThickness: 18,
-
           data: this.chartData.map( data => data.count )
         }
       ]

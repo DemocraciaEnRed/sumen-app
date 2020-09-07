@@ -1,7 +1,14 @@
-<nav class="navbar navbar-expand-md navbar-dark p-2 bg-primary">
+@php
+  $countUnreadNotifications = 0;
+  if(Auth::user()){
+    $countUnreadNotifications = Auth::user()->unreadNotifications->count();
+  } 
+@endphp
+
+<nav class="navbar navbar-expand-md navbar-dark p-2 bg-secondary">
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">
-      <img src="{{asset('img/LogoSumen.svg')}}" width="120" class="img-fluid" alt="{{ config('app.name', 'Laravel') }}">
+      <img src="{{asset('img/logo-sumen.svg')}}" width="90" class="img-fluid" alt="{{ config('app.name', 'Laravel') }}">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -12,7 +19,16 @@
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a href="{{ route('about.general') }}" class="nav-link">¿Como funciona?</a>
+          <a href="{{ route('objectives') }}" class="nav-link"><i class="fas fa-fw fa-bullseye"></i> Metas</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('reports') }}" class="nav-link"><i class="far fa-fw fa-copy"></i> Reportes</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('events.upcoming') }}" class="nav-link"><i class="far fa-fw fa-calendar-alt"></i> Eventos</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('about.general') }}" class="nav-link"><i class="fas fa-fw fa-question-circle"></i> ¿Cómo funciona?</a>
         </li>
       </ul>
 
@@ -29,10 +45,15 @@
         </li>
         @endif
         @else
+        @if( $countUnreadNotifications > 0 )
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('panel.notifications.unread') }}"><i class="fas fa-bell"></i>&nbsp;<span class="badge badge-danger badge-pill">{{ $countUnreadNotifications }}</span></a>
+        </li>
+        @endif
         <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            @include('utils.avatar',['avatar' => Auth::user()->avatar, 'size' => 24]) {{ Auth::user()->name }} <span
+            @include('utils.avatar',['avatar' => Auth::user()->avatar, 'size' => 20]) {{ Auth::user()->name }} <span
               class="caret"></span>
           </a>
 

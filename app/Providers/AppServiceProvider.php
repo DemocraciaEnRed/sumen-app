@@ -3,6 +3,16 @@
 namespace App\Providers;
 
 // use Auth;
+use App\User;
+use App\Objective;
+use App\Goal;
+use App\Report;
+use App\Observers\UserObserver;
+use App\Observers\ObjectiveObserver;
+use App\Observers\GoalObserver;
+use App\Observers\ReportObserver;
+
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +36,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        User::observe(UserObserver::class);
+        Objective::observe(ObjectiveObserver::class);
+        Goal::observe(GoalObserver::class);
+        Report::observe(ReportObserver::class);
+        
         //
         Blade::if('hasRole', function ($roles) {
             $user = auth()->user();
@@ -78,12 +93,23 @@ class AppServiceProvider extends ServiceProvider
             return false;
         });
 
-         Blade::directive('datetime', function ($expression) {
+        Blade::directive('datetime', function ($expression) {
             return "<?php echo ($expression)->format('d/m/Y H:i'); ?>";
         });
-         Blade::directive('justdate', function ($expression) {
+        Blade::directive('dateInputFormat', function ($expression) {
+            return "<?php echo ($expression)->format('Y-m-d'); ?>";
+        });
+        Blade::directive('justdate', function ($expression) {
             return "<?php echo ($expression)->format('d/m/Y'); ?>";
         });
-
+        Blade::directive('justtime', function ($expression) {
+            return "<?php echo ($expression)->format('H:i'); ?>";
+        });
+        Blade::directive('justhour', function ($expression) {
+            return "<?php echo ($expression)->format('H'); ?>";
+        });
+        Blade::directive('justminute', function ($expression) {
+            return "<?php echo ($expression)->format('i'); ?>";
+        });
     }
 }

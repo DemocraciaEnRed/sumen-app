@@ -44,6 +44,7 @@ Vue.component('paginator', require('./components/utils/Paginator.vue').default);
 Vue.component('error-alert', require('./components/utils/ErrorAlert.vue').default);
 Vue.component('input-icon', require('./components/inputs/InputIcon.vue').default);
 Vue.component('input-tags', require('./components/inputs/InputTag.vue').default);
+Vue.component('input-urls', require('./components/inputs/InputUrls.vue').default);
 Vue.component('input-file', require('./components/inputs/InputFile.vue').default);
 Vue.component('input-add-milestones-create-goal', require('./components/inputs/InputAddMilestonesCreateGoal.vue').default);
 Vue.component('report-comments', require('./components/comments/ReportComments.vue').default);
@@ -51,6 +52,7 @@ Vue.component('mapita', require('./components/maps/Mapita.vue').default);
 Vue.component('set-map-default', require('./components/maps/SetMapDefault.vue').default);
 Vue.component('draw-map', require('./components/maps/DrawMap.vue').default);
 Vue.component('map-reports', require('./components/maps/MapReports.vue').default);
+Vue.component('portal-objective-stats', require('./components/portal/objective/Stats.vue').default);
 
 Vue.prototype.$http = http
 

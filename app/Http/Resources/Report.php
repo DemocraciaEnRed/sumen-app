@@ -24,7 +24,8 @@ class Report extends JsonResource
             'author_id' => $this->author_id,
             'goal_id' => $this->goal_id,
             'type' => $this->type,
-            'type_label' => $this->typeLabel(),
+            'type_label' => $this->type_label,
+            'type_icon' => $this->type_icon,
             'title' => $this->title,
             'content' => $this->content,
             'date' => $this->date,
@@ -39,7 +40,7 @@ class Report extends JsonResource
             'map_geometries' => $this->map_geometries,
             'milestone_achieved' => $this->milestone_achieved,
             'comments_count' => $this->comments()->count(),
-                        'positive_testimonies_count' => $this->positiveTestimonies()->count(), 
+            'positive_testimonies_count' => $this->positiveTestimonies()->count(), 
             'negative_testimonies_count' => $this->negativeTestimonies()->count(), 
             'created_at' => $this->created_at,
             'published_at' => $this->created_at->diffForHumans(),
@@ -60,6 +61,7 @@ class Report extends JsonResource
                 if($user){
                     $res['testimony'] = TestimonyResource::make($this->userTestimony($user->id)->first());
                     $res['testimony_url'] = route('apiService.reports.testimonies.run',$this->id);    
+                    $res['user_verified'] = $user->hasVerifiedEmail();    
                 }
                 break;
               case 'report_latest_comments':
