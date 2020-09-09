@@ -71,7 +71,7 @@ class JoinObjectiveTeam extends Notification implements ShouldQueue
     {   
         
         return (new MailMessage)
-                    ->subject('¡Te han agregado al equipo de una meta en Sumen!')
+                    ->subject('¡Te han agregado al equipo de un objetivo en Participes!')
                     ->markdown('mail.objectives.join', ['user' => $notifiable, 'objective' => $this->objective, 'role' => ($this->role == 'manager' ? 'coordinardor/a' : 'reportero/a')]);
         
     }

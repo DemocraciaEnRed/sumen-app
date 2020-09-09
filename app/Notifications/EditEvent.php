@@ -68,7 +68,7 @@ class EditEvent extends Notification implements ShouldQueue
     {   
         
         return (new MailMessage)
-                    ->subject('Han editado un evento que sigues en Sumen')
+                    ->subject('Han editado un evento que sigues en Participes')
                     ->markdown('mail.events.edit', ['user' => $notifiable, 'event' => $this->event]);
     }
 

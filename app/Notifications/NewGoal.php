@@ -70,7 +70,7 @@ class NewGoal extends Notification implements ShouldQueue
     {   
         
         return (new MailMessage)
-                    ->subject('¡Nuevo proyecto en Sumen!')
+                    ->subject('¡Nueva meta en Participes!')
                     ->markdown('mail.goals.new', ['user' => $notifiable, 'objective' => $this->objective, 'goal' => $this->goal]);
     }
 
