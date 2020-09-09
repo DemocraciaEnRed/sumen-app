@@ -72,6 +72,23 @@ class UserPanelController extends Controller
 
     }
 
+    public function viewAccountData(Request $request){
+
+        return view('panel.account.data');
+    }
+
+    public function formAccountData(Request $request){
+        $rules = [
+            'organization' => 'nullable|string|max:550',
+        ];
+        $request->validate($rules);
+        
+        $user = User::find(auth()->user()->id);
+        $user->organization = $request->input('organization');
+        $user->save();
+        return redirect()->route('panel.account.data')->with('success','Se han actualizado los datos');
+    }
+
     public function formAccountAvatar(Request $request){
         $rules = [
             'avatar' => 'required|string|starts_with:data:image/',
