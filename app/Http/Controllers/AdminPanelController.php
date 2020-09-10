@@ -68,7 +68,7 @@ class AdminPanelController extends Controller
         $category->icon = $request->input('icon');
         $category->color = $request->input('color');
         $category->save();
-        return redirect()->route('admin.categories')->with('success','La categoria ha sido creada correctamente');
+        return redirect()->route('admin.categories')->with('success','El eje de planificación ha sido creada correctamente');
     }
     public function viewEditCategory(Request $request, $categoryId){
         $category = Category::findOrFail($categoryId);
@@ -89,13 +89,13 @@ class AdminPanelController extends Controller
         $category->color = $request->input('color');
         $category->save();
 
-        return redirect()->route('admin.categories')->with('success','La categoria ha sido editada correctamente');
+        return redirect()->route('admin.categories')->with('success','El eje de planificación ha sido editada correctamente');
     }
     public function viewDeleteCategory(Request $request, $categoryId){
         $category = Category::findorfail($categoryId);
         $categories = Category::all();
         if(count($categories) == 1){
-            return redirect()->route('admin.categories')->with('warning','No puede eliminar la categoria porque se requiere migrar las metas de la categoria que eliminara a otra categoria. Cree una nueva categoria para poder migrarlos');
+            return redirect()->route('admin.categories')->with('warning','No puede eliminar el eje de planificación porque se requiere migrar las metas del eje de planificación que eliminara a otro eje de planificación. Cree un nueva eje de planificación para poder migrarlos');
         }
         return view('admin.categories.delete',['category' => $category, 'categories' => $categories]);
     }
@@ -114,7 +114,7 @@ class AdminPanelController extends Controller
         }
         $category->delete();
 
-        return redirect()->route('admin.categories')->with('success','La categoria ha sido eliminada correctamente y las metas han sido migrado a otra categoria');
+        return redirect()->route('admin.categories')->with('success','El eje de planificación ha sido eliminada correctamente y las metas han sido migrado a otro eje de planificación');
     }
 
     // ====================================

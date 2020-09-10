@@ -28,7 +28,7 @@
       <textarea name="content" class="form-control" rows="4"></textarea>
     </div>
     <div class="form-group">
-      <label><b>Categoria de la meta</b></label>
+      <label><b>Eje de planificación de la meta</b></label>
       <select class="custom-select" name="category">
         @foreach ($categories as $category)
         <option value="{{$category->id}}">{{$category->title}}</option>
@@ -58,7 +58,7 @@
   </form>
   @else
   <div class="alert alert-warning" role="alert">
-    No puede crear metas sin categorías. Debe ir al panel de <a href="{{ route('admin.categories') }}">Categorías</a>
+    No puede crear metas sin eje de planificación. Debe ir al panel de <a href="{{ route('admin.categories') }}">ejes de planificación</a>
   </div>
   @endif
 </section>

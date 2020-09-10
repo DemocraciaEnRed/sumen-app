@@ -4,7 +4,7 @@
 
 <section>
 <h3 class="is-700">Eliminar organización</small></h3>
-<p class="lead">Complete los siguientes campos para eliminar una categoria:</p>
+<p class="lead">Complete los siguientes campos para eliminar un eje de planificación:</p>
   @if ($errors->any())
     <div class="alert alert-danger">
         <ul class="mb-0">

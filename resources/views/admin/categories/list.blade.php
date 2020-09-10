@@ -3,8 +3,8 @@
 @section('adminContent')
 
 <section>
-  <h3 class="is-700">Categorías</h3>
-  <p class="lead">A continuación encontrarán las categorías dentro de las cuales se agruparán las metas:</p>
+  <h3 class="is-700">Ejes de planificación </h3>
+  <p class="lead">A continuación encontrarán los ejes de planificación dentro de las cuales se agruparán las metas:</p>
   @forelse($categories as $category)
   <div class="card mb-3 shadow-sm">
     <div class="card-body d-flex align-items-center">
@@ -24,8 +24,8 @@
   <div class="card mb-3 shadow-sm">
     <div class="card-body">
       <div>
-        <h6 class="card-title">No hay categorías cargadas</h4>
-        <a href="{{ route('admin.categories.create') }}" class="card-link"><b>Haga clic para crear una nueva categoria <i class="fas fa-arrow-right"></i></b></a>
+        <h6 class="card-title">No hay ejes de planificación cargados</h4>
+        <a href="{{ route('admin.categories.create') }}" class="card-link"><b>Haga clic para crear un nuevo eje de planificación <i class="fas fa-arrow-right"></i></b></a>
       </div>
     </div>
   </div>

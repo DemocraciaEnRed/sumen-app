@@ -3,8 +3,8 @@
 @section('adminContent')
 
 <section>
-<h3 class="is-700">Editar categoria</h3>
-  <p class="lead">Para editar la categoría, completá los campos a continuación:</p>
+<h3 class="is-700">Editar eje de planificación</h3>
+  <p class="lead">Para editar el eje de planificación, completá los campos a continuación:</p>
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul class="mb-0">
