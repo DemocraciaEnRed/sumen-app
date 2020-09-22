@@ -16,9 +16,8 @@
 <div class="container push-to-header" style="margin-top: -350px">
   <div class="row justify-content-between mb-3 mb-md-4">
     <div class="col-md-5 text-center text-md-left mb-3 mb-md-0">
-      <img src="{{asset('img/logo-sumen.svg')}}" width="150" class="img mb-2" alt="{{ config('app.name', 'Laravel') }}">
-      <h5 class="text-white">  Monitoreo de Planes de Metas<br>
-        En esta plataforma podés participar y ver el avance de los proyectos en tu ciudad! </h5>
+      <img src="{{asset(app_setting('app_logo_white','img/default-logo-white.svg'))}}" class="img logo-home mb-2" alt="{{ config('app.name', 'Laravel') }}">
+      <h5 class="text-white">{{app_setting('app_home_subtitle')}}</h5>
       <a href="#" class="btn btn-success mt-2">Conocer más <i class="fas fa-arrow-right ml-2"></i></a>
     </div>
     <div class="col-md-5 text-center text-md-left align-self-center">
