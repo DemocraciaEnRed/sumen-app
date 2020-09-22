@@ -57,7 +57,7 @@
     <div class="col-md-7 col-lg-8">
       <div class="card rounded shadow-sm">
         <div class="card-body">
-          <p><b>Estado de las metas</b></p>
+          <p><b>Estado de los proyectos</b></p>
           <portal-home-stats fetch-url="{{route('apiService.home.stats')}}">
             @include('partials.loading')
           </portal-home-stats>
