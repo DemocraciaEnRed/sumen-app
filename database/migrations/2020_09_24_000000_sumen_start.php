@@ -24,9 +24,9 @@ class SumenStart extends Migration
             $table->boolean('completed')->default(false)->after('map_geometries');
         });
         Schema::table('goals', function (Blueprint $table) {
-            $table->string('total_budget')->nullable();
-            $table->string('executed_budget')->nullable();
-            $table->string('request_info_url',550)->nullable();
+            $table->string('total_budget')->nullable()->after('source');
+            $table->string('executed_budget')->nullable()->after('total_budget');
+            $table->string('request_info_url',550)->nullable()->after('executed_budget');
         });
         Schema::create('goal_company', function (Blueprint $table) {
             $table->id();
