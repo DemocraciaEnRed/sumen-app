@@ -22,6 +22,9 @@
           <a href="{{ route('objectives') }}" class="nav-link"><i class="fas fa-fw fa-bullseye"></i> Metas</a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('goals') }}" class="nav-link"><i class="fas fa-fw fa-medal"></i> Proyectos</a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('reports') }}" class="nav-link"><i class="far fa-fw fa-copy"></i> Reportes</a>
         </li>
         <li class="nav-item">

@@ -8,6 +8,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Resources\Objective as ObjectiveResource;
 use App\Http\Resources\Report as ReportResource;
+use App\Http\Resources\Goal as GoalResource;
 use App\Http\Resources\SimpleReport as SimpleReportResource;
 
 class ObjectiveController extends Controller
@@ -105,6 +106,32 @@ class ObjectiveController extends Controller
         } else {
             return SimpleReportResource::collection($reports);
         }
+    }
+
+    public function fetchGoals(Request $request, $objectiveId){
+        $pageSize = $request->query('size',10);
+        $orderBy = $request->query('order_by');
+        $fetchAll = $request->query('all');
+        $onlyMappable = $request->query('mappable');
+        $goals = Goal::query();
+        $goals->where('objective_id',$objectiveId);
+        if(!is_null($orderBy)){
+            $orderByParams = explode(',',$orderBy);
+            $gopals->orderBy($orderByParams[0],$orderByParams[1]);
+        }
+        if($onlyMappable){
+            $goals->whereNotNull('map_long')->whereNotNull('map_lat')->whereNotNull('map_center');
+        }
+        // If "all=1" is not present
+        if($fetchAll){
+            // Paginate
+            $goals = $goals->get();
+        } else {
+            // Otherwise
+            // Get all
+            $goals = $goals->paginate($pageSize)->withQueryString();
+        }
+        return GoalResource::collection($goals);
     }
 
     public function fetchStats(Request $request, $objectiveId){

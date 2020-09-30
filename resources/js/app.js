@@ -49,11 +49,13 @@ Vue.component('portal-objective-stats', require('./components/portal/objective/S
 Vue.component('portal-last-objectives', require('./components/portal/home/LastObjectives.vue').default);
 Vue.component('objective-organizations-carrousel', require('./components/portal/objective/OrganizationCarrousel.vue').default);
 Vue.component('map-reports', require('./components/maps/MapReports.vue').default);
+Vue.component('map-goals', require('./components/maps/MapGoals.vue').default);
 Vue.component('collapse', require('./components/utils/Collapse.vue').default);
 Vue.component('report-list', require('./components/report/ReportsList.vue').default);
 Vue.component('report-album', require('./components/report/Album.vue').default);
 Vue.component('search-objectives', require('./components/portal/catalogs/objectives/Search.vue').default);
 Vue.component('search-reports', require('./components/portal/catalogs/reports/Search.vue').default);
+Vue.component('search-goals', require('./components/portal/catalogs/goals/Search.vue').default);
 
 
 Vue.prototype.$http = http

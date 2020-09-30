@@ -25,6 +25,24 @@
         </ul>
     </div>
   @endif
+  <h5 class="font-weight-bold"><i class="fas fa-flag-checkered"></i> Marcar como meta completa</h5>
+  <p>Al completar la meta, ocurre lo siguiente</p>
+  <ul>
+    <li>La meta se mostrara con una etiqueta de "Completada"</li>
+    <li>La accion no hace que los proyectos de la meta esten "Alcanzados", es independiente del estado de los mismos</li>
+  </ul>
+  <form action="{{ route('objectives.manage.configuration.complete.form',['objectiveId' => $objective->id]) }}" method="POST">
+    @method('PUT')
+    @csrf
+    <div class="form-group">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" name="completed" id="isCompleted" {{$objective->completed ? 'checked' : ''}} value="true">
+        <label class="custom-control-label is-clickable" for="isCompleted">Meta completada</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+  <hr>
   <h5 class="font-weight-bold"><i class="far fa-eye"></i> Ocultar meta</h5>
   <p>Al ocultar la meta, ocurre lo siguiente</p>
   <ul>

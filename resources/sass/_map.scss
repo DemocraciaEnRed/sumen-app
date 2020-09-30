@@ -7,12 +7,30 @@
   cursor: pointer;
 }
 
+.goal-marker {
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  border: 2px solid #FFF;
+}
+
+
 .mapboxgl-popup {
   max-width: 230px;
   .mapboxgl-popup-content{
     padding: 20px 15px 15px;
     .report-popup{
       p.report-title{
+        line-height: normal;
+        font-size: 0.875rem;
+        margin-bottom:10px;
+        font-family: $headings-font-family;
+        font-weight: 700;
+      }
+    }
+    .goal-popup{
+      p.goal-title{
         line-height: normal;
         font-size: 0.875rem;
         margin-bottom:10px;

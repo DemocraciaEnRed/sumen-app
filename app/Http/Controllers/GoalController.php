@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Goal;
 use App\Objective;
 use App\Report;
+use App\Http\Resources\Goal as GoalResource;
 use App\Http\Resources\Report as ReportResource;
 
 class GoalController extends Controller
@@ -21,6 +22,13 @@ class GoalController extends Controller
         // $this->middleware('auth');
     }
 
+    public function viewList(Request $request){
+       
+        return view('portal.catalogs.goals',[
+            
+        ]);
+    }
+
      public function index(Request $request, $goalId){
         $goal = Goal::findorfail($goalId);
         $objective = Objective::findorfail($goal->objective_id);
@@ -28,6 +36,42 @@ class GoalController extends Controller
             'goal' => $goal,
             'objective' => $objective
         ]);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function fetch(Request $request)
+    {   
+        $isMappable = $request->query('mappable');
+        $orderBy = $request->query('order_by');
+        $pageSize = $request->query('size',10);
+        $status = $request->query('status',null);
+        $title = $request->query('s',null);
+
+        $goals = Goal::query();
+        if(!is_null($orderBy)){
+            $orderByParams = explode(',',$orderBy);
+            $goals->orderBy($orderByParams[0],$orderByParams[1]);
+        }
+        if($isMappable){
+            $goals->whereNotNull('map_long')->whereNotNull('map_lat')->whereNotNull('map_center');
+        }
+        if(!is_null($status)){
+            $goals->where('status',$status);
+        }
+        if(!is_null($title)){
+            $titleExploded = explode(' ', $title);
+            $goals->where(function ($query) use ($titleExploded) {
+                foreach ($titleExploded as $keyword) {
+                $query->orWhere('trace', 'like', "%{$keyword}%");
+                }
+            });
+        }
+        $goals = $goals->paginate($pageSize)->withQueryString();
+        return GoalResource::collection($goals);
     }
 
     public function fetchReports(Request $request, $goalId){

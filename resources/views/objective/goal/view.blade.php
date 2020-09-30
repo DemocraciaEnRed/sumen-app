@@ -10,6 +10,18 @@
   @include('objective.goal.metatags')
 @endsection
 
+@section('stylesheets')
+@if(!is_null($goal->map_lat) && !is_null($goal->map_long))
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+@endif
+@endsection
+
+@section('headscripts')
+@if(!is_null($goal->map_lat) && !is_null($goal->map_long))
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+@endif
+@endsection
+
 @extends('layouts.app')
 
 @section('content')
@@ -98,7 +110,12 @@
 							<p class="my-2 text-muted">No hay hitos asociados</p>
 							@endforelse
 					</div>
+					<hr>
+					@if(!is_null($goal->map_lat) && !is_null($goal->map_long))
+					<h5 class="is-700 h5 text-body my-2">Mapa del proyecto</h5>
+					<portal-report-map access-token="{{config('services.mapbox.key')}}" map-style="{{config('services.mapbox.style')}}" :lat="{{$goal->map_lat}}" :long="{{$goal->map_long}}" :zoom="{{$goal->map_zoom}}" :init-collection="{{$goal->map_geometries}}"></portal-report-map>	
           <hr>
+					@endif
 					<div class="clearfix mt-2 mb-4">
 						<h5 class="is-700 float-left">Reportes</h5>
 						@isMember($objective->id)

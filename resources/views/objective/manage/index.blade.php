@@ -22,7 +22,7 @@
   </div>
   @if($objective->hidden)
   <div class="alert alert-dark">
-    <i class="fas fa-eye-slash"></i> La meta se encuentra <b>oculto</b> al público. <a href="{{route('objectives.manage.configuration', ['objectiveId' => $objective->id]) }}">Cambiar<i class="fas fa-arrow-right fa-fw"></i></a>
+    <i class="fas fa-eye-slash"></i> La meta se encuentra <b>oculta</b> al público. <a href="{{route('objectives.manage.configuration', ['objectiveId' => $objective->id]) }}">Cambiar<i class="fas fa-arrow-right fa-fw"></i></a>
   </div>
   @endempty
   @if($objective->goals->isEmpty())

@@ -187,7 +187,7 @@ return [
         'year'                  => 'año',
         'icon'                  => 'icono',
         'progress'              => 'avance',
-        'category'              => 'categoria',
+        'category'              => 'eje de planificacion',
         'organizations'         => 'organizaciones',
     ],
 ];

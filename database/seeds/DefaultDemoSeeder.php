@@ -57,10 +57,10 @@ class DefaultDemoSeeder extends Seeder
 
         $admin = new User();
         $admin->name = 'Admin';
-        $admin->surname = 'Participes';
+        $admin->surname = 'Sumen';
         $admin->email = 'admin@admin.com';
         $admin->email_verified_at = now();
-        $admin->password = Hash::make('participes');
+        $admin->password = Hash::make('adminsumen');
         $admin->remember_token = Str::random(10);
         $admin->save();
         $admin->roles()->attach(Role::where('name', 'user')->first());

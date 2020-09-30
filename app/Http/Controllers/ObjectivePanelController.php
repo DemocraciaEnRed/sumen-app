@@ -316,9 +316,38 @@ class ObjectivePanelController extends Controller
             'user_email' => $request->user()->email
             ]);
       }
-
       return redirect()->route('objectives.manage.configuration', ['objectiveId' => $request->objective->id])->with('success','Se actualizó la meta');
     }
+    public function formObjectiveConfigurationComplete (Request $request, $objectiveId){
+      $rules = [
+        'completed' => 'nullable|string|in:true',
+      ];
+      $request->validate($rules);
+      $completed = $request->boolean('completed',false);
+      $request->objective->completed = $completed;
+      $request->objective->save();
+
+      if($completed){
+         Log::channel('mysql')->info("[{$request->user()->fullname}] ha marcado como completa la meta [{$request->objective->title}]", [
+            'objective_id' => $request->objective->id,
+            'objective_title' => $request->objective->title,
+            'user_id' => $request->user()->id,
+            'user_fullname' => $request->user()->fullname,
+            'user_email' => $request->user()->email
+            ]);
+      } else {
+        Log::channel('mysql')->info("[{$request->user()->fullname}] ha marcado como incompleta la meta [{$request->objective->title}]", [
+            'objective_id' => $request->objective->id,
+            'objective_title' => $request->objective->title,
+            'user_id' => $request->user()->id,
+            'user_fullname' => $request->user()->fullname,
+            'user_email' => $request->user()->email
+            ]);
+      }
+      return redirect()->route('objectives.manage.configuration', ['objectiveId' => $request->objective->id])->with('success','Se actualizó la meta');
+    }
+
+
     public function formObjectiveConfigurationMap (Request $request){
       $rules = [
         'map_lat' => 'nullable|numeric',
@@ -441,8 +470,11 @@ class ObjectivePanelController extends Controller
       return redirect()->route('objectives.manage.files', ['objectiveId' => $request->objective->id])->with('success','Se agrego el archivo al repositorio de la meta');
     } 
 
-    public function viewObjectiveMap (Request $request){
-      return view('objective.manage.map', ['objective' => $request->objective]);
+    public function viewObjectiveReportsMap (Request $request){
+      return view('objective.manage.mapreports', ['objective' => $request->objective]);
+    } 
+    public function viewObjectiveGoalsMap (Request $request){
+      return view('objective.manage.mapgoals', ['objective' => $request->objective]);
     } 
 
     public function formDeleteObjective(Request $request){

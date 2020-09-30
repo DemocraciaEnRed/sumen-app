@@ -29,6 +29,7 @@ class Objective extends JsonResource
             'tags' => $this->tags,
             'archived' => $this->archived,
             'hidden' => $this->hidden,
+            'completed' => $this->completed,
             'created_at' => $this->created_at,
             'published_at' => $this->created_at->diffForHumans(),
             'updated_at' => $this->updated_at,

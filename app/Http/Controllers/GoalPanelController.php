@@ -411,4 +411,29 @@ class GoalPanelController extends Controller
 
     }
 
+    public function viewGoalMap (Request $request){
+      return view('objective.manage.goals.map', ['objective' => $request->objective, 'goal' => $request->goal]);
+    }  
+
+     public function formGoalMap (Request $request){
+      $rules = [
+        'map_lat' => 'nullable|numeric',
+        'map_long' => 'nullable|numeric',
+        'map_zoom' => 'nullable|numeric',
+        'map_geometries' => 'nullable|string',
+        'map_center' => 'nullable|string',
+      ];
+
+      $request->validate($rules);
+      $goal = $request->goal;
+      $goal->map_lat = $request->input('map_lat');
+      $goal->map_long = $request->input('map_long');
+      $goal->map_zoom = $request->input('map_zoom');
+      $goal->map_geometries = $request->input('map_geometries');
+      $goal->map_center = $request->input('map_center');
+      $goal->save();
+
+      return redirect()->route('objectives.manage.goals.map', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id])->with('success','Geometria actualizada!');
+    } 
+
 }

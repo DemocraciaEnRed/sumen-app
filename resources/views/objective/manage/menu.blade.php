@@ -47,7 +47,8 @@ $currentRoute = Route::currentRouteName();
 <a href="{{route('objectives.manage.edit', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.edit'  ? 'is-active' : null }}">Editar meta</a>
 <a href="{{route('objectives.manage.cover', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.cover'  ? 'is-active' : null }}">Imagen de portada</a>
 <a href="{{route('objectives.manage.files', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.files'  ? 'is-active' : null }}">Repositorio de archivos</a>
-<a href="{{route('objectives.manage.map', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.map'  ? 'is-active' : null }}">Mapa de reportes</a>
+<a href="{{route('objectives.manage.map.goals', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.map.goals'  ? 'is-active' : null }}">Mapa de proyectos</a>
+<a href="{{route('objectives.manage.map.reports', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.map.reports'  ? 'is-active' : null }}">Mapa de reportes</a>
 <a href="{{route('objectives.manage.configuration', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.configuration'  ? 'is-active' : null }}">Configuración</a>
 <a href="{{route('objectives.manage.logs', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.logs'  ? 'is-active' : null }}">Bitacora de eventos</a>
 </div>

@@ -18,10 +18,19 @@ class Goal extends Model
     {
         return $this->belongsTo('App\Objective');
     }
+    public function relatedObjectives()
+    {
+        return $this->belongsToMany('App\Objective','goal_related_objective','goal_id','objective_id');
+    }
     
     public function milestones()
     {
         return $this->hasMany('App\Milestone','goal_id')->orderBy('order','ASC');
+    }
+
+    public function companies()
+    {
+        return $this->belongsToMany('App\Company','goal_company','goal_id','company_id');
     }
 
     public function reports()

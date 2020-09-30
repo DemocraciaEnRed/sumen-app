@@ -1,11 +1,11 @@
 @php
-$geometry = $report->map_geometries ?: 'undefined';
-$lat = $report->map_lat ?: ($objective->map_lat ?: 'undefined');
-$long = $report->map_long ?: ($objective->map_long ?: 'undefined');
-$zoom = $report->map_zoom ?: ($objective->map_zoom ?: 'undefined');
+$geometry = $goal->map_geometries ?: 'undefined';
+$lat = $goal->map_lat ?: ($objective->map_lat ?: 'undefined');
+$long = $goal->map_long ?: ($objective->map_long ?: 'undefined');
+$zoom = $goal->map_zoom ?: ($objective->map_zoom ?: 'undefined');
 @endphp
 
-@extends('objective.manage.goals.reports.master')
+@extends('objective.manage.goals.master')
 
 @section('stylesheets')
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
@@ -21,10 +21,10 @@ $zoom = $report->map_zoom ?: ($objective->map_zoom ?: 'undefined');
 @section('panelContent')
 
 <section>
-  <h3 class="is-700">Mapa del reporte</h3>
+  <h3 class="is-700">Mapa del proyecto</h3>
   <p class="lead">Aqui puede crear puntos, areas, o lineas que tengan que ver con el reporte publicado</p>
    <hr />
-    <form action="{{route('objectives.manage.goals.reports.map.form',['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id])}}" method="POST">
+    <form action="{{route('objectives.manage.goals.map.form',['objectiveId' => $objective->id, 'goalId' => $goal->id])}}" method="POST">
       @method('PUT')
       @csrf
       <draw-map access-token="{{config('services.mapbox.key')}}" map-style="{{config('services.mapbox.style')}}" :lat="{{$lat}}" :long="{{$long}}" :zoom="{{$zoom}}" :init-collection="{{$geometry}}" />
