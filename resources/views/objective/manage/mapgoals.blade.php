@@ -13,7 +13,7 @@
 
 <section>
   <h1 class="">Mapa de proyectos</h1>
-  <p>A continuación podrás ver todos los reportes que estén georeferenciados</p>
+  <p>A continuación podrás ver todos los proyectos que estén georeferenciados</p>
   <map-goals fetch-url="{{route('apiService.objectives.goals',['objectiveId' => $objective->id, 'mappable'=> true, 'with' => 'goal_objective'])}}" access-token="{{config('services.mapbox.key')}}" map-style="{{config('services.mapbox.style')}}" :lat="{{$objective->map_lat ?: 'undefined'}}" :long="{{$objective->map_long ?: 'undefined'}}" :zoom="{{$objective->map_zoom ?: 'undefined'}}">
 
 </section>
