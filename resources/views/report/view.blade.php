@@ -53,6 +53,7 @@
       </div>
     </div>
   </div>
+  @include('report.sharer')
   @include('report.testimony')
   @include('report.progress')
   @include('report.milestone')

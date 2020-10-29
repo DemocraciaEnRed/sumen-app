@@ -13,6 +13,9 @@
         </div>
         <div class="d-flex align-items-center w-auto">
           <div class="mx-1 d-flex">
+            <div class="text-center mx-2" v-if="objective.completed">
+              <span class="is-700 is-size-5"><i class="fas fa-check-circle fa-fw text-success"></i></span><br><span class="text-smaller text-success">¡Completa!</span>
+            </div>
             <div class="text-center mx-2">
               <span class="is-700 is-size-5"><i class="fas fa-medal fa-fw text-primary"></i>{{objective.goals_count}}</span><br><span class="text-smaller">proyectos</span>
             </div>

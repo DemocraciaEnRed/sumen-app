@@ -48,6 +48,7 @@ Vue.component('portal-report-map', require('./components/portal/report/Map.vue')
 Vue.component('portal-objective-stats', require('./components/portal/objective/Stats.vue').default);
 Vue.component('portal-last-objectives', require('./components/portal/home/LastObjectives.vue').default);
 Vue.component('objective-organizations-carrousel', require('./components/portal/objective/OrganizationCarrousel.vue').default);
+Vue.component('goal-companies-carrousel', require('./components/portal/goals/CompanyCarrousel.vue').default);
 Vue.component('map-reports', require('./components/maps/MapReports.vue').default);
 Vue.component('map-goals', require('./components/maps/MapGoals.vue').default);
 Vue.component('collapse', require('./components/utils/Collapse.vue').default);

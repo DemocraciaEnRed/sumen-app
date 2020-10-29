@@ -35,4 +35,8 @@ return [
         'style' => env('MAPBOX_MAP_STYLE'),
     ],
 
+    'sumen' => [
+        'districts' => env('SUMEN_DISTRICTS'),
+    ],
+
 ];

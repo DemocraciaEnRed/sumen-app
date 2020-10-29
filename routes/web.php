@@ -76,12 +76,15 @@ Route::group([
     // Settings
     Route::get('/configuracion/editar', 'AdminPanelController@viewEditSettings')->name('settings');
     Route::put('/configuracion/editar', 'AdminPanelController@formEditSetting')->name('settings.form');
+    Route::put('/configuracion/editar/map', 'AdminPanelController@formEditMapSetting')->name('settings.form.map');
     Route::put('/configuracion/editar/file', 'AdminPanelController@formEditFileSetting')->name('settings.form.file');
     Route::post('/configuracion/cache', 'AdminPanelController@clearCacheSettings')->name('settings.cache');
     // Categorias (En este caso pasa a eje)
     Route::get('/eje', 'AdminPanelController@viewListCategories')->name('categories');
     Route::get('/eje/nuevo', 'AdminPanelController@viewCreateCategory')->name('categories.create');
     Route::post('/eje/nuevo', 'AdminPanelController@formCreateCategory')->name('categories.create.form');
+    Route::get('/eje/importar', 'AdminPanelController@viewImportCategories')->name('categories.import');
+    Route::post('/eje/importar', 'AdminPanelController@formImportCategories')->name('categories.import.form');
     Route::get('/eje/{categoryId}/editar', 'AdminPanelController@viewEditCategory')->name('categories.edit');
     Route::put('/eje/{categoryId}/editar', 'AdminPanelController@formEditCategory')->name('categories.edit.form');
     Route::get('/eje/{categoryId}/eliminar', 'AdminPanelController@viewDeleteCategory')->name('categories.delete');
@@ -90,10 +93,30 @@ Route::group([
     Route::get('/organizaciones', 'AdminPanelController@viewListOrganizations')->name('organizations');
     Route::get('/organizaciones/nuevo', 'AdminPanelController@viewCreateOrganization')->name('organizations.create');
     Route::post('/organizaciones/nuevo', 'AdminPanelController@formCreateOrganization')->name('organizations.create.form');
+    Route::get('/organizaciones/importar', 'AdminPanelController@viewImportOrganizations')->name('organizations.import');
+    Route::post('/organizaciones/importar', 'AdminPanelController@formImportOrganizations')->name('organizations.import.form');
     Route::get('/organizaciones/{organizationId}/editar', 'AdminPanelController@viewEditOrganization')->name('organizations.edit');
     Route::put('/organizaciones/{organizationId}/editar', 'AdminPanelController@formEditOrganization')->name('organizations.edit.form');
     Route::get('/organizaciones/{organizationId}/eliminar', 'AdminPanelController@viewDeleteOrganization')->name('organizations.delete');
     Route::delete('/organizaciones/{organizationId}/eliminar', 'AdminPanelController@formDeleteOrganization')->name('organizations.delete.form');
+    // Empresas
+    Route::get('/empresas', 'AdminPanelController@viewListCompanies')->name('companies');
+    Route::get('/empresas/nuevo', 'AdminPanelController@viewCreateCompany')->name('companies.create');
+    Route::post('/empresas/nuevo', 'AdminPanelController@formCreateCompany')->name('companies.create.form');
+    Route::get('/empresas/importar', 'AdminPanelController@viewImportCompanies')->name('companies.import');
+    Route::post('/empresas/importar', 'AdminPanelController@formImportCompanies')->name('companies.import.form');
+    Route::get('/empresas/{companyId}/editar', 'AdminPanelController@viewEditCompany')->name('companies.edit');
+    Route::put('/empresas/{companyId}/editar', 'AdminPanelController@formEditCompany')->name('companies.edit.form');
+    Route::get('/empresas/{companyId}/eliminar', 'AdminPanelController@viewDeleteCompany')->name('companies.delete');
+    Route::delete('/empresas/{companyId}/eliminar', 'AdminPanelController@formDeleteCompany')->name('companies.delete.form');
+    // Districtos
+    Route::get('/distritos', 'AdminPanelController@viewListDistricts')->name('districts');
+    Route::get('/distritos/nuevo', 'AdminPanelController@viewCreateDistrict')->name('districts.create');
+    Route::post('/distritos/nuevo', 'AdminPanelController@formCreateDistrict')->name('districts.create.form');
+    Route::get('/distritos/{districtId}/editar', 'AdminPanelController@viewEditDistrict')->name('districts.edit');
+    Route::put('/distritos/{districtId}/editar', 'AdminPanelController@formEditDistrict')->name('districts.edit.form');
+    Route::get('/distritos/{districtId}/eliminar', 'AdminPanelController@viewDeleteDistrict')->name('districts.delete');
+    Route::delete('/distritos/{districtId}/eliminar', 'AdminPanelController@formDeleteDistrict')->name('districts.delete.form');
     // Administradores
     Route::get('/administradores', 'AdminPanelController@viewListAdministrators')->name('administrators');
     Route::get('/administradores/nuevo', 'AdminPanelController@viewAddAdministrator')->name('administrators.add');
@@ -104,6 +127,8 @@ Route::group([
     Route::get('/metas/descargar', 'AdminPanelController@downloadListObjectives')->name('objectives.download');
     Route::get('/metas/nuevo', 'AdminPanelController@viewCreateObjective')->name('objectives.create');
     Route::post('/metas/nuevo', 'AdminPanelController@formCreateObjective')->name('objectives.create.form');
+    Route::get('/metas/importar', 'AdminPanelController@viewImportObjectives')->name('objectives.import');
+    Route::post('/metas/importar', 'AdminPanelController@formImportObjectives')->name('objectives.import.form');
     // Events
     Route::get('/eventos', 'AdminPanelController@viewUpcomingEvents')->name('events');
     Route::get('/eventos/pasados', 'AdminPanelController@viewPastEvents')->name('events.past');
@@ -165,6 +190,7 @@ Route::get('/reportes/{reportId}', 'ReportController@index')->name('reports.inde
 Route::post('/reportes/{reportId}/testimony', 'ReportController@formToggleTestimony')->name('reports.testimonies.form');
 Route::get('/proyectos', 'GoalController@viewList')->name('goals');
 Route::get('/proyectos/{goalId}', 'GoalController@index')->name('goals.index');
+Route::get('/empresa/{companyId}', 'CompanyController@index')->name('company.index');
 
 Route::group([
     'as' => 'objectives.', 
@@ -210,6 +236,8 @@ Route::group([
         Route::get('/proyectos/descargar', 'ObjectivePanelController@downloadListGoals')->name('goals.download');
         Route::get('/proyectos/nuevo', 'ObjectivePanelController@viewAddGoal')->name('goals.add');
         Route::post('/proyectos/nuevo', 'ObjectivePanelController@formAddGoal')->name('goals.add.form');
+        Route::get('/proyectos/importar', 'ObjectivePanelController@viewImportGoals')->name('goals.import');
+        Route::post('/proyectos/importar', 'ObjectivePanelController@formImportGoals')->name('goals.import.form');
         Route::get('/proyectos/{goalId}', 'GoalPanelController@viewGoal')->name('goals.index');
         Route::get('/proyectos/{goalId}/editar', 'GoalPanelController@viewEditGoal')->name('goals.edit');
         Route::put('/proyectos/{goalId}/editar', 'GoalPanelController@formEditGoal')->name('goals.edit.form');

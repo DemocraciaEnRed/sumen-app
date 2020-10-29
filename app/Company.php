@@ -10,9 +10,9 @@ class Company extends Model
     public $incrementing = true; // if IDs are auto-incrementing.
     public $timestamps = true; // if the model should be timestamped.
 
-    public function objectives()
+    public function goals()
     {
-        return $this->belongsToMany('App\Objective','objective_organization','organization_id','objective_id');
+        return $this->belongsToMany('App\Goal','goal_company','company_id','goal_id');
     }
     public function logo()
     {

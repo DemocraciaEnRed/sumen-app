@@ -1,8 +1,8 @@
 @php
 $geometry = $goal->map_geometries ?: 'undefined';
-$lat = $goal->map_lat ?: ($objective->map_lat ?: 'undefined');
-$long = $goal->map_long ?: ($objective->map_long ?: 'undefined');
-$zoom = $goal->map_zoom ?: ($objective->map_zoom ?: 'undefined');
+$lat = $goal->map_lat ?: ($objective->map_lat ?: app_setting('app_map_lat_default'));
+$long = $goal->map_long ?: ($objective->map_long ?: app_setting('app_map_long_default'));
+$zoom = $goal->map_zoom ?: ($objective->map_zoom ?: app_setting('app_map_zoom_default'));
 @endphp
 
 @extends('objective.manage.goals.master')

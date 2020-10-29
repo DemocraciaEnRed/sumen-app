@@ -9,8 +9,10 @@ use Log;
 use Excel;
 use Carbon\Carbon;
 use App\Category;
+use App\Company;
 use App\Organization;
 use App\Role;
+use App\District;
 use App\File;
 use App\ImageFile;
 use App\User;
@@ -58,7 +60,10 @@ class GoalPanelController extends Controller
 
     public function viewEditGoal(Request $request, $objectiveId, $goalId){
       $this->hasManagerPrivileges($request);
-      return view('objective.manage.goals.edit',['objective' => $request->objective, 'goal' => $request->goal]);
+      $companies = Company::all();
+      $districts = District::all();
+      $objectivesList = Objective::select(['id','title'])->get();
+      return view('objective.manage.goals.edit',['objective' => $request->objective, 'goal' => $request->goal, 'companies' => $companies, 'districts' => $districts, 'objectivesList' => $objectivesList]);
     }
 
     public function formEditGoal(Request $request, $objectiveId, $goalId){
@@ -72,7 +77,16 @@ class GoalPanelController extends Controller
         'indicator_progress' => 'integer|min:0',
         'indicator_unit' => 'required|string|max:550',
         'indicator_frequency' => 'nullable|string|max:550',
+        'total_budget' => 'nullable|string|max:225',
+        'executed_budget' => 'nullable|string|max:225',
         'source' => 'nullable|string|max:550',
+        'request_info_url' => 'nullable|url|max:550',
+        'companies' => 'array' ,
+        'companies.*' => 'required|numeric' ,
+        'districts' => 'array' ,
+        'districts.*' => 'required|numeric' ,
+        'related_objectives' => 'array' ,
+        'related_objectives.*' => 'required|numeric' ,
         'notify' => 'nullable|string|in:true',
       ];
 
@@ -85,11 +99,17 @@ class GoalPanelController extends Controller
       $goal->indicator_progress = $request->input('indicator_progress');
       $goal->indicator_unit = $request->input('indicator_unit');
       $goal->indicator_frequency = $request->input('indicator_frequency');
+      $goal->total_budget = $request->input('total_budget');
+      $goal->executed_budget = $request->input('executed_budget');
       $goal->source = $request->input('source');
+      $goal->request_info_url = $request->input('request_info_url');
       $goal->save();
+      $goal->companies()->sync($request->input('companies'));
+      $goal->districts()->sync($request->input('districts'));
+      $goal->relatedObjectives()->sync($request->input('related_objectives'));
       $request->objective->touch();
       
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha editado la proyecto [{$goal->title}] de la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha editado el proyecto [{$goal->title}] de la meta [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'goal_id' => $goal->id,

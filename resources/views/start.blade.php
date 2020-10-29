@@ -12,18 +12,18 @@
   @yield('metatags')
 
   <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   @yield('stylesheets')
   @yield('headscripts')
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ mix('js/app.js') }}" defer></script>
   <script src="https://kit.fontawesome.com/8da8f66b21.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <div id="app">
-    <main class="py-4">
+  <div id="app" class="pb-0">
+    <main class="py-5 bg-white">
       <div class="container">
         @include('partials.flashMessage')
         <h1>Start app</h1>
@@ -39,6 +39,29 @@
   @endif
         <div class="row">
           <div class="col-md-6">
+            <div class="alert alert-warning mb-3">
+              <h4><i class="fas fa-info-circle"></i>&nbsp;Si la aplicación fue iniciada, va a limpiar toda la base de
+                datos</h4>
+              <p class="mb-0">Puede comenzar una demo haciendo clic en <b>Con DEMO</b> </p>
+            </div>
+            <div class="alert alert-light mb-3">
+              <h4><i class="fas fa-info-circle"></i>&nbsp;Acerca de la demo</h4>
+              <p class="">Puede comenzar una demo haciendo clic en <b>Con DEMO</b>. La misma cuenta con:</p>
+              <ul class="mb-0">
+                <li>5 ejes de planificación</li>
+                <li>25 organizaciones</li>
+                <li>50 usuarios</li>
+                <li>20 metas</li>
+                <li>7 proyectos por meta</li>
+                <li>6 usuarios miembros del equipo de cada meta</li>
+                <li>4 usuarios suscriptos por cada meta</li>
+                <li>Entre 1 y 9 reportes por proyecto, siendo, al azar, que sean, de novedad, progreso, o hito.</li>
+                <li>Un 60% de que el reporte sea geolocalizado</li>
+                <li>Un 40% de que haya un reporte que cambie el estado de la meta a completada</li>
+              </ul>
+            </div>
+          </div>
+                  <div class="col-md-6">
             <form action="{{route('start.form')}}" method="POST">
               @csrf
               <h3><i class="fas fa-info-circle"></i>&nbsp;Usuario administrador</h3>
@@ -76,6 +99,7 @@
                 <div class="col-md-8">
                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                     value="{{ old('email') }}" required autocomplete="email">
+                   <small class="form-text text-muted">Nota: No usar admin@admin.com. Tampoco use, en el caso de instalar la demo, user%%@user.com (siendo %% un numero del 1 al 50)</small>
 
                   @error('email')
                   <span class="invalid-feedback" role="alert">
@@ -91,6 +115,7 @@
                 <div class="col-md-8">
                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                     name="password" required>
+                   <small class="form-text text-muted">Minimo 8 letras</small>
 
                   @error('password')
                   <span class="invalid-feedback" role="alert">
@@ -106,7 +131,7 @@
 
                 <div class="col-md-8">
                   <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                    required>
+                    required>       
                 </div>
               </div>
               <div class="form-group row">
@@ -122,32 +147,9 @@
               <p class="text-muted">El usuario será creado y se lo asignará como administrador. No tiene que validar la
                 cuenta. Puede acceder luego sin problemas.</p>
               <h4>¿Arrancar aplicación?</h4>
-              <button type="submit" class="btn btn-primary">Arrancar</button>
+              <button type="submit" class="btn btn-primary">Instalar</button>
             </form>
-          </div>
-          <div class="col-md-6">
-            <div class="alert alert-warning mb-3">
-              <h4><i class="fas fa-info-circle"></i>&nbsp;Si la aplicación fue iniciada, va a limpiar toda la base de
-                datos</h4>
-              <p class="mb-0">Puede comenzar una demo haciendo clic en <b>Con DEMO</b> </p>
-            </div>
-            <div class="alert alert-light mb-3">
-              <h4><i class="fas fa-info-circle"></i>&nbsp;Acerca de la demo</h4>
-              <p class="">Puede comenzar una demo haciendo clic en <b>Con DEMO</b>. La misma cuenta con:</p>
-              <ul class="mb-0">
-                <li>5 ejes de planificación</li>
-                <li>25 organizaciones</li>
-                <li>50 usuarios</li>
-                <li>20 metas</li>
-                <li>7 proyectos por meta</li>
-                <li>6 usuarios miembros del equipo de cada meta</li>
-                <li>4 usuarios suscriptos por cada meta</li>
-                <li>Entre 1 y 9 reportes por proyecto, siendo, al azar, que sean, de novedad, progreso, o hito.</li>
-                <li>Un 60% de que el reporte sea geolocalizado</li>
-                <li>Un 40% de que haya un reporte que cambie el estado de la meta a completada</li>
-              </ul>
-            </div>
-          </div>
+          </div>        
         </div>
       </div>
     </main>

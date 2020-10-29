@@ -5,6 +5,7 @@ use DB;
 use Carbon\Carbon;
 use App\Objective;
 use App\Goal;
+use App\District;
 use App\Report;
 use App\Faq;
 use Illuminate\Http\Request;
@@ -32,14 +33,16 @@ class HomeController extends Controller
         $countObjectives = Objective::count();
         $countGoals = Goal::count();
         $countGoalsCompleted = Goal::where('status','reached')->count();
+        $districts = District::all();
         return view('portal.home',[
             'countObjectives' => $countObjectives,
             'countGoals' => $countGoals,
-            'countGoalsCompleted' => $countGoalsCompleted
+            'countGoalsCompleted' => $countGoalsCompleted,
+            'districts' => $districts
         ]);
     }
     
-        public function viewAboutGeneral()
+    public function viewAboutGeneral()
     {
         $faqs = Faq::select(['section','id','title'])->orderBy('order','ASC')->get()->groupBy('section')->toArray();
         $questions = Faq::where('section','general')->orderBy('order','ASC')->get();

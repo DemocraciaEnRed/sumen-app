@@ -30,12 +30,16 @@ class Goal extends JsonResource
             'progress_percentage' => $this->progress_percentage,
             'indicator_unit' => $this->indicator_unit,
             'indicator_frequency' => $this->indicator_frequency,
+            'total_budget' => $this->total_budget,
+            'executed_budget' => $this->executed_budget,
             'map_lat' => $this->map_lat,
             'map_long' => $this->map_long,
             'map_zoom' => $this->map_zoom,
             'map_center' => $this->map_center,
             'map_geometries' => $this->map_geometries,
             'source' => $this->source,
+            'districts' => $this->districtsAsArray(), 
+            'request_info_url' => $this->request_info_url,
             'url' => route('goals.index',['goalId' => $this->id])
         ];
         $with = $request->query('with');

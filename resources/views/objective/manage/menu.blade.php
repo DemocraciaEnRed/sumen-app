@@ -18,6 +18,7 @@ $currentRoute = Route::currentRouteName();
 <div class="menu-link">
 @isManager($objective->id)
 <a href="{{ route('objectives.manage.goals.add', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.add' ? 'is-active' : null }}"><i class="fas fa-plus fa-fw"></i>&nbsp;Nuevo</a>
+<a href="{{ route('objectives.manage.goals.import', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.import' ? 'is-active' : null }}"><i class="fas fa-upload fa-fw"></i>&nbsp;Importar</a>
 @endisManager
 <a href="{{ route('objectives.manage.goals', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals' ? 'is-active' : null }}">Listar</a>
 </div>

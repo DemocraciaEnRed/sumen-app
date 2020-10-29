@@ -1,7 +1,19 @@
 <template>
   <section v-if="firstFetch">
+    <div class="form-group">
     <input type="text" v-model="nameToSearch" class="form-control form-control-lg shadow-sm" placeholder="Buscar por titulo o tags">
     <small class="form-text text-muted">{{status}}</small>
+    </div>
+    <h6 v-if="enableDistricts"><b>Distritos</b></h6>
+    <section class="my-2" v-if="enableDistricts">  
+      <div class="d-inline-block bg-white py-2 px-4 my-1 border rounded shadow-sm mr-2 is-clickable" :class="{'district-active': districtSelected == null}" @click="changeDistrict(null)">
+        <i class="fas fa-star"></i>&nbsp;Cualquiera
+        </div>
+      <div class="d-inline-block bg-white py-2 px-4 my-1 border rounded shadow-sm mr-2 is-clickable" :class="{'district-active': districtSelected == district.id}" v-for="district in districts" :key="`district${district.id}`" @click="changeDistrict(district.id)">
+        {{district.name}}
+        </div>
+    </section>
+    <h6><b>Estado</b></h6>
     <section class="my-2">
       <div class="d-inline-block bg-white py-2 px-4 my-1 border rounded shadow-sm mr-2 is-clickable" :class="{'status-active': statusSelected == null}" @click="changeStatus(null)">
         <i class="fas fa-star"></i>&nbsp;Cualquier estado
@@ -34,7 +46,7 @@
 import debounce from "lodash/debounce";
 import GoalCard from './GoalCard'
 export default {
-  props: ['fetchUrl','querystring'],
+  props: ['fetchUrl','districts','forceDistrict', 'enableDistricts'],
   components: {
     GoalCard
   },
@@ -46,6 +58,7 @@ export default {
       searchableString: null,
       status: 'Comience escribiendo el nombre',
       statusSelected: null,
+      districtSelected: null,
       mappableGoals: false,
       goals: [],
       paginatorData: {
@@ -77,12 +90,19 @@ export default {
     }
   },
   created: function(){
+    if(this.forceDistrict && this.enableDistricts){
+      this.districtSelected = this.forceDistrict
+    }
     this.fetchGoals()
   },
   methods: {
     changeStatus: function(statusId){
       this.statusSelected = statusId
       this.fetchGoals();
+    },
+    changeDistrict: function(districtId){
+      this.districtSelected = districtId
+      this.fetchGoals ();
     },
     fetchGoals:  debounce(
       function(){
@@ -124,6 +144,9 @@ export default {
       if (this.mappableGoals == true) {
         query.push("mappable=true");
       }
+       if (this.districtSelected != null && this.enableDistricts) {
+        query.push("district=" + this.districtSelected);
+      }
       return this.fetchUrl.concat(query.length > 0 ? "?" : "", query.join("&"));
     }
   },
@@ -161,6 +184,10 @@ export default {
   i{
   color: #FFF !important;
   }
+}
+.district-active{
+  background-color: #2c59fb !important;
+  color: #FFF !important; 
 }
 .mappeable-active{
   background-color: #2c59fb !important;

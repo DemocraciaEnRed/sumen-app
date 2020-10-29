@@ -15,4 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/admin-app.js', 'public/js')
     .extract(['vue'])
     .sass('resources/sass/app.scss', 'public/css')
-    .disableNotifications();
+    .disableNotifications();    
+
+if (mix.inProduction()) {
+    mix.version();
+}

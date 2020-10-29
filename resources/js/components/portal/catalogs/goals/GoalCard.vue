@@ -12,6 +12,7 @@
           <p class="m-0 text-muted text-smaller" v-else>Tags: Sin tags cargados</p> -->
           <p class="m-0 text-muted text-smaller">Meta: <a :href="goal.objective.url" class="text-muted">{{goal.objective.title}}</a></p>
           <p class="m-0 text-muted text-smaller" >Progreso: {{ goal.indicator_progress }} de {{ goal.indicator_goal }} ({{goal.indicator_unit}})</p>
+          <p class="m-0 text-muted text-smaller" v-if="goal.districts.length > 0">Distritos: {{goal.districts.join(' / ')}}</p>
           </div>
         <div class="mx-1 d-flex flex-column flex-md-row">
           <div class="text-center m-2" v-if="goal.map_zoom">

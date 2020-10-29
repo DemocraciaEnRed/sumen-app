@@ -20,6 +20,11 @@ class SumenStart extends Migration
             $table->string('description',550);
             $table->timestamps();
         });
+        Schema::create('districts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
         Schema::table('objectives', function (Blueprint $table) {
             $table->boolean('completed')->default(false)->after('map_geometries');
         });
@@ -32,6 +37,11 @@ class SumenStart extends Migration
             $table->id();
             $table->foreignId('goal_id')->constrained('goals')->onDelete('cascade');
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
+        });
+        Schema::create('goal_district', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('goal_id')->constrained('goals')->onDelete('cascade');
+            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
         });
         Schema::create('goal_related_objective', function (Blueprint $table) {
             $table->id();
@@ -50,6 +60,7 @@ class SumenStart extends Migration
         Schema::dropIfExists('goal_related_objective');
         Schema::dropIfExists('goal_company');
         Schema::dropIfExists('companies');
+        Schema::dropIfExists('districts');
         Schema::table('goals', function (Blueprint $table) {
             $table->dropColumn(['total_budget','executed_budget','request_info_url']);
         });

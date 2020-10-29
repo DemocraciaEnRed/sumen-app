@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Goal;
 use App\Objective;
+use App\District;
 use App\Report;
 use App\Http\Resources\Goal as GoalResource;
 use App\Http\Resources\Report as ReportResource;
@@ -23,14 +24,15 @@ class GoalController extends Controller
     }
 
     public function viewList(Request $request){
-       
+        $districts = District::all();
         return view('portal.catalogs.goals',[
-            
+            'districts' => $districts,
+            'forceDistrict' => $request->input('districtId')
         ]);
     }
 
      public function index(Request $request, $goalId){
-        $goal = Goal::findorfail($goalId);
+        $goal = Goal::findorfail($goalId)->load(['companies','companies.logo','districts']);;
         $objective = Objective::findorfail($goal->objective_id);
         return view('objective.goal.view',[
             'goal' => $goal,
@@ -48,9 +50,9 @@ class GoalController extends Controller
         $isMappable = $request->query('mappable');
         $orderBy = $request->query('order_by');
         $pageSize = $request->query('size',10);
+        $district = $request->query('district',null);
         $status = $request->query('status',null);
         $title = $request->query('s',null);
-
         $goals = Goal::query();
         if(!is_null($orderBy)){
             $orderByParams = explode(',',$orderBy);
@@ -58,6 +60,11 @@ class GoalController extends Controller
         }
         if($isMappable){
             $goals->whereNotNull('map_long')->whereNotNull('map_lat')->whereNotNull('map_center');
+        }
+        if(!is_null($district)){
+            $goals->whereHas('districts', function($query) use ($district){
+                $query->where('district_id', $district);
+            });
         }
         if(!is_null($status)){
             $goals->where('status',$status);

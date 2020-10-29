@@ -53,9 +53,25 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <label><b>Frecuencia de monitoreo</b><small class="text-info">Opcional</small></label>
+          <label><b>Frecuencia de monitoreo</b> <small class="text-info">Opcional</small></label>
           <input type="text" class="form-control" name="indicator_frequency" placeholder="Ej: Semanal, mensual, semestral, anual, etc">
           <small class="form-text text-muted">Espacio temporal en el que vamos a medir nuestro indicador : Semanal, mensual, semestral, anual, etc.</small>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <div class="form-group">
+          <label><b>Presupuesto Total</b><span class="text-danger">*</span></label>
+          <input type="text" class="form-control" name="total_budget" placeholder="Ingrese aquí el valor">
+          <small class="form-text text-muted">Presupuesto total a ejecutar del proyecto.</small>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label><b>Presupuesto Ejecutado</b> <small class="text-info">Opcional</small></label>
+          <input type="text" class="form-control" name="executed_budget" placeholder="Ingrese aquí el valor">
+          <small class="form-text text-muted">Recuerde actualizar este valor periódicamente.</small>
         </div>
       </div>
     </div>
@@ -75,8 +91,48 @@
       <small class="form-text text-muted">Es importante que la fuente de datos sean accesibles y oficiales para hacer transparente la medición</small>
     </div>
     <div class="form-group">
+      <label><b>URL para solicitar mas información</b> <small class="text-info">Opcional</small></label>
+      <input type="url" class="form-control" name="request_info_url" placeholder="Ejemplo: https://google.com">
+      <small class="form-text text-muted">Copie y pegue la URL a donde pueden solicitar mas información. ¡Cuidado con el formato! Aseguresé que sea una URL bien formada.</small>
+    </div>
+    <div class="form-group">
       <label><b>Hitos</b> <small class="text-info">Opcional</small></label>
       <input-add-milestones-create-goal name="milestones">
+    </div>
+    @if(config('services.sumen.districts'))
+    <div class="form-group">
+      <label>Distritos que abarca</label>
+      <div>
+        @foreach($districts as $district)
+          <div class="custom-control custom-checkbox form-check-inline">
+            <input class="custom-control-input" type="checkbox" name="districts[]" id="dis{{$district->id}}" :value="{{$district->id}}">
+            <label class="custom-control-label" for="org{{$district->id}}">{{$district->name}}</label>
+          </div>
+        @endforeach
+      </div>
+    </div>
+    @endif
+    <div class="form-group">
+      <label><b>Empresas relacionadas</b> <small class="text-info">Opcional</small></label>
+      <div>
+        @foreach($companies as $company)
+          <div class="custom-control custom-checkbox form-check-inline">
+            <input class="custom-control-input" type="checkbox" name="companies[]" id="com{{$company->id}}" :value="{{$company->id}}">
+            <label class="custom-control-label" for="com{{$company->id}}">{{$company->name}}</label>
+          </div>
+        @endforeach
+      </div>
+    </div>
+    <div class="form-group">
+      <label><b>Otras metas relacionadas</b> <small class="text-info">Opcional</small></label>
+      <div>
+        @foreach($objectivesList as $auxObjective)
+          <div class="custom-control custom-checkbox form-check-inline">
+            <input class="custom-control-input" type="checkbox" name="related_objectives[]" id="ro{{$auxObjective->id}}" :value="{{$auxObjective->id}}">
+            <label class="custom-control-label" for="ro{{$auxObjective->id}}">{{$auxObjective->title}}</label>
+          </div>
+        @endforeach
+      </div>
     </div>
     <div class="border border-light rounded p-3">
       <label class="is-700 "><i class="fas fa-paper-plane"></i>&nbsp;Enviar notificacion a suscriptores</label>

@@ -14,18 +14,21 @@ class Setting extends Model
     public function getCastedValueAttribute()
       {
           switch ($this->type) {
-              case 'int':
-              case 'integer':
-                  return intval($this->value);
-                  break;
-
-              case 'bool':
-              case 'boolean':
-                  return boolval($this->value);
-                  break;
-
-              default:
-                  return $this->value;
+            case 'int':
+            case 'integer':
+                return intval($this->value);
+                break;
+            case 'float':
+                return floatval($this->value);
+                break;
+            case 'bool':
+            case 'boolean':
+                return boolval($this->value);
+                break;
+            case 'json':
+                return json_decode($this->value);
+            default:
+                return $this->value;
           }
       }
 }

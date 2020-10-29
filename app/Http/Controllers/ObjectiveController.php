@@ -5,6 +5,7 @@ use App\Objective;
 use App\Goal;
 use App\Report;
 use App\Category;
+use App\District;
 use Illuminate\Http\Request;
 use App\Http\Resources\Objective as ObjectiveResource;
 use App\Http\Resources\Report as ReportResource;
@@ -35,7 +36,7 @@ class ObjectiveController extends Controller
     public function viewList(Request $request){
         $categories = Category::all();
         return view('portal.catalogs.objectives',[
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 
@@ -45,8 +46,8 @@ class ObjectiveController extends Controller
         $orderBy = $request->query('order_by');
         $hidden = $request->query('hidden',false);
         $category = $request->query('category',null);
+        $completed = $request->query('completed',null);
         $title = $request->query('s',null);
-        
         $objectives = Objective::query();
         if(!is_null($orderBy)){
             $orderByParams = explode(',',$orderBy);
@@ -54,6 +55,9 @@ class ObjectiveController extends Controller
         }
         if(!is_null($category)){
             $objectives->where('category_id',$category);
+        }
+        if(!is_null($completed)){
+            $objectives->where('completed',$completed);
         }
         if(!is_null($title)){
             $titleExploded = explode(' ', $title);

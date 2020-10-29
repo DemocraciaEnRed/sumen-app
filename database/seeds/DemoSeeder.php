@@ -6,6 +6,7 @@ use App\Role;
 use App\File;
 use App\ImageFile;
 use App\Category;
+use App\Districts;
 use App\Community;
 use App\Organization;
 use App\Objective;
@@ -54,6 +55,28 @@ class DemoSeeder extends Seeder
         $category->color = '#ba8e14';
         $category->save();
 
+        $district = new District();
+        $district->name = 'San Juan';
+        $district->save();
+        $district = new District();
+        $district->name = 'Godoy Cruz';
+        $district->save();
+        $district = new District();
+        $district->name = 'San Lorenzo';
+        $district->save();
+        $district = new District();
+        $district->name = 'San Juanita';
+        $district->save();
+        $district = new District();
+        $district->name = 'Carolina';
+        $district->save();
+        $district = new District();
+        $district->name = 'Rafaela';
+        $district->save();
+        $district = new District();
+        $district->name = 'Necochea';
+        $district->save();
+        
         $admin = new User();
         $admin->name = 'Admin';
         $admin->surname = 'Sumen';

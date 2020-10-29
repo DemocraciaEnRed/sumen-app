@@ -8,12 +8,7 @@
   @forelse($faqs as $faq)
   <div class="card mb-3 shadow-sm">
     <div class="card-body d-flex align-items-start">
-        {{-- <div class="mr-4">
-          @if($organization->logo)
-          <img src="{{ asset($organization->logo->path) }}" class="rounded" width="75" alt="Logo {{$organization->name}}" title="{{$organization->name}}" />
-          @else
-          <img src="{{ asset('img/default-background.png') }}" class="rounded" width="75" alt="Logo {{$organization->name}}" title="{{$organization->name}}" />
-          @endif
+
         </div> --}}
         <div class="w-100">
           <h5 class="is-700">{{ $faq->title }}</h5>

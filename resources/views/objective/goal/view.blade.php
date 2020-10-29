@@ -38,7 +38,8 @@
 						<div class="mr-3 category-icon-container">
 							<i class="far fa-2x fa-fw fa-dot-circle text-{{$goal->status}}"></i>
 						</div>
-						<div class="w-100">
+						<div class="w-100">	
+							{{-- <a class="float-right text-info text-smallest animate__animated animate__f" href="{{$goal->request_info_url}}" target="_blank"><i class="fas	 fa-external-link-alt"></i> Solicitar mas información</a> --}}
 							<span class="text-{{$goal->status}}">Proyecto {{$goal->status_label}}</span>
 							<h4 class="is-700 m-0">
 								{{$goal->title}}
@@ -80,11 +81,45 @@
 					    <p>{{$goal->indicator_progress}}</p>
             </div>
           </div>
+          <div class="row my-2">
+            <div class="col-md-6">
+					    <h6 class="is-700">Presupuesto Total</h6>
+					    <p>{{$goal->total_budget ?: 'No especificado'}}</p>
+            </div>
+            <div class="col-md-6">
+					    <h6 class="is-700">Presupuesto Ejecutado</h6>
+					    <p>{{$goal->executed_budget ?: 'No especificado'}}</p>
+            </div>
+          </div>
 					@if($goal->source)
           <div class="my-2">
 					    <h6 class="is-700">Fuente</h6>
 					    <p>{{$goal->source}}</p>
           </div>
+					@endif
+					@if($goal->request_info_url)
+          <hr>
+					<div class="d-flex justify-content-between align-items-center">
+					    <span class="is-700 w-auto w-75	">Podes solicitar mas información haciendo clic en el siguiente link:</span>
+							<a class="float-right btn btn-outline-info text-smallest ml-4 w-25" href="{{$goal->request_info_url}}" target="_blank"><i class="fas	 fa-external-link-alt"></i> Click aquí</a>
+					</div>
+					@endif
+					@if(!$goal->districts->isEmpty() && config('services.sumen.districts'))
+					<hr>
+					<h5 class="font-weight-bold">Distritos alcanzados</h6>
+					<p>{{implode(', ',$goal->districtsAsArray())}}</p>
+					@endif
+					@if(!$goal->relatedObjectives->isEmpty())
+					<hr>
+					<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseRelatedObjectives">
+						<h5 class="is-700 h5 text-body my-2 float-left">Metas relacionadas al proyecto</h5>
+						<h5 class="is-700 h5 text-body my-2 float-right"><i class="fas fa-angle-down"></i></h5>
+					</div>
+					<div id="collapseRelatedObjectives" class="collapse">
+						@foreach ($goal->relatedObjectives as $relatedObjective)
+						<p class="my-1"><span style="color: {{$relatedObjective->category->color}}"><i class="{{$relatedObjective->category->icon}}"></i>&nbsp;<b>{{$relatedObjective->category->title}}</b></span> - <a href="{{route('objectives.index',['objectiveId' => $relatedObjective->id])}}" class="">{{$relatedObjective->title}}</a> @if($relatedObjective->completed)<span class="badge badge-success"><i class="fas fa-check"></i> Completada</span>@endif</p>
+						@endforeach
+					</div>
 					@endif
           <hr>
 					<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseMilestones">
@@ -110,6 +145,17 @@
 							<p class="my-2 text-muted">No hay hitos asociados</p>
 							@endforelse
 					</div>
+					@if(!$goal->companies->isEmpty())
+					<hr>
+					<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseCompanies">
+						<h5 class="is-700 h5 text-body my-2 float-left">Empresas</h5>
+						<h5 class="is-700 h5 text-body my-2 float-right"><i class="fas fa-angle-down"></i></h5>
+					</div>
+					<div id="collapseCompanies" class="collapse show">
+						<goal-companies-carrousel :slides='@json($goal->companies)'>	
+						</goal-companies-carrousel>
+					</div>
+					@endif
 					<hr>
 					@if(!is_null($goal->map_lat) && !is_null($goal->map_long))
 					<h5 class="is-700 h5 text-body my-2">Mapa del proyecto</h5>

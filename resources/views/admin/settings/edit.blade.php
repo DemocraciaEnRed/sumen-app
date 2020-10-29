@@ -1,5 +1,13 @@
 @extends('admin.master')
 
+@section('stylesheets')
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+@endsection
+
+@section('headscripts')
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+@endsection
+
 @section('adminContent')
 
 <section>
@@ -14,7 +22,7 @@
         </ul>
     </div>
   @endif
-  {{-- <form method="POST" action="{{ route('admin.settings.form') }}" enctype="multipart/form-data"> --}}
+  @include('admin.settings.reset_cache')
   <hr>
   @include('admin.settings.app_logo_color')
   <hr>
@@ -24,7 +32,21 @@
   <hr>
   @include('admin.settings.app_favicon')
   <hr>
+  @include('admin.settings.app_map_default')
+  <hr>
   @include('admin.settings.app_home_subtitle')
+  @if(config('services.sumen.districts'))
+  <hr>
+  @include('admin.settings.app_home_district_dropdown_enable')
+  @endif
+  <hr>
+  @include('admin.settings.app_home_custom_dropdown_enable')
+  <hr>
+  @include('admin.settings.app_home_custom_dropdown_subtitle')
+  <hr>
+  @include('admin.settings.app_home_custom_dropdown_placeholder')
+  <hr>
+  @include('admin.settings.app_home_custom_dropdown_options')
   <hr>
   @include('admin.settings.app_social_title')
   <hr>
@@ -35,6 +57,7 @@
   @include('admin.settings.app_footer_contact_info')
   <hr>
   @include('admin.settings.app_footer_description')
+  
   {{-- @include('admin.settings.app_social_image') --}}
 
 </section>

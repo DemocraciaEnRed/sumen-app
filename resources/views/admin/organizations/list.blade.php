@@ -12,13 +12,13 @@
           @if($organization->logo)
           <img src="{{ asset($organization->logo->path) }}" class="rounded" width="75" alt="Logo {{$organization->name}}" title="{{$organization->name}}" />
           @else
-          <img src="{{ asset('img/default-background.png') }}" class="rounded" width="75" alt="Logo {{$organization->name}}" title="{{$organization->name}}" />
+          <img src="{{ asset('img/default-organization.png') }}" class="rounded" width="75" alt="Logo {{$organization->name}}" title="{{$organization->name}}" />
           @endif
         </div>
         <div class="w-100">
           <h4 class="is-700">{{ $organization->name }}</h4>
           <span class="text-smaller text-muted">{{ $organization->description }}</span>
-          <div class="text-right">
+          <div class="text-right">  
           </div>
         </div>
         <div class="text-right">
@@ -30,7 +30,7 @@
   @empty
   <div class="card my-3 shadow-sm">
       <div class="card-body text-center">
-        <h6>No hay metas creados</h6>
+        <h6>No hay organizaciones creadas</h6>
       </div>
     </div>
   @endforelse

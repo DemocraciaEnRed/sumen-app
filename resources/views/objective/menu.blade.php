@@ -1,12 +1,21 @@
 @php
   $currentRoute = Route::currentRouteName();
 	$currentRouteGoalId = Route::current()->parameters()['goalId'] ?? false ;
+  $sharerLink = urlencode($currentRoute == 'objectives.index' ? route('objectives.index',['objectiveId'=> $objective->id]) : route('goals.index',['goalId'=> $goal->id]))
 @endphp
 
 <div class="card shadow-sm rounded mb-3">
   @if(!is_null($objective->cover))
     <div class="card-img-top has-background-image" alt="Card image cap" style="height:200px; background-image:url('{{$objective->cover->thumbnail_path}}')"></div>
   @endif
+  @if($objective->completed)
+  <div class="card-body bg-success text-center text-white">
+    <div class="animate__animated animate__heartBeat">
+      <i class="fas fa-check fa-lg"></i>&nbsp;<b>Meta completada</b>
+    </div>
+  </div>  
+  @endif
+
   <div class="card-body pb-2">
     <div class="d-flex align-items-center mb-3">
       <div class="mr-3 category-icon-container" style="background-color: {{$objective->category->background_color}}">
@@ -30,8 +39,13 @@
       <p class="text-smaller text-muted my-2">¡Unite a nuestra comunidad!</p>
       @foreach($objective->communities as $community)
               <a href="{{$community->url}}" target="_blank" class="py-1 px-2 text-smallest rounded d-inline-block my-1 mb-1" style="border: 1px solid {{$community->color}}; color: {{$community->color}}"><i class="{{$community->icon}}"></i>&nbsp;{{$community->label}}</a>
-      @endforeach
+      @endforeach  
     @endif
+    <p class="text-smaller text-muted mt-2 mb-0">¡Compartí en redes! 
+      <a href="https://facebook.com/sharer.php?u={{$sharerLink}}" target="_blank" class="d-inline-block mx-2 text-success"><i class="fab fa-facebook-f fa-lg"></i></a>
+      <a href="https://twitter.com/intent/tweet?url={{$sharerLink}}" target="_blank" class="d-inline-block mx-2 text-success"><i class="fab fa-twitter fa-lg"></i></a>
+      <a href="https://linkedin.com/shareArticle?mini=true&url={{$sharerLink}}" target="_blank" class="d-inline-block mx-2 text-success"><i class="fab fa-linkedin-in fa-lg"></i></a>
+    </p>
   </div>
    @isManager($objective->id)
   <hr>

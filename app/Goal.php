@@ -18,10 +18,6 @@ class Goal extends Model
     {
         return $this->belongsTo('App\Objective');
     }
-    public function relatedObjectives()
-    {
-        return $this->belongsToMany('App\Objective','goal_related_objective','goal_id','objective_id');
-    }
     
     public function milestones()
     {
@@ -31,6 +27,36 @@ class Goal extends Model
     public function companies()
     {
         return $this->belongsToMany('App\Company','goal_company','goal_id','company_id');
+    }
+
+    public function hasCompany($companyId)
+    {
+        return $this->companies()->where('company_id', $companyId)->exists();
+    }
+
+    public function districts()
+    {
+        return $this->belongsToMany('App\District','goal_district','goal_id','district_id');
+    }
+    
+    public function districtsAsArray()
+    {
+        return $this->districts()->pluck('name')->toArray();
+    }
+
+    public function hasDistrict($districtId)
+    {
+        return $this->districts()->where('district_id', $districtId)->exists();
+    }
+
+    public function relatedObjectives()
+    {
+        return $this->belongsToMany('App\Objective','goal_related_objective','goal_id','objective_id');
+    }
+
+    public function hasRelatedObjective($objectiveId)
+    {
+        return $this->relatedObjectives()->where('objective_id', $objectiveId)->exists();
     }
 
     public function reports()

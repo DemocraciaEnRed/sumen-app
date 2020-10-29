@@ -7,10 +7,13 @@ use Storage;
 use Str;
 use Log;
 use Excel;
+use DB;
 use Carbon\Carbon;
 use App\ActionLog;
 use App\Category;
 use App\Community;
+use App\Company;
+use App\District;
 use App\Organization;
 use App\Role;
 use App\File;
@@ -22,6 +25,7 @@ use App\Milestone;
 use App\Report;
 use App\Exports\ObjectiveSubscribersExport;
 use App\Exports\ObjectiveGoalsExport;
+use App\Imports\GoalsImport;
 use App\Notifications\NewGoal;
 use App\Notifications\EditObjective;
 use App\Notifications\DeleteObjective;
@@ -29,6 +33,8 @@ use App\Notifications\JoinObjectiveTeam;
 use App\Notifications\RemoveObjectiveTeam;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class ObjectivePanelController extends Controller
 {
@@ -57,7 +63,8 @@ class ObjectivePanelController extends Controller
       $this->hasManagerPrivileges($request);
       $categories = Category::all();
       $organizations = Organization::all();
-      return view('objective.manage.edit',['objective' => $request->objective, 'categories' => $categories, 'organizations' => $organizations]);
+      $districts = District::all();
+      return view('objective.manage.edit',['objective' => $request->objective, 'categories' => $categories, 'organizations' => $organizations,'districts' => $districts]);
     }
 
     public function formEditObjective(Request $request){
@@ -70,6 +77,7 @@ class ObjectivePanelController extends Controller
           'tags.*' => 'required|string|max:100' ,
           'organizations' => 'array' ,
           'organizations.*' => 'required|numeric' ,
+          'notify' => 'nullable|string|in:true',
       ];
       $request->validate($rules);
 
@@ -224,7 +232,10 @@ class ObjectivePanelController extends Controller
 
     public function viewAddGoal(Request $request){
       $this->hasManagerPrivileges($request);
-      return view('objective.manage.goals.add',['objective' => $request->objective]);
+      $companies = Company::all();
+      $districts = District::all();
+      $objectivesList = Objective::select(['id','title'])->get();
+      return view('objective.manage.goals.add',['objective' => $request->objective, 'companies' => $companies, 'districts' => $districts, 'objectivesList' => $objectivesList]);
     }
 
     public function formAddGoal(Request $request){
@@ -238,9 +249,18 @@ class ObjectivePanelController extends Controller
         'indicator_progress' => 'integer|min:0',
         'indicator_unit' => 'required|string|max:550',
         'indicator_frequency' => 'nullable|string|max:550',
+        'total_budget' => 'nullable|string|max:225',
+        'executed_budget' => 'nullable|string|max:225',
         'source' => 'nullable|string|max:550',
+        'request_info_url' => 'nullable|url|max:550',
         'milestones' => 'array',
         'milestones.*' => 'required|string|max:550',
+        'companies' => 'array' ,
+        'companies.*' => 'required|numeric' ,
+        'districts' => 'nullable|array' ,
+        'districts.*' => 'required|numeric',
+        'related_objectives' => 'array' ,
+        'related_objectives.*' => 'required|numeric' ,
         'notify' => 'nullable|string|in:true',
       ];
 
@@ -254,10 +274,16 @@ class ObjectivePanelController extends Controller
       $goal->indicator_progress = $request->input('indicator_progress');
       $goal->indicator_unit = $request->input('indicator_unit');
       $goal->indicator_frequency = $request->input('indicator_frequency');
+      $goal->total_budget = $request->input('total_budget');
+      $goal->executed_budget = $request->input('executed_budget');
       $goal->source = $request->input('source');
+      $goal->request_info_url = $request->input('request_info_url');
       $goal->objective()->associate($request->objective);
       $goal->save();
-      
+      $goal->companies()->attach($request->input('companies'));
+      $goal->districts()->attach($request->input('districts'));
+      $goal->relatedObjectives()->attach($request->input('related_objectives'));
+
       if($request->input('milestones')){
         foreach($request->input('milestones') as $key => $inputMilestone){
           $milestone = new Milestone();
@@ -284,6 +310,131 @@ class ObjectivePanelController extends Controller
       }
 
       return redirect()->route('objectives.manage.goals.index', ['objectiveId' => $request->objective->id, 'goalId' => $goal->id])->with('success','Se ha credo el proyecto correctamente');
+    }
+
+    public function viewImportGoals(Request $request){
+      $this->hasManagerPrivileges($request);
+      $companies = Company::all();
+      $districts = District::all();
+      $objectivesList = Objective::select(['id','title'])->get();
+      return view('objective.manage.goals.import',['objective' => $request->objective, 'companies' => $companies, 'districts' => $districts, 'objectivesList' => $objectivesList]);
+    }
+
+    public function formImportGoals(Request $request){
+      $rules = [
+            'file' => 'required|file|max:10240|mimetypes:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ];
+        $request->validate($rules);
+        
+        if($request->hasFile('file')){
+            $data = Excel::toArray(new GoalsImport(), $request->file('file'));
+            $data = $data[0];
+            // dd($data);
+
+            foreach($data as $index => &$row){
+                if(!is_null($row['distritos'])){
+                    $row['distritos'] = explode(',', $row['distritos']);
+                }
+                if(!is_null($row['hitos'])){
+                    $row['hitos'] = explode(',', $row['hitos']);
+                }
+                if(!is_null($row['empresas'])){
+                    $row['empresas'] = explode(',', $row['empresas']);
+                }
+                if(!is_null($row['metas_relacionadas'])){
+                    $row['metas_relacionadas'] = explode(',', $row['metas_relacionadas']);
+                }
+                $rules = [
+                  
+                    'nombre' => 'required|string|max:550' ,
+                    'estado' => 'required|numeric|in:1,2,3,4' ,
+                    'distritos' => 'nullable|array' ,
+                    'distritos.*' => 'required|numeric' ,
+                    'indicador' => 'required|string|max:550' ,
+                    'valor_meta_100' => 'required|integer|min:1' ,
+                    'valor_inicial' => 'required|integer|min:0' ,
+                    'unidad_indicador' => 'required|string|max:550' ,
+                    'frecuencia' => 'nullable|string|max:550' ,
+                    'presupuesto_total' => 'nullable|string|max:225' ,
+                    'presupuesto_ejecutado' => 'nullable|string|max:225' ,
+                    'fuente_datos' => 'nullable|string|max:550' ,
+                    'url_mas_info' => 'nullable|url|max:550' ,
+                    'hitos' => 'nullable|array' ,
+                    'hitos.*' => 'required|string|max:550' ,
+                    'empresas' => 'nullable|array' ,
+                    'empresas.*' => 'required|numeric' ,
+                    'metas_relacionadas' => 'nullable|array' ,
+                    'metas_relacionadas.*' => 'required|numeric' ,
+
+                ];
+                $validator = Validator::make($row,$rules);
+                if ($validator->fails()) {
+                    return redirect()->route('objectives.manage.goals.import', ['objectiveId' => $request->objective->id])
+                                ->withErrors($validator)
+                                ->with('error', "La fila " . ($index + 1) . " (" . $row['nombre'] . ")  tiene errores en su formato, por favor verifique antes de proceder");
+                }
+
+            }
+
+            DB::transaction(function () use ($data, $request) {
+                foreach($data as $row){
+                    $goal = new Goal();
+                    $goal->title = $row['nombre'];
+                    switch($row['estado']){
+                      case 1:
+                        $goal->status = 'ongoing';
+                        break;
+                      case 2:
+                        $goal->status = 'delayed';
+                        break;
+                      case 3:
+                        $goal->status = 'inactive';
+                        break;
+                      case 4:
+                        $goal->status = 'reached';
+                        break;
+                    } 
+                    $goal->indicator = $row['indicador'];
+                    $goal->indicator_goal = $row['valor_meta_100'];
+                    $goal->indicator_progress = $row['valor_inicial'];
+                    $goal->indicator_unit = $row['unidad_indicador'];
+                    $goal->indicator_frequency = $row['frecuencia'];
+                    $goal->total_budget = $row['presupuesto_total'];
+                    $goal->executed_budget = $row['presupuesto_ejecutado'];
+                    $goal->source = $row['fuente_datos'];
+                    $goal->request_info_url = $row['url_mas_info'];
+                    $goal->objective()->associate($request->objective);
+                    $goal->save();
+                    if(!is_null($row['empresas'])){
+                      $goal->companies()->attach($row['empresas']);
+                    }
+                    if(!is_null($row['distritos'])){
+                      $goal->districts()->attach($row['distritos']);
+                    }
+                    if(!is_null($row['metas_relacionadas'])){
+                      $goal->relatedObjectives()->attach($row['metas_relacionadas']);
+                    }
+                    if(!is_null($row['hitos'])){
+                      foreach($row['hitos'] as $key => $inputMilestone){
+                        $milestone = new Milestone();
+                        $milestone->order = $key + 1;
+                        $milestone->title = $inputMilestone;
+                        $milestone->goal()->associate($goal);
+                        $milestone->save();
+                      }
+                    }
+                } 
+            });
+            
+        }
+
+        Log::channel('mysql')->info("[{$request->user()->fullname}] ha importado (" . count($data) . ") proyectos", [
+            'user_id' => $request->user()->id,
+            'user_fullname' => $request->user()->fullname,
+            'user_email' => $request->user()->email
+            ]);
+
+        return redirect()->route('objectives.manage.goals',['objectiveId' => $request->objective->id])->with('success','Se han importado las metas, recuerde ahora tener que configurarlas una por una');
     }
 
     public function viewObjectiveConfiguration (Request $request, $objectiveId){
