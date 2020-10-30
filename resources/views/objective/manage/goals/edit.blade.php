@@ -147,7 +147,7 @@
         <i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
       </div>
       @endif
-      <small class="form-text text-muted">Se le enviará una notificación por sistema, de que el proyecto ha sido editada invitandolos a verla.</small>
+      <small class="form-text text-muted">Se le enviará una notificación por sistema, de que el proyecto ha sido editado invitandolos a verlo.</small>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Editar</button>

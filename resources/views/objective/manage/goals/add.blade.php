@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Nuevo proyecto de la meta</h3>
-  <p class="lead">Para sumar una nueva a tu meta, completá los campos a continuación:</p>
+  <p class="lead">Para sumar un nuevo proyecto a tu meta, completá los campos a continuación:</p>
   <hr>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -101,7 +101,7 @@
     </div>
     @if(config('services.sumen.districts'))
     <div class="form-group">
-      <label>Distritos que abarca</label>
+      <label><b>Distritos que abarca</b></label>
       <div>
         @foreach($districts as $district)
           <div class="custom-control custom-checkbox form-check-inline">
@@ -146,7 +146,7 @@
         <i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
       </div>
       @endif
-      <small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema, de que hay un nuevo proyecto invitandolos a verla.</small>
+      <small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema, de que hay un nuevo proyecto invitandolos a verlo.</small>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Crear</button>
