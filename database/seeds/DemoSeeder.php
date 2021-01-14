@@ -6,7 +6,7 @@ use App\Role;
 use App\File;
 use App\ImageFile;
 use App\Category;
-use App\Districts;
+use App\District;
 use App\Community;
 use App\Organization;
 use App\Objective;
