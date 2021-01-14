@@ -13,7 +13,7 @@ Han respondido a tu comentario 💬 hecho en el reporte **{{$report->title}}** e
 {{Str::limit($comment->content, 200, $end=' [...]')}}
 @endcomponent
 
-Podes entrar al reporte haciendo clic en la web de Participes 👇
+Podes entrar al reporte haciendo clic en la web de Sumen 👇
 
 @component('mail::button', ['url' => route('reports.index', ['reportId' => $report->id])])
 🔍 Ver reporte

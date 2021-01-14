@@ -12,7 +12,7 @@
 
 Han editado el evento **{{$event->title}}** en Sumen 🗓️ y como estas suscripto a una meta relacionado con el evento, nos parecio oportuno avisarte. 😮
 
-El evento se llevará a cabo el @justdate($event->date) a las @justtime($event->date). Te invitamos a que veas el evento editado en la web de Participes 👇
+El evento se llevará a cabo el @justdate($event->date) a las @justtime($event->date). Te invitamos a que veas el evento editado en la web de Sumen 👇
 
 @component('mail::button', ['url' => route('events.index', ['eventId' => $event->id])])
 🔍 Ver mas información

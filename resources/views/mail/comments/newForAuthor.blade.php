@@ -13,7 +13,7 @@ Han hecho un nuevo comentario 💬 en tu reporte **{{$report->title}}** en Sumen
 {{Str::limit($comment->content, 200, $end=' [...]')}}
 @endcomponent
 
-Podes entrar al reporte hacienco clic en la web de Participes 👇
+Podes entrar al reporte hacienco clic en la web de Sumen 👇
 
 @component('mail::button', ['url' => route('reports.index', ['reportId' => $report->id])])
 🔍 Ver reporte

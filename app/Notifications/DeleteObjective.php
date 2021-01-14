@@ -67,7 +67,7 @@ class DeleteObjective extends Notification implements ShouldQueue
     {   
         
         return (new MailMessage)
-                    ->subject('Han eliminado un objetivo que sigues en Participes')
+                    ->subject('Han eliminado un objetivo que sigues en Sumen')
                     ->markdown('mail.objectives.delete', ['user' => $notifiable, 'objective' => $this->objective]);
     }
 
