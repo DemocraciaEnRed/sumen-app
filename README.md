@@ -39,6 +39,8 @@ DB_PORT=3306
 DB_DATABASE=sumen
 DB_USERNAME=root
 DB_PASSWORD=
+DB_SPECIFIED_KEY_FIX=false
+
 
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.mailtrap.io
@@ -85,6 +87,28 @@ In your app, by default the timezone is defined like this. Change it if you need
 ```
 'timezone' => 'America/Argentina/Buenos_Aires',
 ```
+
+#### DB_SPECIFIED_KEY_FIX=false
+
+If you are getting the following exception when running `php artisan migration -force`
+
+```
+    [Illuminate\Database\QueryException]
+    SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table users add unique users_email_unique(email))
+
+    [PDOException]
+    SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes
+```
+
+Then you might try to enable `DB_SPECIFIED_KEY_FIX=true` and try again
+
+If that doesnt work.. Maybe you might need to enable InnoDB ROW_FORMAT=DYNAMIC in MariaDB..
+
+Some useful resources:
+
+- https://webomnizz.com/how-to-fix-laravel-specified-key-was-too-long-error/
+- https://github.com/laravel/framework/issues/17508
+- https://mariadb.com/kb/en/innodb-dynamic-row-format/
 
 #### Available roles
 

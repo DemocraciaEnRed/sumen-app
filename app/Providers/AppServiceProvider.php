@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if(config('app.database_1071_specified_key_fix')){
+            Schema::defaultStringLength(191);
+        }
+
         User::observe(UserObserver::class);
         Objective::observe(ObjectiveObserver::class);
         Goal::observe(GoalObserver::class);

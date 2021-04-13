@@ -39,6 +39,8 @@ return [
     |
     */
 
+    'database_1071_specified_key_fix' => env('DB_SPECIFIED_KEY_FIX', false),
+
     'debug' => (bool) env('APP_DEBUG', false),
 
     /*
