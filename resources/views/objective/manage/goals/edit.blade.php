@@ -104,35 +104,47 @@
     <div class="form-group">
       <label><b>Distritos relacionados</b></label>
       <div>
-        @foreach($districts as $district)
-          <div class="custom-control custom-checkbox form-check-inline">
-            <input class="custom-control-input" type="checkbox" name="districts[]" id="dis{{$district->id}}" {{$goal->hasDistrict($district->id) ? 'checked' : null}} :value="{{$district->id}}">
-            <label class="custom-control-label" for="dis{{$district->id}}">{{$district->name}}</label>
-          </div>
-        @endforeach
+        @if(count($districts) > 0) 
+          @foreach($districts as $district)
+            <div class="custom-control custom-checkbox form-check-inline">
+              <input class="custom-control-input" type="checkbox" name="districts[]" id="dis{{$district->id}}" {{$goal->hasDistrict($district->id) ? 'checked' : null}} :value="{{$district->id}}">
+              <label class="custom-control-label" for="dis{{$district->id}}">{{$district->name}}</label>
+            </div>
+          @endforeach
+        @else
+         <p><i>No hay distritos cargados en el sistema</i></p>
+        @endif
       </div>
     </div>
     @endif
     <div class="form-group">
       <label><b>Empresas relacionadas</b></label>
       <div>
-        @foreach($companies as $company)
-          <div class="custom-control custom-checkbox form-check-inline">
-            <input class="custom-control-input" type="checkbox" name="companies[]" id="com{{$company->id}}" {{$goal->hasCompany($company->id) ? 'checked' : null}} :value="{{$company->id}}">
-            <label class="custom-control-label" for="com{{$company->id}}">{{$company->name}}</label>
-          </div>
-        @endforeach
+        @if(count($companies) > 0) 
+          @foreach($companies as $company)
+            <div class="custom-control custom-checkbox form-check-inline">
+              <input class="custom-control-input" type="checkbox" name="companies[]" id="com{{$company->id}}" {{$goal->hasCompany($company->id) ? 'checked' : null}} :value="{{$company->id}}">
+              <label class="custom-control-label" for="com{{$company->id}}">{{$company->name}}</label>
+            </div>
+          @endforeach
+        @else
+          <p><i>No hay empresas cargadas en el sistema</i></p>
+        @endif
       </div>
     </div>
     <div class="form-group">
       <label><b>Otros objetivos relacionados</b></label>
       <div>
-        @foreach($objectivesList as $auxObjective)
-          <div class="custom-control custom-checkbox form-check-inline">
-            <input class="custom-control-input" type="checkbox" name="related_objectives[]" id="ro{{$auxObjective->id}}" {{$goal->hasRelatedObjective($auxObjective->id) ? 'checked' : null}} :value="{{$auxObjective->id}}">
-            <label class="custom-control-label" for="ro{{$auxObjective->id}}">{{$auxObjective->title}}</label>
-          </div>
-        @endforeach
+        @if(count($objectivesList) > 0) 
+          @foreach($objectivesList as $auxObjective)
+            <div class="custom-control custom-checkbox form-check-inline">
+              <input class="custom-control-input" type="checkbox" name="related_objectives[]" id="ro{{$auxObjective->id}}" {{$goal->hasRelatedObjective($auxObjective->id) ? 'checked' : null}} :value="{{$auxObjective->id}}">
+              <label class="custom-control-label" for="ro{{$auxObjective->id}}">{{$auxObjective->title}}</label>
+            </div>
+          @endforeach
+        @else
+         <p><i>No hay otras metas cargadas en el sistema</i></p>
+        @endif
       </div>
     </div>
     <div class="border border-light rounded p-3">
