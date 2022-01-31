@@ -69,13 +69,13 @@
       <div class="card rounded shadow-sm">
         <div class="card-body text-center">
           <p><b>Resumen</b></p>
-          <p><span class="h3 is-700"><i class="fas fa-bullseye text-info"></i>&nbsp{{$countObjectives}}</span><br>Metas publicadas</p>
+          <p><span class="h3 is-700"><i class="fas fa-bullseye text-info"></i>&nbsp{{$countObjectives}}</span><br>Objetivos publicados</p>
           <div class="row">
             <div class="col">
-              <p><span class="h3 is-700"><i class="fas fa-medal text-primary"></i>&nbsp;{{$countGoals}}</span><br>Proyectos publicados</p>
+            <p><span class="h3 is-700"><i class="fas fa-medal text-primary"></i>&nbsp;{{$countGoals}}</span><br>Metas publicadas</p>
             </div>
             <div class="col">
-              <p><span class="h3 is-700"><i class="fas fa-check text-success"></i>&nbsp{{$countGoalsCompleted}}</span><br>Proy. completados</p>
+            <p><span class="h3 is-700"><i class="fas fa-check text-success"></i>&nbsp{{$countGoalsCompleted}}</span><br>Metas completadas</p>
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@
     <div class="col-md-7 col-lg-8">
       <div class="card rounded shadow-sm">
         <div class="card-body">
-          <p><b>Estado de los proyectos</b></p>
+          <p><b>Estado de las metas</b></p>
           <portal-home-stats fetch-url="{{route('apiService.home.stats')}}">
             @include('partials.loading')
           </portal-home-stats>
@@ -92,13 +92,13 @@
       </div>
     </div>
   </div>
-  <h4 class="is-400 mb-3">Ultimos reportes publicados</h4>
+  <h4 class="is-400 mb-3">Últimos reportes publicados</h4>
   <portal-home-reports-carrousel fetch-url="{{route('apiService.reports',['order_by'=>'updated_at,DESC'])}}"></portal-home-reports-carrousel>
   <p class="mb-4 text-right"><a href="{{route('reports')}}" class="btn btn-outline-primary">Ver más reportes <i class="fas fa-arrow-right"></i></a></p>
-  <h4 class="is-400 mb-3">Ultimas metas actualizadas</h4> 
+  <h4 class="is-400 mb-3">Últimos proyectos actualizadas</h4> 
   <portal-last-objectives fetch-url="{{route('apiService.objectives',['order_by'=>'updated_at,DESC','with'=>'objective_latest_goals,objective_latest_reports,objective_stats,','size' => 5])}}"></portal-last-objectives>
   <p class="mb-4 text-right"><a href="{{route('objectives')}}" class="btn btn-outline-primary">Ver más metas <i class="fas fa-arrow-right"></i></a></p>
-  <h4 class="is-400 mb-3">Ultimos 15 proyectos geolocalizados</h4>
+  <h4 class="is-400 mb-3">Últimas 15 metas geolocalizados</h4>
   {{-- <map-reports fetch-url="{{route('apiService.reports',['mappable' => true, 'size'=> 15])}}" access-token="{{config('services.mapbox.key')}}" :paginated="false" map-style="{{config('services.mapbox.style')}}"> --}}
   <map-goals fetch-url="{{route('apiService.goals',['mappable' => true, 'size'=> 15, 'order_by'=>'updated_at,DESC', 'with' => 'goal_objective'])}}" access-token="{{config('services.mapbox.key')}}" :paginated="false" :lat="{{app_setting('app_map_lat_default')}}" :long="{{app_setting('app_map_long_default')}}" :zoom="{{app_setting('app_map_zoom_default')}}" map-style="{{config('services.mapbox.style')}}"></map-goals>
 

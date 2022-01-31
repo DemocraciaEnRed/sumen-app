@@ -19,9 +19,9 @@
     @csrf
     <p>Al eliminar un eje de planificación, tenga en cuenta lo siguiente</p>
     <ul>
-      <li>Las metas que se encuentran actualmente vinculados con el eje de planificación "{{$category->title}}" no pueden quedar sin eje de planificación</li>
-      <li>Para eliminar el eje de planificación, se deben migrar las metas vinculadas a un eje de planificación ya existente</li>
-      <li>El siguiente formulario migra todas las metas a los ejes de planificación ya existente, si desea migrar alguna meta especificamente a algun otro eje de planificación, deberá hacerlo de forma manual editando la meta en particular.</li>
+      <li>Los objetivos que se encuentran actualmente vinculados con el eje de planificación "{{$category->title}}" no pueden quedar sin eje de planificación</li>
+      <li>Para eliminar el eje de planificación, se deben migrar los objetivos vinculadas a un eje de planificación ya existente</li>
+      <li>El siguiente formulario migra todos los objetivos a los ejes de planificación ya existente, si desea migrar algun objetivo especificamente a algun otro eje de planificación, deberá hacerlo de forma manual editando el objetivo en particular.</li>
     </ul>
      <div class="form-group">
       <label><b>Eje de planificación a la que migran las metas</b><span class="text-danger">*</span></label>

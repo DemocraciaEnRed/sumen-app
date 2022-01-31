@@ -109,7 +109,7 @@ class GoalPanelController extends Controller
       $goal->relatedObjectives()->sync($request->input('related_objectives'));
       $request->objective->touch();
       
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha editado el proyecto [{$goal->title}] de la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha editado la meta [{$goal->title}] del objetivo [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'goal_id' => $goal->id,
@@ -125,7 +125,7 @@ class GoalPanelController extends Controller
         Notification::send($request->objective->subscribers, new EditGoal($request->objective, $goal));
       }
 
-      return redirect()->route('objectives.manage.goals.index', ['objectiveId' => $request->objective->id, 'goalId' => $goal->id])->with('success','El proyecto ha sido editada correctamente');
+      return redirect()->route('objectives.manage.goals.index', ['objectiveId' => $request->objective->id, 'goalId' => $goal->id])->with('success','La meta ha sido editada correctamente');
     }
 
     public function viewListGoalMilestones(Request $request, $objectiveId, $goalId){
@@ -207,7 +207,7 @@ class GoalPanelController extends Controller
       $request->validate($rules);
       $milestone = Milestone::findorfail($milestoneId);
 
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha eliminado el hito [{$milestone->title}] de el proyecto [{$request->goal->title}] de la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha eliminado el hito [{$milestone->title}] de la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'goal_id' => $request->goal->id,
@@ -362,7 +362,7 @@ class GoalPanelController extends Controller
         }
       }
 
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha creado un reporte [{$report->title}] de el proyecto [{$request->goal->title}] de la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha creado un reporte [{$report->title}] de la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'goal_id' => $request->goal->id,
@@ -404,7 +404,7 @@ class GoalPanelController extends Controller
 
       $request->validate($rules);
 
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha eliminado el proyecto [{$request->goal->title}] de la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha eliminado la meta [{$request->goal->title}] del objetivo [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'goal_title' => $request->goal->id,
@@ -427,7 +427,7 @@ class GoalPanelController extends Controller
       }
 
 
-      return redirect()->route('objectives.manage.index', ['objectiveId' => $request->objective->id])->with('success','Proyecto eliminado correctamente');
+      return redirect()->route('objectives.manage.index', ['objectiveId' => $request->objective->id])->with('success','Meta eliminada correctamente');
 
     }
 

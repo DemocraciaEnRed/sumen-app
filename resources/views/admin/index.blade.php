@@ -19,11 +19,11 @@
           <span class="h5"><i class="fas fa-users fa-fw"></i> {{$users_unverified_count}}</span>
         </div>
         <div class="col text-center">
-          <h6 class="font-weight-bold">Metas</h6>
+          <h6 class="font-weight-bold">Objetivos</h6>
           <span class="h5"><i class="fas fa-bullseye fa-fw"></i> {{$objectives_count}}</span>
         </div>
         <div class="col text-center">
-          <h6 class="font-weight-bold">Proyectos</h6>
+          <h6 class="font-weight-bold">Metas</h6>
           <span class="h5"><i class="fas fa-medal fa-fw"></i> {{$goals_count}}</span>
         </div>
         <div class="col text-center">

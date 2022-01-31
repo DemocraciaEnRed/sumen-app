@@ -3,7 +3,7 @@
 @section('panelContent')
 
 <section>
-  <h3 class="is-700">Editar meta</h3>
+  <h3 class="is-700">Editar objetivo</h3>
   <p class="lead">Completá los campos a continuación:</p>
   @if ($errors->any())
     <div class="alert alert-danger">
@@ -17,7 +17,7 @@
   @if($objective->has('goals'))
   <div class="alert alert-warning">
     <h6 class="is-700"><i class="fas fa-exclamation-triangle"></i> Importante</h6>
-    La meta cuenta con proyectos. Si alguno de los campos compromete alguna información con respecto a los proyectos, recuerde hacer las ediciones correspondientes en las mismas.
+    El objetivo cuenta con metas. Si alguno de los campos compromete alguna información con respecto a las metas, recuerde hacer las ediciones correspondientes en las mismas.
   </div>
   @endif
   @if (count($categories) > 0)
@@ -25,15 +25,15 @@
     @method('PUT')
     @csrf
     <div class="form-group">
-      <label>Titulo de la meta</label>
+      <label>Titulo del objetivo</label>
       <input type="text" class="form-control" name="title" value="{{$objective->title}}" placeholder="Ingrese un nombre">
     </div>
     <div class="form-group">
-      <label>Descripción de la meta</label>
+      <label>Descripción del objetivo</label>
       <textarea name="content" class="form-control" rows="4">{{$objective->content}}</textarea>
     </div>
     <div class="form-group">
-      <label>Eje de planificación de la meta</label>
+      <label>Categoria del objetivo</label>
       <select class="custom-select" name="category">
         @foreach ($categories as $category)
         <option value="{{$category->id}}" {{$category->id == $objective->category->id ? 'selected' : null}}>{{$category->title}}</option>
@@ -45,7 +45,7 @@
       <input-tags name="tags" :tags='@json($objective->tags)'></input-tags>
     </div>
     <div class="form-group">
-      <label>Organizaciones relacionadas con la meta</label>
+      <label>Organizaciones relacionadas con el objetivo</label>
       <div>
         @foreach($organizations as $organization)
           <div class="custom-control custom-checkbox form-check-inline">
@@ -64,17 +64,17 @@
       </div>
       @else
       <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
+        <i class="fas fa-exclamation-triangle"></i>&nbsp;El objetivo se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
       </div>
       @endif
-      <small class="form-text text-muted">Se le enviará una notificación por sistema, de que la meta ha sido editado, invitandolos a verla.</small>
+      <small class="form-text text-muted">Se le enviará una notificación por sistema, de que el objetivo ha sido editado, invitandolos a verlo.</small>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Editar</button>
   </form>
   @else
   <div class="alert alert-warning" role="alert">
-    No puede crear metas sin eje de planificación. Debe ir al panel de <a href="{{ route('admin.categories') }}">Eje de planificación</a>
+    No puede crear objetivos sin categorías. Debe ir al panel de <a href="{{ route('admin.categories') }}">Categorías</a>
   </div>
   @endif
 </section>

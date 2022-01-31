@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Editar un hito</h3>
-  <p class="lead">Para editar el hito del proyecto, completá el siguiente campo</p>
+  <p class="lead">Para editar el hito de la meta, completá el siguiente campo</p>
   @if ($errors->any())
   <div class="alert alert-danger">
     <ul class="mb-0">

@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Ver miembros del equipo</h3>
-  <p class="lead">El equipo de una meta está conformado por los usuarios que podrán coordinar metas y realizar reportes y usuarios que únicamente podrán realizar reportes.
+  <p class="lead">El equipo de un objetivo está conformado por los usuarios que podrán coordinar objetivos y realizar reportes y usuarios que únicamente podrán realizar reportes.
   </p>
   @if(!$objective->members->isEmpty())
     @isManager($objective->id)

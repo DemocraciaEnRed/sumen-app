@@ -7,7 +7,7 @@
       <span class="text-{{$goal->status}} rounded-circle is-700 text-smallest ">{{$goal->progress_percentage}}%</span>
     </div>
     <div class="w-100">
-      <span class="text-{{$goal->status}}">Proyecto {{$goal->status_label}}</span>
+      <span class="text-{{$goal->status}}">Meta {{$goal->status_label}}</span>
       <h3 class="is-700">
         {{$goal->title}}
       </h3>
@@ -25,7 +25,7 @@
       </div>
     </div>
  </div>
-    <h5 class="font-weight-bold">Progreso del proyecto</h6>
+  <h5 class="font-weight-bold">Progreso de la meta</h6>
     <div class="progress mb-3">
       <div class="progress-bar bg-{{$goal->status}}" role="progressbar" style="width: {{$goal->progress_percentage}}%;" aria-valuenow="{{$goal->progress_percentage}}" aria-valuemin="0" aria-valuemax="100">{{$goal->progress_percentage}}%</div>
     </div>
@@ -68,7 +68,7 @@
   @if($goal->milestones->isEmpty())
   <div class="card border-secondary my-2">
     <div class="card-body">
-      <h6><b><i class="fas fa-info-circle"></i>&nbsp;El proyecto no cuenta con hitos</b></h6>
+      <h6><b><i class="fas fa-info-circle"></i>&nbsp;La meta no cuenta con hitos</b></h6>
       <span class="text-muted">Puede crearlos haciendo <a href="{{ route('objectives.manage.goals.milestones.add', ['objectiveId' => $objective->id,'goalId' => $goal->id]) }}">click aquí <i class="fas fa-arrow-right"></i></a></span>
     </div>
   </div>
@@ -76,7 +76,7 @@
   @if($goal->reports->isEmpty())
   <div class="card border-secondary my-2">
     <div class="card-body">
-      <h6><b><i class="fas fa-info-circle"></i>&nbsp;El proyecto no cuenta con reportes</b></h6>
+      <h6><b><i class="fas fa-info-circle"></i>&nbsp;La meta no cuenta con reportes</b></h6>
       <span class="text-muted">Puede crearlos haciendo <a href="{{ route('objectives.manage.goals.reports.add', ['objectiveId' => $objective->id,'goalId' => $goal->id]) }}">click aquí <i class="fas fa-arrow-right"></i></a></span>
     </div>
   </div>

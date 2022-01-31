@@ -40,7 +40,7 @@
 						</div>
 						<div class="w-100">	
 							{{-- <a class="float-right text-info text-smallest animate__animated animate__f" href="{{$goal->request_info_url}}" target="_blank"><i class="fas	 fa-external-link-alt"></i> Solicitar mas información</a> --}}
-							<span class="text-{{$goal->status}}">Proyecto {{$goal->status_label}}</span>
+							<span class="text-{{$goal->status}}">Meta {{$goal->status_label}}</span>
 							<h4 class="is-700 m-0">
 								{{$goal->title}}
 							</h4>
@@ -112,7 +112,7 @@
 					@if(!$goal->relatedObjectives->isEmpty())
 					<hr>
 					<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseRelatedObjectives">
-						<h5 class="is-700 h5 text-body my-2 float-left">Metas relacionadas al proyecto</h5>
+						<h5 class="is-700 h5 text-body my-2 float-left">Objetivos relacionados a la meta</h5>
 						<h5 class="is-700 h5 text-body my-2 float-right"><i class="fas fa-angle-down"></i></h5>
 					</div>
 					<div id="collapseRelatedObjectives" class="collapse">
@@ -123,7 +123,7 @@
 					@endif
           <hr>
 					<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseMilestones">
-						<h5 class="is-700 h5 text-body my-2 float-left">Hitos del proyecto</h5>
+						<h5 class="is-700 h5 text-body my-2 float-left">Hitos de la meta</h5>
 						<h5 class="is-700 h5 text-body my-2 float-right"><i class="fas fa-angle-down"></i></h5>
 					</div>
 					<div id="collapseMilestones" class="collapse">
@@ -158,7 +158,7 @@
 					@endif
 					<hr>
 					@if(!is_null($goal->map_lat) && !is_null($goal->map_long))
-					<h5 class="is-700 h5 text-body my-2">Mapa del proyecto</h5>
+					<h5 class="is-700 h5 text-body my-2">Mapa de la meta</h5>
 					<portal-report-map access-token="{{config('services.mapbox.key')}}" map-style="{{config('services.mapbox.style')}}" :lat="{{$goal->map_lat}}" :long="{{$goal->map_long}}" :zoom="{{$goal->map_zoom}}" :init-collection="{{$goal->map_geometries}}"></portal-report-map>	
           <hr>
 					@endif

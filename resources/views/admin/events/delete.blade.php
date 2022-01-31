@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
      <label class="is-700 "><i class="fas fa-bell"></i>&nbsp;Enviar notificación a suscriptores <span class="text-danger">*</span></label>
-      <p>¿Desea enviar una notificacion de la eliminación del evento a los suscriptores de las metas relacionadas con el evento?</p>
+      <p>¿Desea enviar una notificacion de la eliminación del evento a los suscriptores de los objetivos relacionadas con el evento?</p>
       <div class="custom-control custom-switch">
         <input type="checkbox" class="custom-control-input" name="notify" id="notify" value="true">
         <label class="custom-control-label is-clickable" for="notify">Notificar a los suscriptores</label>

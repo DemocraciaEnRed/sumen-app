@@ -8,7 +8,7 @@ $checked = Str::contains(Auth::user()->notification_preferences,"mail")
 
 <section>
   <h3 class="is-700">Preferencias de envío</h3>
-  <p class="lead">Desde Sumen, te estaremos enviando notificaciones de las metas que monitorees. Acá, podrás configurarlas según tu preferencia</p>
+  <p class="lead">Desde Partícipes, te estaremos enviando notificaciones de los objetivos que monitorees. Acá, podrás configurarlas según tu preferencia</p>
   <hr>
   @if ($errors->any())
     <div class="alert alert-danger">
@@ -22,7 +22,7 @@ $checked = Str::contains(Auth::user()->notification_preferences,"mail")
   <h5 class="font-weight-bold"><i class="far fa-envelope"></i> ¿Desea recibir notificaciones por correo electronico?</h5>
   <p>Habilitando la opción, usted será notificado de los siguientes eventos:</p>
   <ul>
-    <li>Cuando se crea un nuevo reporte en alguna meta del cual este suscripto</li>
+    <li>Cuando se crea un nuevo reporte en algun objetivo del cual este suscripto</li>
     <li>Cuando recibe una respuesta de su comentario</li>
   </ul>
   <p>Nota: Independientemente de su elección, seguirá recibiendo notificaciones a través del sistema</p>

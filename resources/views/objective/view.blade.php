@@ -45,7 +45,7 @@
 					<hr>
 					<div class="my-3">
 						<div class="clearfix is-clickable" data-toggle="collapse" data-target="#collapseGoalStatus">
-						<h5 class="is-700 h5 text-body my-2 float-left">Estados de los proyectos</h5>
+						<h5 class="is-700 h5 text-body my-2 float-left">Estados de las metas</h5>
 						<h5 class="is-700 h5 text-body my-2 float-right"><i class="fas fa-angle-down fa-lg"></i></h5>
 						</div>
 						<div id="collapseGoalStatus" class="collapse">
@@ -60,7 +60,7 @@
 								</div>
 							</div>
 							@empty
-								<p slot="content" class="text-muted">No hay proyectos de la meta</p>
+							<p slot="content" class="text-muted">No hay metas del objetivo</p>
 							@endforelse
 						</div>
 					</div>
@@ -115,7 +115,7 @@
 								</div>
 							</div>
 							@empty
-							<p class="my-2 text-muted">No hay archivos adjuntos a la meta</p>
+							<p class="my-2 text-muted">No hay archivos adjuntos al objetivo</p>
 							@endforelse
 					</div>
 					<hr>

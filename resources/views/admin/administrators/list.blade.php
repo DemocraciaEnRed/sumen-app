@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Administradores de la plataforma</h3>
-  <p class="lead">Los administradores de la plataforma pueden gestionar la totalidad de las metas, proyectos y reportes. Pudiendo crear, editar, y eliminar.</p>
+  <p class="lead">Los administradores de la plataforma pueden gestionar la totalidad de los objetivos, metas y reportes. Pudiendo crear, editar, y eliminar.</p>
   @forelse($administrators as $user)
   <div class="card my-3 shadow-sm">
     <div class="card-body d-flex align-items-start">

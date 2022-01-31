@@ -19,7 +19,7 @@ class GoalBelongsObjective
         if($request->objective->hasGoal($goalId)){
           return $next($request);
         } else {
-          abort(404, 'El proyecto no pertenece a la meta');
+          abort(404, 'El proyecto no pertenece al objetivo');
         }
     }
 }

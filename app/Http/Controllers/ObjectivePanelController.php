@@ -91,7 +91,7 @@ class ObjectivePanelController extends Controller
       $objective->save();
       $objective->organizations()->sync($request->input('organizations'));
 
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha editado la meta [{$objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha editado el objetivo [{$objective->title}]", [
         'objective_id' => $objective->id,
         'objective_title' => $objective->title,
         'user_id' => $request->user()->id,
@@ -104,7 +104,7 @@ class ObjectivePanelController extends Controller
         Notification::send($objective->subscribers, new EditObjective($objective));
       }
 
-      return redirect()->route('objectives.manage.index',['objectiveId' => $objective->id])->with('success','La meta ha sido editado correctamente');
+      return redirect()->route('objectives.manage.index',['objectiveId' => $objective->id])->with('success','El objetivo ha sido editado correctamente');
     }
 
     public function index(Request $request){
@@ -165,7 +165,7 @@ class ObjectivePanelController extends Controller
 
     public function downloadListSubscribers(Request $request, $objectiveId){      
       $this->hasManagerPrivileges($request);
-      return Excel::download(new ObjectiveSubscribersExport($objectiveId), Carbon::now()->format('Ymd').'-subscriptores-meta-'.$objectiveId.'.xlsx');
+      return Excel::download(new ObjectiveSubscribersExport($objectiveId), Carbon::now()->format('Ymd').'-subscriptores-objetivo-'.$objectiveId.'.xlsx');
     }
 
     public function viewAddTeam(Request $request){
@@ -183,7 +183,7 @@ class ObjectivePanelController extends Controller
       if(!$alreadySubscribed){
         $request->objective->subscribers()->attach($user);
       }
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha agregado a [{$user->fullname}] al equipo de la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha agregado a [{$user->fullname}] al equipo del objetivo [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'member_id' => $user->id,
@@ -205,7 +205,7 @@ class ObjectivePanelController extends Controller
 
       $request->objective->members()->detach($userId);
 
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha quitado a [{$user->fullname}] del equipo de la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha quitado a [{$user->fullname}] del equipo del objetivo [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'member_id' => $user->id,
@@ -227,7 +227,7 @@ class ObjectivePanelController extends Controller
 
      public function downloadListGoals(Request $request, $objectiveId){      
       $this->hasManagerPrivileges($request);
-      return Excel::download(new ObjectiveGoalsExport($objectiveId), Carbon::now()->format('Ymd').'-proyectos-meta-'.$objectiveId.'.xlsx');
+      return Excel::download(new ObjectiveGoalsExport($objectiveId), Carbon::now()->format('Ymd').'-metas-objetivo-'.$objectiveId.'.xlsx');
     }
 
     public function viewAddGoal(Request $request){
@@ -294,7 +294,7 @@ class ObjectivePanelController extends Controller
         }
       }
 
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha creado el proyecto [{$goal->title}] de la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha creado la meta [{$goal->title}] del objetivo [{$request->objective->title}]", [
             'objective_id' => $request->objective->id,
             'objective_title' => $request->objective->title,
             'goal_id' => $goal->id,
@@ -309,7 +309,7 @@ class ObjectivePanelController extends Controller
         Notification::send($request->objective->subscribers, new NewGoal($request->objective, $goal));
       }
 
-      return redirect()->route('objectives.manage.goals.index', ['objectiveId' => $request->objective->id, 'goalId' => $goal->id])->with('success','Se ha credo el proyecto correctamente');
+      return redirect()->route('objectives.manage.goals.index', ['objectiveId' => $request->objective->id, 'goalId' => $goal->id])->with('success','Se ha credo la meta correctamente');
     }
 
     public function viewImportGoals(Request $request){
@@ -341,8 +341,8 @@ class ObjectivePanelController extends Controller
                 if(!is_null($row['empresas'])){
                     $row['empresas'] = explode(',', $row['empresas']);
                 }
-                if(!is_null($row['metas_relacionadas'])){
-                    $row['metas_relacionadas'] = explode(',', $row['metas_relacionadas']);
+                if(!is_null($row['objetivos_relacionados'])){
+                    $row['objetivos_relacionados'] = explode(',', $row['objetivos_relacionados']);
                 }
                 $rules = [
                   
@@ -363,8 +363,8 @@ class ObjectivePanelController extends Controller
                     'hitos.*' => 'required|string|max:550' ,
                     'empresas' => 'nullable|array' ,
                     'empresas.*' => 'required|numeric' ,
-                    'metas_relacionadas' => 'nullable|array' ,
-                    'metas_relacionadas.*' => 'required|numeric' ,
+                    'objetivos_relacionados' => 'nullable|array' ,
+                    'objetivos_relacionados.*' => 'required|numeric' ,
 
                 ];
                 $validator = Validator::make($row,$rules);
@@ -411,8 +411,8 @@ class ObjectivePanelController extends Controller
                     if(!is_null($row['distritos'])){
                       $goal->districts()->attach($row['distritos']);
                     }
-                    if(!is_null($row['metas_relacionadas'])){
-                      $goal->relatedObjectives()->attach($row['metas_relacionadas']);
+                    if(!is_null($row['objetivos_relacionados'])){
+                      $goal->relatedObjectives()->attach($row['objetivos_relacionados']);
                     }
                     if(!is_null($row['hitos'])){
                       foreach($row['hitos'] as $key => $inputMilestone){
@@ -434,7 +434,7 @@ class ObjectivePanelController extends Controller
             'user_email' => $request->user()->email
             ]);
 
-        return redirect()->route('objectives.manage.goals',['objectiveId' => $request->objective->id])->with('success','Se han importado las metas, recuerde ahora tener que configurarlas una por una');
+        return redirect()->route('objectives.manage.goals',['objectiveId' => $request->objective->id])->with('success','Se han importado los objetivos, recuerde ahora tener que configurarlas una por una');
     }
 
     public function viewObjectiveConfiguration (Request $request, $objectiveId){
@@ -451,7 +451,7 @@ class ObjectivePanelController extends Controller
       $request->objective->save();
 
       if($hide){
-         Log::channel('mysql')->info("[{$request->user()->fullname}] ha ocultado la meta [{$request->objective->title}]", [
+         Log::channel('mysql')->info("[{$request->user()->fullname}] ha ocultado el objetivo [{$request->objective->title}]", [
             'objective_id' => $request->objective->id,
             'objective_title' => $request->objective->title,
             'user_id' => $request->user()->id,
@@ -459,7 +459,7 @@ class ObjectivePanelController extends Controller
             'user_email' => $request->user()->email
             ]);
       } else {
-        Log::channel('mysql')->info("[{$request->user()->fullname}] ha hecho visible la meta [{$request->objective->title}]", [
+        Log::channel('mysql')->info("[{$request->user()->fullname}] ha hecho visible el objetivo [{$request->objective->title}]", [
             'objective_id' => $request->objective->id,
             'objective_title' => $request->objective->title,
             'user_id' => $request->user()->id,
@@ -467,7 +467,7 @@ class ObjectivePanelController extends Controller
             'user_email' => $request->user()->email
             ]);
       }
-      return redirect()->route('objectives.manage.configuration', ['objectiveId' => $request->objective->id])->with('success','Se actualizó la meta');
+      return redirect()->route('objectives.manage.configuration', ['objectiveId' => $request->objective->id])->with('success','Se actualizó el objetivo');
     }
     public function formObjectiveConfigurationComplete (Request $request, $objectiveId){
       $rules = [
@@ -479,7 +479,7 @@ class ObjectivePanelController extends Controller
       $request->objective->save();
 
       if($completed){
-         Log::channel('mysql')->info("[{$request->user()->fullname}] ha marcado como completa la meta [{$request->objective->title}]", [
+         Log::channel('mysql')->info("[{$request->user()->fullname}] ha marcado como completo al objetivo [{$request->objective->title}]", [
             'objective_id' => $request->objective->id,
             'objective_title' => $request->objective->title,
             'user_id' => $request->user()->id,
@@ -487,7 +487,7 @@ class ObjectivePanelController extends Controller
             'user_email' => $request->user()->email
             ]);
       } else {
-        Log::channel('mysql')->info("[{$request->user()->fullname}] ha marcado como incompleta la meta [{$request->objective->title}]", [
+        Log::channel('mysql')->info("[{$request->user()->fullname}] ha marcado como incompleto al objetivo [{$request->objective->title}]", [
             'objective_id' => $request->objective->id,
             'objective_title' => $request->objective->title,
             'user_id' => $request->user()->id,
@@ -495,7 +495,7 @@ class ObjectivePanelController extends Controller
             'user_email' => $request->user()->email
             ]);
       }
-      return redirect()->route('objectives.manage.configuration', ['objectiveId' => $request->objective->id])->with('success','Se actualizó la meta');
+      return redirect()->route('objectives.manage.configuration', ['objectiveId' => $request->objective->id])->with('success','Se actualizó el objetivo');
     }
 
 
@@ -512,7 +512,7 @@ class ObjectivePanelController extends Controller
         $request->objective->map_zoom = $request->input('map_zoom');
       }
       $request->objective->save();
-      return redirect()->route('objectives.manage.configuration', ['objectiveId' => $request->objective->id])->with('success','Se actualizó la meta');
+      return redirect()->route('objectives.manage.configuration', ['objectiveId' => $request->objective->id])->with('success','Se actualizó el objetivo');
     }
 
     public function viewObjectiveCover (Request $request){
@@ -580,7 +580,7 @@ class ObjectivePanelController extends Controller
           $request->objective->cover->save();
       }
       // Save Logo
-      return redirect()->route('objectives.manage.cover', ['objectiveId' => $request->objective->id])->with('success','Se actualizó la imagen de portada de la meta');
+      return redirect()->route('objectives.manage.cover', ['objectiveId' => $request->objective->id])->with('success','Se actualizó la imagen de portada del objetivo');
     } 
 
     public function viewObjectiveFiles (Request $request){
@@ -618,7 +618,7 @@ class ObjectivePanelController extends Controller
           $request->objective->files()->save($saveFile);
         }
       }
-      return redirect()->route('objectives.manage.files', ['objectiveId' => $request->objective->id])->with('success','Se agrego el archivo al repositorio de la meta');
+      return redirect()->route('objectives.manage.files', ['objectiveId' => $request->objective->id])->with('success','Se agrego el archivo al repositorio del objetivo');
     } 
 
     public function viewObjectiveReportsMap (Request $request){
@@ -638,7 +638,7 @@ class ObjectivePanelController extends Controller
 
       $request->validate($rules);
 
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha eliminado la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha eliminado el objetivo [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'user_id' => $request->user()->id,
@@ -661,7 +661,7 @@ class ObjectivePanelController extends Controller
         Notification::send($request->objective->subscribers, new DeleteObjective($request->objective));
       }
 
-      return redirect()->route('home')->with('success','Meta eliminada correctamente');
+      return redirect()->route('home')->with('success','Objetivo eliminada correctamente');
 
     }
 

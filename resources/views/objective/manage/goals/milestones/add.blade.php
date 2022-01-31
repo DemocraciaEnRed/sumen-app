@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Nuevo hito</h3>
-  <p class="lead">Para sumar un nuevo hito a el proyecto, completá el siguiente campo</p>
+  <p class="lead">Para sumar un nuevo hito a la meta, completá el siguiente campo</p>
   <hr>
   @if ($errors->any())
     <div class="alert alert-danger">
