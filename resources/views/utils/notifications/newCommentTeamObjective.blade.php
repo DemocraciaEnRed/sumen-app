@@ -7,7 +7,7 @@
 Notificado el @datetime($notification->created_at) - <a
   href="{{route('reports.index', ['reportId' => $notification->data['report']['id']])}}" title="{{$notification->data['report']['title']}}">Ver reporte</a>
 - <a
-  href="{{route('goals.index', ['goalId' => $notification->data['goal']['id']])}}" title="{{$notification->data['goal']['title']}}">Ver proyecto</a>
+  href="{{route('goals.index', ['goalId' => $notification->data['goal']['id']])}}" title="{{$notification->data['goal']['title']}}">Ver meta</a>
 - <a
-  href="{{route('objectives.index', ['objectiveId' => $notification->data['objective']['id']])}}" title="{{$notification->data['objective']['title']}}">Ver meta</a>
+  href="{{route('objectives.index', ['objectiveId' => $notification->data['objective']['id']])}}" title="{{$notification->data['objective']['title']}}">Ver objetivo</a>
 </p>

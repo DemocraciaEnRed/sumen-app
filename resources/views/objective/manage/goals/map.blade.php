@@ -21,8 +21,8 @@ $zoom = $goal->map_zoom ?: ($objective->map_zoom ?: app_setting('app_map_zoom_de
 @section('panelContent')
 
 <section>
-  <h3 class="is-700">Mapa del proyecto</h3>
-  <p class="lead">Aqui puede crear puntos, areas, o lineas que tengan que ver con el reporte publicado</p>
+  <h3 class="is-700">Mapa de la meta</h3>
+  <p class="lead">Aqui puede crear puntos, areas, o lineas que tengan que ver con la meta</p>
    <hr />
     <form action="{{route('objectives.manage.goals.map.form',['objectiveId' => $objective->id, 'goalId' => $goal->id])}}" method="POST">
       @method('PUT')

@@ -18,7 +18,7 @@
   <h5 class="is-700 has-text-danger"><i class="fas fa-trash"></i> Eliminar reporte</h5>
   <p>Al eliminar el reporte, tenga en cuenta lo siguiente</p>
   <ul>
-    <li>La meta deja de ser visible publicamente</li>
+    <li>El objetivo deja de ser visible publicamente</li>
   </ul>
   <form action="{{ route('objectives.manage.goals.reports.delete.form',['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id]) }}" method="POST">
     @method('DELETE')
@@ -37,7 +37,7 @@
       </div>
       @else
       <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
+      <i class="fas fa-exclamation-triangle"></i>&nbsp;El objetivo se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
       </div>
       @endif
       <small class="form-text text-muted">Se le enviará una notificación por sistema, de que el reporte ha sido eliminado.</small>

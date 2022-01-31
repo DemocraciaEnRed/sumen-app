@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Crear organizacion</h3>
-  <p class="lead">Para crear una organización, una agrupación conformada por ciudadanos independientes o bien algún sector encargado de una meta, completa los siguientes campos:</p>
+  <p class="lead">Para crear una organización, una agrupación conformada por ciudadanos independientes o bien algún sector encargado de un objetivo, completa los siguientes campos:</p>
   @if ($errors->any())
     <div class="alert alert-danger">
         <ul class="mb-0">

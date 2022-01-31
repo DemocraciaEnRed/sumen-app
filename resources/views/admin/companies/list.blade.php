@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Empresas</h3>
-  <p class="lead">Las empresas se asocian a proyectos. Para eso, deben estar indexadas en el sistema. En esta sección se listan las empresas cargadas en el sistema.</p>
+  <p class="lead">Las empresas se asocian a metas. Para eso, deben estar indexadas en el sistema. En esta sección se listan las empresas cargadas en el sistema.</p>
   @forelse($companies as $company)
   <div class="card mb-3 shadow-sm">
     <div class="card-body d-flex align-items-start">

@@ -19,7 +19,7 @@ class ReportBelongsGoal
         if($request->goal->hasReport($reportId)){
           return $next($request);
         } else {
-          abort(404, 'El reporte no pertenece a el proyecto');
+          abort(404, 'El reporte no pertenece a la meta');
         }
     }
 }

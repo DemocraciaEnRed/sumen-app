@@ -4,7 +4,7 @@
 
 <section>
   <h1 class="">Imagen de portada</h1>
-  <p>Podés seleccionar una imagen desde tu computadora, para agregarla como portada de la meta</p>
+  <p>Podés seleccionar una imagen desde tu computadora, para agregarla como portada del objetivo</p>
   <h5 class="font-weight-bold"><i class="fas fa-upload"></i> Nueva imagen</h5>
   <p>Debe ser una imagen JPG o JPEG , hasta 8 MB. Si el ancho de la imagen es mayor a 1366px, sera ajustada a este
     tamaño.</p>
@@ -22,7 +22,7 @@
    <img src="{{asset($objective->cover->path)}}" class="img-fluid img-thumbnail" alt="">
   @else
   <div class="alert alert-dark">
-    <i class="fas fa-eye-slash"></i> La meta no cuenta con una imagen de portada
+    <i class="fas fa-eye-slash"></i> El objetivo no cuenta con una imagen de portada
   </div>
   @endif
 

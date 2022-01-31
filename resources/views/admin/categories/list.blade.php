@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Ejes de planificación </h3>
-  <p class="lead">A continuación encontrarán los ejes de planificación dentro de las cuales se agruparán las metas:</p>
+  <p class="lead">A continuación encontrarán los ejes de planificación dentro de las cuales se agruparán los objetivos:</p>
   @forelse($categories as $category)
   <div class="card mb-3 shadow-sm">
     <div class="card-body d-flex align-items-center">

@@ -16,7 +16,7 @@
   @endif
   <div class="alert alert-warning">
     <h6 class="is-700"><i class="fas fa-exclamation-triangle"></i> Importante</h6>
-    La meta es una meta de avance. Si usted modifica las cantidades, considere que puede afectar la cronologia de otros reportes, y los datos del mismo proyecto. De ser asi, considere modificar el proyecto y otros reportes para mantener consistencia en la información.
+    El objetivo es un objetivo de avance. Si usted modifica las cantidades, considere que puede afectar la cronologia de otros reportes, y los datos de la misma meta. De ser asi, considere modificar la meta y otros reportes para mantener consistencia en la información.
   </div>
   <ul class="nav nav-tabs justify-content-center mb-3">
     <li class="nav-item">
@@ -134,7 +134,7 @@
       </div>
       @else
       <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
+        <i class="fas fa-exclamation-triangle"></i>&nbsp;El objetivo se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
       </div>
       @endif
       <small class="form-text text-muted">Se le enviará una notificación por sistema, de que el reporte ha sido editado invitandolos a verlo.</small>

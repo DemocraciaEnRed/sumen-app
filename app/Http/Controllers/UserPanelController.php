@@ -46,7 +46,7 @@ class UserPanelController extends Controller
     public function formUnsubSubscription(Request $request, $objectiveId){
         $request->user()->subscriptions()->detach($objectiveId);
         // $subscriptions = $request->user()->subscriptions()->paginate(5);
-        return redirect()->route('panel.subscriptions')->with('success','Se desuscribió correctamente de la meta');
+        return redirect()->route('panel.subscriptions')->with('success','Se desuscribió correctamente del objetivo');
     }
 
     public function viewListUnreadNotifications(Request $request){

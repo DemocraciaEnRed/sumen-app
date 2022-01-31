@@ -4,7 +4,7 @@
 
 <section>
 <h3 class="is-700">Editar organización</h3>
- <p class="lead">Para editar los datos de la organización, agrupación conformada por ciudadanos independientes o bien algún sector encargado de una meta, completa los siguientes campos:</p>
+ <p class="lead">Para editar los datos de la organización, agrupación conformada por ciudadanos independientes o bien algún sector encargado de una objetivo, completa los siguientes campos:</p>
   @if ($errors->any())
     <div class="alert alert-danger">
         <ul class="mb-0">

@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Subscriptores</h3>
-  <p class="lead">Aqui encontrará a los usuarios suscripto a las notificaciones de la meta</p>
+  <p class="lead">Aqui encontrará a los usuarios suscripto a las notificaciones del objetivo</p>
   @isManager($objective->id)
   @if(!$subscribers->isEmpty())
   <div class="my-3">
@@ -31,7 +31,7 @@
   @empty
     <div class="card shadow-sm my-3">
       <div class="card-body text-center">
-        <i class="far fa-surprise"></i>&nbsp;¡No hay suscriptores de la meta!
+        <i class="far fa-surprise"></i>&nbsp;¡No hay suscriptores del objetivoz!
       </div>
     </div>
   @endforelse

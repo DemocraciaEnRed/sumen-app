@@ -14,7 +14,7 @@
 
 <section>
   <h3 class="is-700">Configuración</h3>
-  <p class="lead">A continuación, encontrarás otras opciones de configuracion de la meta</p>
+  <p class="lead">A continuación, encontrarás otras opciones de configuracion del objetivo</p>
   <hr>
    @if ($errors->any())
     <div class="alert alert-danger">
@@ -25,11 +25,11 @@
         </ul>
     </div>
   @endif
-  <h5 class="font-weight-bold"><i class="fas fa-flag-checkered"></i> Marcar como meta completa</h5>
-  <p>Al completar la meta, ocurre lo siguiente</p>
+  <h5 class="font-weight-bold"><i class="fas fa-flag-checkered"></i> Marcar como meta completo</h5>
+  <p>Al completar el objetivo, ocurre lo siguiente</p>
   <ul>
-    <li>La meta se mostrara con una etiqueta de "Completada"</li>
-    <li>La accion no hace que los proyectos de la meta esten "Alcanzados", es independiente del estado de los mismos</li>
+    <li>El objetivo se mostrará con una etiqueta de "Completada"</li>
+    <li>La accion no hace que las metas del objetivo esten "Alcanzados", es independiente del estado de los mismos</li>
   </ul>
   <form action="{{ route('objectives.manage.configuration.complete.form',['objectiveId' => $objective->id]) }}" method="POST">
     @method('PUT')
@@ -37,20 +37,20 @@
     <div class="form-group">
       <div class="custom-control custom-switch">
         <input type="checkbox" class="custom-control-input" name="completed" id="isCompleted" {{$objective->completed ? 'checked' : ''}} value="true">
-        <label class="custom-control-label is-clickable" for="isCompleted">Meta completada</label>
+        <label class="custom-control-label is-clickable" for="isCompleted">Objetivo completado</label>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
   </form>
   <hr>
-  <h5 class="font-weight-bold"><i class="far fa-eye"></i> Ocultar meta</h5>
-  <p>Al ocultar la meta, ocurre lo siguiente</p>
+  <h5 class="font-weight-bold"><i class="far fa-eye"></i> Ocultar objetivo</h5>
+  <p>Al ocultar el objetivo, ocurre lo siguiente</p>
   <ul>
-    <li>La meta deja de ser visible publicamente</li>
-    <li>Administradores y miembros del equipo pueden acceder al panel de control de la meta</li>
-    <li>Coordinadores pueden volver a hacer visible la meta</li>
+    <li>El objetivo deja de ser visible públicamente</li>
+    <li>Administradores y miembros del equipo pueden acceder al panel de control del objetivo</li>
+    <li>Coordinadores pueden volver a hacer visible el objetivo</li>
     <li>Miembros del equipo pueden crear reportes, pero los suscriptores no serán notificados</li>
-    <li>Coordinadores pueden seguir creando proyectos.</li>
+    <li>Coordinadores pueden seguir creando metas.</li>
   </ul>
   <form action="{{ route('objectives.manage.configuration.hide.form',['objectiveId' => $objective->id]) }}" method="POST">
     @method('PUT')
@@ -58,7 +58,7 @@
     <div class="form-group">
       <div class="custom-control custom-switch">
         <input type="checkbox" class="custom-control-input" name="hidden" id="isHidden" {{$objective->hidden ? 'checked' : ''}} value="true">
-        <label class="custom-control-label is-clickable" for="isHidden">Ocultar meta</label>
+        <label class="custom-control-label is-clickable" for="isHidden">Ocultar objetivo</label>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -68,14 +68,14 @@
     @method('PUT')
     @csrf
     <h5 class="font-weight-bold"><i class="far fa-eye"></i> Definir centro y zoom por defecto del mapa</h5>
-    <p>Defina el centro y zoom por defecto del mapa, para asegurar que los reportes de la meta se vean de forma contenida dentro del area del mapa</p>
+    <p>Defina el centro y zoom por defecto del mapa, para asegurar que los reportes del objetivo se vean de forma contenida dentro del area del mapa</p>
     <set-map-default access-token="{{config('services.mapbox.key')}}" map-style="{{config('services.mapbox.style')}}" :lat="{{$objective->map_lat ?: 'undefined'}}" :long="{{$objective->map_long ?: 'undefined'}}" :zoom="{{$objective->map_zoom ?: 'undefined'}}"></set-map-default>
   </form>
   <hr>
-  <h5 class="is-700 has-text-danger"><i class="fas fa-trash"></i> Eliminar meta</h5>
-  <p>Al eliminar la meta, tenga en cuenta lo siguiente</p>
+  <h5 class="is-700 has-text-danger"><i class="fas fa-trash"></i> Eliminar objetivo</h5>
+  <p>Al eliminar el objetivo, tenga en cuenta lo siguiente</p>
   <ul>
-    <li>La meta deja de ser visible publicamente</li>
+    <li>El objetivo deja de ser visible públicamente</li>
   </ul>
   <form action="{{ route('objectives.manage.delete.form',['objectiveId' => $objective->id]) }}" method="POST">
     @method('DELETE')
@@ -83,7 +83,7 @@
     <div class="form-group">
       <label>Ingrese su contraseña</label>
       <input type="password" class="form-control" name="password">
-      <small class="form-text text-muted">Para poder eliminar la meta, ingrese su contraseña para confirmar.</small>
+      <small class="form-text text-muted">Para poder eliminar el objetivo, ingrese su contraseña para confirmar.</small>
     </div>
     <div class="form-group">
      <label class="is-700 "><i class="fas fa-paper-plane"></i>&nbsp;Enviar notificación a suscriptores</label>
@@ -94,10 +94,10 @@
       </div>
       @else
       <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
+        <i class="fas fa-exclamation-triangle"></i>&nbsp;El objetivo se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
       </div>
       @endif
-      <small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema, de que la meta ha sido eliminado.</small>
+      <small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema, de que el objetivo ha sido eliminado.</small>
     </div>
     <button type="submit" class="btn btn-danger">Eliminar</button>
   </form>

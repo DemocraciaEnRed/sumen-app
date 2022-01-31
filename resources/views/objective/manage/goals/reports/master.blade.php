@@ -5,12 +5,12 @@
 <div class="container push-to-header">
    @if($objective->hidden)
   <div class="alert alert-info">
-    <i class="fas fa-info-circle"></i>&nbsp;Nota: La meta se encuentra <b>oculta</b>. <a href="{{route('objectives.manage.configuration', ['objectiveId' => $objective->id]) }}">Cambiar<i class="fas fa-arrow-right fa-fw"></i></a>
+    <i class="fas fa-info-circle"></i>&nbsp;Nota: El objetivo se encuentra <b>oculto</b>. <a href="{{route('objectives.manage.configuration', ['objectiveId' => $objective->id]) }}">Cambiar<i class="fas fa-arrow-right fa-fw"></i></a>
   </div>
   @endif
   @if($objective->completed)
   <div class="alert alert-success">
-    <i class="fas fa-info-circle"></i>&nbsp;Nota: La meta se encuentra <b>completa</b>. <a href="{{route('objectives.manage.configuration', ['objectiveId' => $objective->id]) }}">Cambiar<i class="fas fa-arrow-right fa-fw"></i></a>
+    <i class="fas fa-info-circle"></i>&nbsp;Nota: El objetivo se encuentra <b>completo</b>. <a href="{{route('objectives.manage.configuration', ['objectiveId' => $objective->id]) }}">Cambiar<i class="fas fa-arrow-right fa-fw"></i></a>
   </div>
   @endif
   <div class="row">
