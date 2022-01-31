@@ -29,7 +29,7 @@
     <goal-card class="my-3" v-for="goal in goals" :key="`goal${goal.id}`" :goal="goal"></goal-card>
     <div class="card shadow-sm" v-if="goals.length == 0">
       <div class="card-body p-5 text-center">
-            <h6 class="card-title mb-2"><i class="far fa-surprise"></i>&nbsp;¡No se encontraron proyectos con esos criterios de busqueda!</h6>
+            <h6 class="card-title mb-2"><i class="far fa-surprise"></i>&nbsp;¡No se encontraron metas con esos criterios de busqueda!</h6>
             <p class="text-smaller mb-0">Intente de nuevo o cambie los criterios de busqueda</p>
       </div>
     </div>
@@ -68,7 +68,7 @@ export default {
       statuses: [
         {
           id: 'reached',
-          title: 'Alcanzado',
+          title: 'Alcanzada',
           color: '#2eda54'
         },
         {
@@ -78,12 +78,12 @@ export default {
         },
         {
           id: 'inactive',
-          title: 'Inactivo',
+          title: 'Inactiva',
           color: '#7e7e7e'
         },
         {
           id: 'delayed',
-          title: 'Demorado',
+          title: 'Demorada',
           color: '#f15454'
         },
       ]
@@ -117,7 +117,7 @@ export default {
           this.firstFetch = true
         })
         .catch( error => {
-          this.$toasted.show('Hubo un error cargando los proyectos', {icon: 'exclamation-triangle'})
+          this.$toasted.show('Hubo un error cargando las metas', {icon: 'exclamation-triangle'})
           console.error(error)
         })
         .finally( () => {

@@ -23,9 +23,9 @@
 				</div>
 				<div>
 					<h5 class="">Acerca del reporte de <span class="font-weight-bold">{{typeLabel}}</span></h5>
-					<span v-show="type == 'post'">Un reporte el de novedad utilizado para contar noticias generales, relacionadas a el proyecto. Es el reporte mas simple. <b>Importante:</b> No utilice este tipo de reporte si quiere especificar que el proyecto progresa en su indicador o que se completo un hito.</span>
-					<span v-show="type == 'progress'">Un reporte de avance implica un aumento en el valor del indicador. Al realizar un reporte de avance, automaticamente el proyecto aumenta su valor de indicador especificado en el reporte.</span>
-					<span v-show="type == 'milestone'">Un reporte de hito implica que se ha cumplido uno de los hitos que han sido cargados en el proyecto. <b>Importante:</b> El hito que se completa debe haber sido cargado en el proyecto previamente. No puede crear un reporte de hito sin asociar el hito que se completa</span>
+						<span v-show="type == 'post'">Un reporte el de novedad utilizado para contar noticias generales, relacionadas a la meta. Es el reporte mas simple. <b>Importante:</b> No utilice este tipo de reporte si quiere especificar que la meta progresa en su indicador o que se completo un hito.</span>
+					<span v-show="type == 'progress'">Un reporte de avance implica un aumento en el valor del indicador. Al realizar un reporte de avance, automaticamente la meta aumenta su valor de indicador especificado en el reporte.</span>
+					<span v-show="type == 'milestone'">Un reporte de hito implica que se ha cumplido uno de los hitos que han sido cargados en la meta. <b>Importante:</b> El hito que se completa debe haber sido cargado en la meta previamente. No puede crear un reporte de hito sin asociar el hito que se completa</span>
 				</div>
 			</div>
 			<div class="form-group">
@@ -56,11 +56,11 @@
 								<select class="custom-select" name="status">
 										<option value="" selected>- Mantener estado "{{statusLabel}}" -</option>
 									 	<option v-if="goal.status != 'ongoing'" value="ongoing">En progreso</option>
-										<option v-if="goal.status != 'delayed'" value="delayed" >Demorado</option>
-										<option v-if="goal.status != 'inactive'" value="inactive" >Inactivo</option>
-										<option v-if="goal.status != 'reached'" value="reached">Alcanzado</option>
+										<option v-if="goal.status != 'delayed'" value="delayed" >Demorada</option>
+										<option v-if="goal.status != 'inactive'" value="inactive" >Inactiva</option>
+										<option v-if="goal.status != 'reached'" value="reached">Alcanzada</option>
 								</select>
-	          	<small class="form-text text-muted">Si cambió el estado de el proyecto, actualizalo acá. En caso de que se mantenga, selecciona "mantener estado"</small>
+	          	<small class="form-text text-muted">Si cambió el estado de la meta, actualizalo acá. En caso de que se mantenga, selecciona "mantener estado"</small>
 							</div>
           	<small class="form-text text-muted"></small>
 					</div>
@@ -69,7 +69,7 @@
 			<section v-if="type == 'progress'">
 				<div class="form-group">
 					<label>Avance de el proyecto</label>
-					<p class="text-muted">Defina cuantas unidades de {{goal.indicator_unit}} se agrega al progreso de el proyecto</p>
+					<p class="text-muted">Defina cuantas unidades de {{goal.indicator_unit}} se agrega al progreso de la meta</p>
 					<div class="form-row">
 						<div class="col-md-10">
       				<input type="range" class="custom-range mt-2" v-model.number="rangeInput" min="0" :max="goal.indicator_goal - goal.indicator_progress">
@@ -84,7 +84,7 @@
 							<div class="card">
 								<div class="card-body text-center">
 								<h4 class="card-title text-primary font-weight-bold">{{progressNow}}%</h4>
-								<h6 class="card-subtitle">Porcentaje actual de el proyecto</h6> 
+								<h6 class="card-subtitle">Porcentaje actual de la meta</h6> 
 								</div>
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 							<div class="card">
 								<div class="card-body text-center">
 								<h4 class="card-title text-primary font-weight-bold">{{progressTotal}}%</h4>
-								<h6 class="card-subtitle">Porcentaje nuevo de el proyecto</h6> 
+								<h6 class="card-subtitle">Porcentaje nuevo de la meta</h6> 
 								</div>
 							</div>
 						</div>
@@ -109,7 +109,7 @@
 						<i class="fas fa-exclamation-triangle fa-fw"></i>&nbsp;¡No puede crear un reporte de avance y que el avance sea 0 o negativo!
 					</div>
 					<div class="alert alert-info" v-if="over100">
-						<i class="fas fa-info-circle fa-fw"></i>&nbsp;<b>¡Atencion!</b> Esta por sobrepasar el 100% de el proyecto. Esté seguro que es lo que desea.
+						<i class="fas fa-info-circle fa-fw"></i>&nbsp;<b>¡Atencion!</b> Esta por sobrepasar el 100% de la meta. Esté seguro que es lo que desea.
 					</div>
 			</section>
 			<section v-if="type == 'milestone'">
@@ -145,7 +145,7 @@
 							<label class="custom-control-label is-clickable" for="notify">Notificar a los suscriptores</label>
 						</div>
 						<div class="alert alert-warning" v-else>
-							<i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
+							<i class="fas fa-exclamation-triangle"></i>&nbsp;El objetivo se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
 						</div>
 						<small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema, de que hay un nuevo reporte.</small>
 					</div>

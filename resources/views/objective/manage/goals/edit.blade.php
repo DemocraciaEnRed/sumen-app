@@ -37,7 +37,7 @@
         <div class="form-group">
           <label><b>Valor de meta (100%) del indicador</b></label>
           <input type="number" class="form-control" min="1" name="indicator_goal" placeholder="Ej: 100" value="{{$goal->indicator_goal}}">
-          <small class="form-text text-muted">¿A que valor hay que llegar? Este es valor que representa que se llego a completar el proyecto al 100%.</small>
+          <small class="form-text text-muted">¿A que valor hay que llegar? Este es valor que representa que se llego a completar la meta al 100%.</small>
         </div>
 
       </div>
@@ -82,7 +82,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label><b>Estado inicial del proyecto</b></label>
+      <label><b>Estado inicial de la meta</b></label>
       <select class="custom-select" name="status">
         <option value="ongoing" {{ $goal->status == 'ongoing' ? 'selected' : null}}>En progreso</option>
         <option value="delayed" {{ $goal->status == 'delayed' ? 'selected' : null}}>Demorado</option>
@@ -159,7 +159,7 @@
         <i class="fas fa-exclamation-triangle"></i>&nbsp;El objetivo se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
       </div>
       @endif
-      <small class="form-text text-muted">Se le enviará una notificación por sistema, de que el proyecto ha sido editado invitandolos a verlo.</small>
+      <small class="form-text text-muted">Se le enviará una notificación por sistema, de que la meta ha sido editado invitandolos a verlo.</small>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Editar</button>

@@ -20,7 +20,7 @@
         <span class="text-{{$goal->status}} rounded-circle is-700 text-smallest ">{{$goal->progress_percentage}}%</span>
       </div>
       <div class="w-100">
-        <span class="text-{{$goal->status}}">Proyecto {{$goal->status_label}}</span>
+        <span class="text-{{$goal->status}}">Meta {{$goal->status_label}}</span>
         <h5 class="is-700 m-0">
           <a class="text-dark" href="{{ route('objectives.manage.goals.index', ['objectiveId' => $objective->id,'goalId' => $goal->id]) }}">{{$goal->title}}</a>
         </h5>

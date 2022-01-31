@@ -82,7 +82,7 @@ export default {
       statuses: [
         {
           id: 'reached',
-          title: 'Alcanzado',
+          title: 'Alcanzada',
           color: '#2eda54'
         },
         {
@@ -92,12 +92,12 @@ export default {
         },
         {
           id: 'inactive',
-          title: 'Inactivo',
+          title: 'Inactiva',
           color: '#7e7e7e'
         },
         {
           id: 'delayed',
-          title: 'Demorado',
+          title: 'Demorada',
           color: '#f15454'
         },
       ]

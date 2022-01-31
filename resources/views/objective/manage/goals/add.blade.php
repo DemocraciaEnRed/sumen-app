@@ -64,7 +64,7 @@
         <div class="form-group">
           <label><b>Presupuesto Total</b><span class="text-danger">*</span></label>
           <input type="text" class="form-control" name="total_budget" placeholder="Ingrese aquí el valor">
-          <small class="form-text text-muted">Presupuesto total a ejecutar del proyecto.</small>
+          <small class="form-text text-muted">Presupuesto total a ejecutar la meta.</small>
         </div>
       </div>
       <div class="col">
