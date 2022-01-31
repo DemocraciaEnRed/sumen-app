@@ -17,7 +17,7 @@
               <span class="is-700 is-size-5"><i class="fas fa-check-circle fa-fw text-success"></i></span><br><span class="text-smaller text-success">¡Completa!</span>
             </div>
             <div class="text-center mx-2">
-              <span class="is-700 is-size-5"><i class="fas fa-medal fa-fw text-primary"></i>{{objective.goals_count}}</span><br><span class="text-smaller">proyectos</span>
+              <span class="is-700 is-size-5"><i class="fas fa-medal fa-fw text-primary"></i>{{objective.goals_count}}</span><br><span class="text-smaller">metas</span>
             </div>
             <div class="mx-2">
             <goals-doughnut :chartData="chartData" :styles="chartStyle"></goals-doughnut>
@@ -35,7 +35,7 @@
         <hr>
         <div class="row my-2">
           <div class="col-md-6 col-lg-8">
-            <b>Últimos proyectos actualizados</b>
+            <b>Últimas metas actualizadas</b>
             <div class="my-1 d-flex justify-content-between align-items-center goal-container" v-for="goal in objective.latest_goals" :key="`goals_${goal.id}`">
               <span class="text-truncate w-100"><a :href="goal.url" class="text-dark">{{goal.title}}</a> <span :class="`text-${goal.status} text-smallest is-700`">({{goal.status_label}})</span></span>
               <div class="progress my-0 mx-1'" style="height: 10px; width: 150px" :title="goal.status_label">

@@ -52,7 +52,7 @@
     <div class="form-row">
       <div class="col">
         <div class="form-group">
-          <label>Estado del proyecto previo al reporte</label>
+          <label>Estado de la meta previa al reporte</label>
             <div class="form-group">
               <select class="custom-select" name="previous_status">
                   <option value="" {{$report->status ?: 'selected'}}>- No aplica -</option>
@@ -61,14 +61,14 @@
                   <option value="inactive" {{$report->previous_status == 'inactive' ? 'selected' : null}}>Inactivo</option>
                   <option value="reached" {{$report->previous_status == 'reached' ? 'selected' : null}} >Alcanzado</option>
               </select>
-            <small class="form-text text-muted">Si el reporte indica un nuevo estado de la proyecto, puede definirlo aqui, si la proyecto no cambia su estado, puede dejarlo en "Mantener el estado"</small>
+            <small class="form-text text-muted">Si el reporte indica un nuevo estado de la meta, puede definirlo aqui, si la meta no cambia su estado, puede dejarlo en "Mantener el estado"</small>
             </div>
           <small class="form-text text-muted"></small>
         </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <label>Estado del proyecto luego del reporte</label>
+          <label>Estado de la meta luego del reporte</label>
             <div class="form-group">
               <select class="custom-select" name="status">
                   <option value="" {{$report->status ?: 'selected'}}>- No aplica -</option>
@@ -77,7 +77,7 @@
                   <option value="inactive" {{$report->status == 'inactive' ? 'selected' : null}}>Inactivo</option>
                   <option value="reached" {{$report->status == 'reached' ? 'selected' : null}}>Alcanzado</option>
               </select>
-            <small class="form-text text-muted">Si cambió el estado de la proyecto, actualizalo acá. En caso de que se mantenga, selecciona "mantener estado"</small>
+            <small class="form-text text-muted">Si cambió el estado de la meta, actualizalo acá. En caso de que se mantenga, selecciona "mantener estado"</small>
             </div>
           <small class="form-text text-muted"></small>
         </div>
@@ -107,10 +107,10 @@
     <div class="form-row">
       <div class="col">
         <div class="form-group">
-          <label>Progreso del proyecto antes del reporte</label>
+          <label>Progreso de la meta antes del reporte</label>
           <div class="form-group">
           <input type="number" min="0" value="{{$report->previous_progress}}" name="previous_progress" class="form-control">
-          <small class="form-text text-muted">Este es el valor que el proyecto se encontraba previo al reporte del avante</small>
+          <small class="form-text text-muted">Este es el valor que la meta se entcontraba previo al reporte del avante</small>
           </div>       
         </div>
       </div>

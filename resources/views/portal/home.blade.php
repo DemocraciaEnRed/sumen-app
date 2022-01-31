@@ -95,7 +95,7 @@
   <h4 class="is-400 mb-3">Últimos reportes publicados</h4>
   <portal-home-reports-carrousel fetch-url="{{route('apiService.reports',['order_by'=>'updated_at,DESC'])}}"></portal-home-reports-carrousel>
   <p class="mb-4 text-right"><a href="{{route('reports')}}" class="btn btn-outline-primary">Ver más reportes <i class="fas fa-arrow-right"></i></a></p>
-  <h4 class="is-400 mb-3">Últimos proyectos actualizadas</h4> 
+  <h4 class="is-400 mb-3">Últimas metas actualizadas</h4> 
   <portal-last-objectives fetch-url="{{route('apiService.objectives',['order_by'=>'updated_at,DESC','with'=>'objective_latest_goals,objective_latest_reports,objective_stats,','size' => 5])}}"></portal-last-objectives>
   <p class="mb-4 text-right"><a href="{{route('objectives')}}" class="btn btn-outline-primary">Ver más metas <i class="fas fa-arrow-right"></i></a></p>
   <h4 class="is-400 mb-3">Últimas 15 metas geolocalizados</h4>

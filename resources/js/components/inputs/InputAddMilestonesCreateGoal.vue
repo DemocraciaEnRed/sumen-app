@@ -9,7 +9,7 @@
     <small class="form-text text-muted">Escriba el hito, y haga clic en <i class="fas fa-plus"></i> y presione <kbd>ENTER</kbd> o <kbd>,</kbd> para ingresar</small>
     <input type="hidden" :name="`${name}[]`" v-for="(milestone,i) in milestonesList" :key="`milestone${i}`" :value="milestone">
     <ul class="list-group mt-2">
-      <li class="list-group-item text-secondary text-italics" v-if="milestonesList.length == 0">No hay hitos creados. El proyecto se creará sin hitos (puede crearlos mas tarde)</li>
+      <li class="list-group-item text-secondary text-italics" v-if="milestonesList.length == 0">No hay hitos creados. La meta se creará sin hitos (puede crearlos mas tarde)</li>
       <li class="list-group-item d-flex justify-content-between align-items-center" v-for="(milestone,i) in milestonesList" :key="`mile${i}`">
         Hito #{{i+1}}: {{milestone}}
         <a @click="removeMilestone(i)" class="badge badge-primary badge-pill is-clickable text-white"><i class="fas fa-times fa-fx"></i></a>

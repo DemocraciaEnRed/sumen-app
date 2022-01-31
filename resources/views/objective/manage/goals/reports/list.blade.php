@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Reportes</h3>
-  <p class="lead">A continuación encontrarás el listado de reportes asociados a el proyecto</p>
+  <p class="lead">A continuación encontrarás el listado de reportes asociados a la meta</p>
   @isManager($objective->id)
   @if(!$reports->isEmpty())
   <div class="my-3">

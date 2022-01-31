@@ -6,7 +6,7 @@
           <i class="far fa-dot-circle fa-2x"></i>
         </div>
         <div class="w-100">
-          <p :class="`mb-1 text-${goal.status}`"><span class="d-md-none"><i class="far fa-dot-circle"></i>&nbsp;</span>Proyecto {{goal.status_label}}</p>
+          <p :class="`mb-1 text-${goal.status}`"><span class="d-md-none"><i class="far fa-dot-circle"></i>&nbsp;</span>Meta {{goal.status_label}}</p>
           <h5 class="my-1"><a :href="goal.url" class="text-dark is-700">{{goal.title}}</a></h5>
           <!-- <p class="m-0 text-muted text-smaller" v-if="goal.objective.tags && goal.objective.tags.length > 0">Tags: {{goal.objective.tags && goal.objective.tags.join(' / ')}}</p>
           <p class="m-0 text-muted text-smaller" v-else>Tags: Sin tags cargados</p> -->

@@ -14,7 +14,7 @@
           </div>
         <div class="mx-1 d-flex flex-column flex-md-row">
           <div class="text-center m-2">
-            <span class="is-700 is-size-5"><i class="fas fa-medal fa-fw text-primary"></i>{{objective.goals_count}}</span><br><span class="text-smaller">proyectos</span>
+            <span class="is-700 is-size-5"><i class="fas fa-medal fa-fw text-primary"></i>{{objective.goals_count}}</span><br><span class="text-smaller">metas</span>
           </div>
           <div class="m-2">
           <goals-doughnut :chartData="chartData" :styles="chartStyle"></goals-doughnut>
