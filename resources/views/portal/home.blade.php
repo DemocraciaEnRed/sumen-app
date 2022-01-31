@@ -95,9 +95,9 @@
   <h4 class="is-400 mb-3">Últimos reportes publicados</h4>
   <portal-home-reports-carrousel fetch-url="{{route('apiService.reports',['order_by'=>'updated_at,DESC'])}}"></portal-home-reports-carrousel>
   <p class="mb-4 text-right"><a href="{{route('reports')}}" class="btn btn-outline-primary">Ver más reportes <i class="fas fa-arrow-right"></i></a></p>
-  <h4 class="is-400 mb-3">Últimas metas actualizadas</h4> 
+  <h4 class="is-400 mb-3">Últimos objetivos actualizados</h4> 
   <portal-last-objectives fetch-url="{{route('apiService.objectives',['order_by'=>'updated_at,DESC','with'=>'objective_latest_goals,objective_latest_reports,objective_stats,','size' => 5])}}"></portal-last-objectives>
-  <p class="mb-4 text-right"><a href="{{route('objectives')}}" class="btn btn-outline-primary">Ver más metas <i class="fas fa-arrow-right"></i></a></p>
+  <p class="mb-4 text-right"><a href="{{route('objectives')}}" class="btn btn-outline-primary">Ver más objetivos <i class="fas fa-arrow-right"></i></a></p>
   <h4 class="is-400 mb-3">Últimas 15 metas geolocalizados</h4>
   {{-- <map-reports fetch-url="{{route('apiService.reports',['mappable' => true, 'size'=> 15])}}" access-token="{{config('services.mapbox.key')}}" :paginated="false" map-style="{{config('services.mapbox.style')}}"> --}}
   <map-goals fetch-url="{{route('apiService.goals',['mappable' => true, 'size'=> 15, 'order_by'=>'updated_at,DESC', 'with' => 'goal_objective'])}}" access-token="{{config('services.mapbox.key')}}" :paginated="false" :lat="{{app_setting('app_map_lat_default')}}" :long="{{app_setting('app_map_long_default')}}" :zoom="{{app_setting('app_map_zoom_default')}}" map-style="{{config('services.mapbox.style')}}"></map-goals>
