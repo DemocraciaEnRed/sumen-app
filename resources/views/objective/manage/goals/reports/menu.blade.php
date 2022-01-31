@@ -7,13 +7,13 @@ $currentRoute = Route::currentRouteName();
 {{$report->title}}
   </a>
 </h6>
-<p class="text-smaller text-muted mb-0">Proyecto</p>
+<p class="text-smaller text-muted mb-0">Meta</p>
 <h6 class="font-weight-bold text-smaller">
   <a href="{{route('goals.index',['goalId' => $goal->id])}}">
   {{$goal->title}}
   </a>
 </h6>
-<p class="text-smaller text-muted mb-0">Meta</p>
+<p class="text-smaller text-muted mb-0">Objetivo</p>
 <h6 class="font-weight-bold text-smaller">
 <a href="{{route('objectives.index',['objectiveId' => $objective->id])}}">
   {{$objective->title}}
@@ -21,8 +21,8 @@ $currentRoute = Route::currentRouteName();
 </h6>
 <ul class="list-unstyled mb-0">
 <li><a href="{{ route('objectives.manage.goals.reports', ['objectiveId' => $objective->id, 'goalId' => $goal->id]) }}" class="text-smaller text-dark"><i class="fas fa-arrow-left"></i>&nbsp;Volver a los reportes</a></li>
-<li><a href="{{ route('objectives.manage.goals.index', ['objectiveId' => $objective->id, 'goalId' => $goal->id]) }}" class="text-smaller text-dark"><i class="fas fa-arrow-left"></i>&nbsp;Volver a los proyectos</a></li>
-<li><a href="{{ route('objectives.manage.index', ['objectiveId' => $objective->id]) }}" class="text-smaller text-dark"><i class="fas fa-arrow-left"></i>&nbsp;Volver a la meta</a></li>
+<li><a href="{{ route('objectives.manage.goals.index', ['objectiveId' => $objective->id, 'goalId' => $goal->id]) }}" class="text-smaller text-dark"><i class="fas fa-arrow-left"></i>&nbsp;Volver a las meta</a></li>
+<li><a href="{{ route('objectives.manage.index', ['objectiveId' => $objective->id]) }}" class="text-smaller text-dark"><i class="fas fa-arrow-left"></i>&nbsp;Volver al objetivo</a></li>
 </ul>
 <hr>
 <a href="{{ route('objectives.manage.goals.reports.index', ['objectiveId' => $objective->id, 'goalId' => $goal->id, 'reportId' => $report->id]) }}" class="category {{ $currentRoute == 'objective.manage.goals.reports.index'  ? 'is-active' : null }}"><i class="fas fa-tachometer-alt fa-fw"></i>&nbsp;Inicio</a>

@@ -1,7 +1,7 @@
 @php
 $currentRoute = Route::currentRouteName();
 @endphp
-<p class="text-smaller text-muted mb-0">Meta</p>
+<p class="text-smaller text-muted mb-0">Objetivo</p>
 <h6 class="font-weight-bold">
 <a href="{{route('objectives.index',['objectiveId' => $objective->id])}}">
   {{$objective->title}}
@@ -9,12 +9,12 @@ $currentRoute = Route::currentRouteName();
 </h6>
 @hasRole('admin')
 <ul class="list-unstyled mb-0">
-<li><a href="{{ route('admin.objectives') }}" class="text-smaller text-dark"><i class="fas fa-arrow-left"></i>&nbsp;Volver a las metas</a></li>
+<li><a href="{{ route('admin.objectives') }}" class="text-smaller text-dark"><i class="fas fa-arrow-left"></i>&nbsp;Volver a los objetivos</a></li>
 </ul>
 @endhasRole
 <hr>
 <a href="{{route('objectives.manage.index', ['objectiveId' => $objective->id]) }}" class="category {{ $currentRoute == 'objectives.manage.index'  ? 'is-active' : null }}"><i class="fas fa-tachometer-alt fa-fw"></i>&nbsp;Inicio</a>
-<h6 class="category"><i class="fas fa-medal fa-fw"></i>&nbsp;Proyectos de la meta</h6>
+<h6 class="category"><i class="fas fa-medal fa-fw"></i>&nbsp;Metas del objetivo</h6>
 <div class="menu-link">
 @isManager($objective->id)
 <a href="{{ route('objectives.manage.goals.add', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.goals.add' ? 'is-active' : null }}"><i class="fas fa-plus fa-fw"></i>&nbsp;Nuevo</a>
@@ -45,10 +45,10 @@ $currentRoute = Route::currentRouteName();
 @isManager($objective->id)
 <h6 class="category"><i class="fas fa-cog fa-fw"></i>&nbsp;Administrar</h6>
 <div class="menu-link">
-<a href="{{route('objectives.manage.edit', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.edit'  ? 'is-active' : null }}">Editar meta</a>
+<a href="{{route('objectives.manage.edit', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.edit'  ? 'is-active' : null }}">Editar objetivo</a>
 <a href="{{route('objectives.manage.cover', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.cover'  ? 'is-active' : null }}">Imagen de portada</a>
 <a href="{{route('objectives.manage.files', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.files'  ? 'is-active' : null }}">Repositorio de archivos</a>
-<a href="{{route('objectives.manage.map.goals', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.map.goals'  ? 'is-active' : null }}">Mapa de proyectos</a>
+<a href="{{route('objectives.manage.map.goals', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.map.goals'  ? 'is-active' : null }}">Mapa de metas</a>
 <a href="{{route('objectives.manage.map.reports', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.map.reports'  ? 'is-active' : null }}">Mapa de reportes</a>
 <a href="{{route('objectives.manage.configuration', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.configuration'  ? 'is-active' : null }}">Configuración</a>
 <a href="{{route('objectives.manage.logs', ['objectiveId' => $objective->id]) }}" class="item-link {{ $currentRoute == 'objectives.manage.logs'  ? 'is-active' : null }}">Bitacora de eventos</a>

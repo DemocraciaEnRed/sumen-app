@@ -3,8 +3,8 @@
 @section('panelContent')
 
 <section>
-  <h3 class="is-700">Editar proyecto de la meta</h3>
-  <p class="lead">Podes editar el proyecto de la meta aqui. Completá los campos a continuación:</p>
+<h3 class="is-700">Editar meta del objetivo</h3>
+  <p class="lead">Podes editar la meta del objetivo aqui. Completá los campos a continuación:</p>
   @if ($errors->any())
   <div class="alert alert-danger">
       <ul class="mb-0">
@@ -17,20 +17,20 @@
   @if($goal->has('reports'))
   <div class="alert alert-warning">
     <h6 class="is-700"><i class="fas fa-exclamation-triangle"></i> Importante</h6>
-    La meta cuenta con reportes. Si alguno de los campos compromete alguna información con respecto a los reportes, recuerde hacer las ediciones correspondientes en los mismos.
+    El objetivo cuenta con reportes. Si alguno de los campos compromete alguna información con respecto a los reportes, recuerde hacer las ediciones correspondientes en los mismos.
   </div>
   @endif
   <form method="POST" action="{{ route('objectives.manage.goals.edit.form',['objectiveId' => $objective->id, 'goalId' => $goal->id]) }}">
     @method('PUT')
     @csrf
     <div class="form-group">
-      <label><b>Título del proyecto</b></label>
+      <label>Título de la meta</label>
       <input type="text" class="form-control" name="title" placeholder="Escriba aquí" value="{{$goal->title}}">
     </div>
     <div class="form-group">
       <label><b>Indicador</b></label>
       <input type="text" class="form-control" name="indicator" placeholder="Escriba aquí" value="{{$goal->indicator}}">
-      <small class="form-text text-muted">Solo puede haber un indicador por Proyecto. El indicador tiene ser mensurable, específico, asociado a un plazo de tiempo y lugar</small>
+      <small class="form-text text-muted">Solo puede haber un indicador por Meta. El indicador tiene ser mensurable, específico, asociado a un plazo de tiempo y lugar</small>
     </div>
     <div class="form-row">
       <div class="col">
@@ -45,7 +45,7 @@
         <div class="form-group">
           <label><b>Valor inicial del indicador</b> <small class="text-info">Opcional</small></label>
           <input type="number" class="form-control" min="0" name="indicator_progress" placeholder="Ej: 0" value="{{$goal->indicator_progress}}">
-          <small class="form-text text-muted">Es el valor con la que comenzará el proyecto. Los reportes de actualización irán agregando (o restando). El campo vacio será considerado como 0 </small>
+          <small class="form-text text-muted">Es el valor con la que comenzará la meta. Los reportes de actualización irán agregando (o restando). El campo vacio será considerado como 0 </small>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
         <div class="form-group">
           <label><b>Presupuesto Total</b><span class="text-danger">*</span></label>
           <input type="text" class="form-control" name="total_budget" placeholder="Ingrese aquí el valor" value="{{$goal->total_budget}}">
-          <small class="form-text text-muted">Presupuesto total a ejecutar del proyecto.</small>
+          <small class="form-text text-muted">Presupuesto total a ejecutar de la meta.</small>
         </div>
       </div>
       <div class="col">
@@ -143,7 +143,7 @@
             </div>
           @endforeach
         @else
-         <p><i>No hay otras metas cargadas en el sistema</i></p>
+         <p><i>No hay otros objetivos cargados en el sistema</i></p>
         @endif
       </div>
     </div>
@@ -156,7 +156,7 @@
       </div>
       @else
       <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
+        <i class="fas fa-exclamation-triangle"></i>&nbsp;El objetivo se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
       </div>
       @endif
       <small class="form-text text-muted">Se le enviará una notificación por sistema, de que el proyecto ha sido editado invitandolos a verlo.</small>

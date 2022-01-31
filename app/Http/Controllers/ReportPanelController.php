@@ -123,7 +123,7 @@ class ReportPanelController extends Controller
 
       $report->save();
       
-      Log::channel('mysql')->info("[{$request->user()->fullname}] ha editado el reporte [{$report->title}] de el proyecto [{$request->goal->title}] de la meta [{$request->objective->title}]", [
+      Log::channel('mysql')->info("[{$request->user()->fullname}] ha editado el reporte [{$report->title}] de la meta [{$request->goal->title}] del proyecto [{$request->objective->title}]", [
         'objective_id' => $request->objective->id,
         'objective_title' => $request->objective->title,
         'goal_id' => $request->goal->id,
@@ -257,7 +257,7 @@ class ReportPanelController extends Controller
         }
       }
 
-      return redirect()->route('objectives.manage.goals.reports.files', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se agrego el archivo al repositorio de la meta');
+      return redirect()->route('objectives.manage.goals.reports.files', ['objectiveId' => $request->objective->id, 'goalId' => $request->goal->id, 'reportId' => $request->report->id])->with('success','Se agrego el archivo al repositorio del objetivo');
     } 
 
     public function viewReportMap (Request $request){

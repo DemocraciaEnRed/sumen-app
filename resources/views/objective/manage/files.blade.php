@@ -3,8 +3,8 @@
 @section('panelContent')
 
 <section>
-  <h1 class="is-700">Repositorio de archivos</h1>
-  <p>Aquí podrás encontrar y cargar todos los archivos vinculados a tu meta</p>
+  <h1 class="">Repositorio de archivos</h1>
+  <p>Aquí podrás encontrar y cargar todos los archivos vinculados a tu objetivo</p>
   <h5 class="font-weight-bold"><i class="fas fa-upload"></i> Nuevo archivo</h5>
   <p>Cargue sus archivos haciendo clic en el campo para poder seleccionar. Cargue uno a uno. Intente no subir mucho peso de una sola vez.</p>
   <form action="{{route('objectives.manage.files.form',['objectiveId' => $objective->id])}}" method="POST" enctype="multipart/form-data">

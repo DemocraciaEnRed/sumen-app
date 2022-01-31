@@ -197,7 +197,7 @@ class ReportController extends Controller
         
         $isUserObjectiveMember = $request->user()->isMemberObjective($report->objective->id);
         if($isUserObjectiveMember  && $isVerified){
-            Log::channel('mysql')->info("[{$request->user()->fullname}] (Miembro del equipo) ha eliminado el comentario de [{$comment->user->fullname}] hecho en el reporte [{$report->title}], de el proyecto [{$report->goal->title}] de la meta [{$report->objective->title}]", [
+            Log::channel('mysql')->info("[{$request->user()->fullname}] (Miembro del equipo) ha eliminado el comentario de [{$comment->user->fullname}] hecho en el reporte [{$report->title}], de la meta [{$report->goal->title}] del objetivo [{$report->objective->title}]", [
                 'report_id' => $report->id,
                 'report_title' => $report->title,
                 'goal_id' => $report->goal->id,
@@ -218,7 +218,7 @@ class ReportController extends Controller
         
         $isUserAdmin = $request->user()->hasRole('admin');
         if($isUserAdmin && $isVerified){
-             Log::channel('mysql')->info("[{$request->user()->fullname}] (Admin) ha eliminado el comentario de [{$comment->user->fullname}] hecho en el reporte [{$report->title}] de el proyecto [{$report->goal->title}] de la meta [{$report->objective->title}]", [
+             Log::channel('mysql')->info("[{$request->user()->fullname}] (Admin) ha eliminado el comentario de [{$comment->user->fullname}] hecho en el reporte [{$report->title}] de la meta [{$report->goal->title}] del objetivo [{$report->objective->title}]", [
                 'report_id' => $report->id,
                 'report_title' => $report->title,
                 'goal_id' => $report->goal->id,
@@ -322,7 +322,7 @@ class ReportController extends Controller
         
         $isUserObjectiveMember = $request->user()->isMemberObjective($report->objective->id);
         if($isUserObjectiveMember  && $isVerified){
-            Log::channel('mysql')->info("[{$request->user()->fullname}] (Miembro del equipo) ha eliminado la respuesta de [{$comment->user->fullname}] hecho en un comentario del reporte [{$report->title}], de el proyecto [{$report->goal->title}] de la meta [{$report->objective->title}]", [
+            Log::channel('mysql')->info("[{$request->user()->fullname}] (Miembro del equipo) ha eliminado la respuesta de [{$comment->user->fullname}] hecho en un comentario del reporte [{$report->title}], de la meta [{$report->goal->title}] del objetivo [{$report->objective->title}]", [
                 'report_id' => $report->id,
                 'report_title' => $report->title,
                 'goal_id' => $report->goal->id,
@@ -345,7 +345,7 @@ class ReportController extends Controller
         $isUserAdmin = $request->user()->hasRole('admin');
         if($isUserAdmin && $isVerified){
             $comment->delete();
-             Log::channel('mysql')->info("[{$request->user()->fullname}] (Admin) ha eliminado la respuesta de [{$comment->user->fullname}] hecho en un comentario del reporte [{$report->title}], de el proyecto [{$report->goal->title}] de la meta [{$report->objective->title}] ", [
+             Log::channel('mysql')->info("[{$request->user()->fullname}] (Admin) ha eliminado la respuesta de [{$comment->user->fullname}] hecho en un comentario del reporte [{$report->title}], de la meta [{$report->goal->title}] del objetivo [{$report->objective->title}] ", [
                 'report_id' => $report->id,
                 'report_title' => $report->title,
                 'goal_id' => $report->goal->id,

@@ -1,7 +1,7 @@
 @php
 $countUnreadNotifications = count(Auth::user()->unreadNotifications);
 $saluditos = [
-  '¿Ya revisaste el estado de las metas?',
+  '¿Ya revisaste el estado de los objetivos?',
   '¿Ya revisaste si hay nuevos reportes?',
   'Entre las dificultades se esconde la oportunidad (Albert Einstein)',
   'Por muy alta que sea una montaña, siempre hay un camino hacia la cima',

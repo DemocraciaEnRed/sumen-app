@@ -3,8 +3,8 @@
 @section('panelContent')
 
 <section>
-  <h3 class="is-700">Nuevo proyecto de la meta</h3>
-  <p class="lead">Para sumar un nuevo proyecto a tu meta, completá los campos a continuación:</p>
+  <h3 class="is-700">Nueva meta del objetivo</h3>
+  <p class="lead">Para sumar una nueva meta a tu objetivo, completá los campos a continuación:</p>
   <hr>
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -18,20 +18,20 @@
   <form method="POST" action="{{ route('objectives.manage.goals.add.form',['objectiveId' => $objective->id]) }}">
     @csrf
     <div class="form-group">
-      <label><b>Título del proyecto</b><span class="text-danger">*</span></label>
+      <label><b>Título de la meta</b><span class="text-danger">*</span></label>
       <input type="text" class="form-control" name="title" placeholder="Escriba aquí">
     </div>
     <div class="form-group">
       <label><b>Indicador</b><span class="text-danger">*</span></label>
       <input type="text" class="form-control" name="indicator" placeholder="Escriba aquí">
-      <small class="form-text text-muted">Solo puede haber un indicador por Proyecto. El indicador tiene ser mensurable, específico, asociado a un plazo de tiempo y lugar</small>
+      <small class="form-text text-muted">Solo puede haber un indicador por Meta. El indicador tiene ser mensurable, específico, asociado a un plazo de tiempo y lugar</small>
     </div>
     <div class="form-row">
       <div class="col">
         <div class="form-group">
           <label><b>Valor de meta (100%) del indicador</b><span class="text-danger">*</span></label>
           <input type="number" class="form-control" min="1" name="indicator_goal" placeholder="Ej: 100">
-          <small class="form-text text-muted">¿A que valor hay que llegar? Este es valor que representa que se llego a completar el proyecto al 100%.</small>
+          <small class="form-text text-muted">¿A que valor hay que llegar? Este es valor que representa que se llego a completar la meta al 100%.</small>
         </div>
 
       </div>
@@ -39,7 +39,7 @@
         <div class="form-group">
           <label><b>Valor inicial del indicador</b><span class="text-danger">*</span></label>
           <input type="number" class="form-control" min="0" name="indicator_progress" value="0" placeholder="Ej: 0">
-          <small class="form-text text-muted">Es el valor con la que comenzará el proyecto. Los reportes de actualización irán agregando (o restando). El campo vacio será considerado como 0 </small>
+          <small class="form-text text-muted">Es el valor con la que comenzará la meta. Los reportes de actualización irán agregando (o restando). El campo vacio será considerado como 0 </small>
         </div>
       </div>
     </div>
@@ -76,14 +76,14 @@
       </div>
     </div>
     <div class="form-group">
-      <label><b>Estado inicial del proyecto</b><span class="text-danger">*</span></label>
+      <label><b>Estado inicial de la meta</b><span class="text-danger">*</span></label>
       <select class="custom-select" name="status">
         <option value="ongoing" selected>En progreso</option>
         <option value="delayed" >Demorado</option>
         <option value="inactive" >Inactivo</option>
         <option value="reached" disabled>Alcanzado</option>
       </select>
-      <small class="form-text text-muted">Nota: No puede crear un proyecto con estado "Alcanzado"</small>
+      <small class="form-text text-muted">Nota: No puede crear una meta con estado "Alcanzado"</small>
     </div>
     <div class="form-group">
       <label><b>Fuente de los datos</b> <small class="text-info">Opcional</small></label>
@@ -132,7 +132,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label><b>Otras metas relacionadas</b> <small class="text-info">Opcional</small></label>
+      <label><b>Otras objetivos relacionados</b> <small class="text-info">Opcional</small></label>
       <div>
         @if(count($objectivesList) > 0) 
           @foreach($objectivesList as $auxObjective)
@@ -155,10 +155,10 @@
       </div>
       @else
       <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i>&nbsp;La meta se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
+        <i class="fas fa-exclamation-triangle"></i>&nbsp;El objetivo se encuentra <i class="fas fa-eye-slash"></i> oculto, no se enviarán notificaciones a los usuarios.
       </div>
       @endif
-      <small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema, de que hay un nuevo proyecto invitandolos a verlo.</small>
+      <small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema, de que hay una nueva meta invitandolos a verlo.</small>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Crear</button>

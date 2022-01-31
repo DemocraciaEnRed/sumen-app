@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Nuevo reporte</h3>
-  <p class="lead">Podés hacer reportes sobre el proyecto. Comenzá eligiendo el tipo de reporte, recordá que hay 3 tipos de reportes.</p>
+  <p class="lead">Podés hacer reportes sobre la meta. Comenzá eligiendo el tipo de reporte, recordá que hay 3 tipos de reportes.</p>
   <hr>
   @if ($errors->any())
     <div class="alert alert-danger">

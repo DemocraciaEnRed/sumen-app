@@ -26,7 +26,7 @@ $currentRoute = Route::currentRouteName();
 <a href="{{ route('admin.companies.import') }}" class="item-link {{ $currentRoute == 'admin.companies.import' ? 'is-active' : null }}"><i class="fas fa-upload"></i>&nbsp;Importar</a>
 <a href="{{ route('admin.companies') }}" class="item-link {{ $currentRoute == 'admin.companies' ? 'is-active' : null }}">Listar</a>
 </div>
-<h6 class="category"><i class="fas fa-flag-checkered fa-fw"></i>&nbsp;Metas</h6>
+<h6 class="category"><i class="fas fa-flag-checkered fa-fw"></i>&nbsp;Objetivos</h6>
 <div class="menu-link">
 <a href="{{ route('admin.objectives.create') }}" class="item-link {{ $currentRoute == 'admin.objectives.create' ? 'is-active' : null }}"><i class="fas fa-plus"></i>&nbsp;Crear</a>
 <a href="{{ route('admin.objectives.import') }}" class="item-link {{ $currentRoute == 'admin.objectives.import' ? 'is-active' : null }}"><i class="fas fa-upload"></i>&nbsp;Importar</a>

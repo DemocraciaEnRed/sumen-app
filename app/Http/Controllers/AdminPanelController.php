@@ -162,7 +162,7 @@ class AdminPanelController extends Controller
         $category = Category::findorfail($categoryId);
         $categories = Category::all();
         if(count($categories) == 1){
-            return redirect()->route('admin.categories')->with('warning','No puede eliminar el eje de planificación porque se requiere migrar las metas del eje de planificación que eliminara a otro eje de planificación. Cree un nueva eje de planificación para poder migrarlos');
+            return redirect()->route('admin.categories')->with('warning','No puede eliminar el eje de planificación porque se requiere migrar los objetivos del eje de planificación que eliminara a otro eje de planificación. Cree un nueva eje de planificación para poder migrarlos');
         }
         return view('admin.categories.delete',['category' => $category, 'categories' => $categories]);
     }
@@ -181,7 +181,7 @@ class AdminPanelController extends Controller
         }
         $category->delete();
 
-        return redirect()->route('admin.categories')->with('success','El eje de planificación ha sido eliminada correctamente y las metas han sido migrado a otro eje de planificación');
+        return redirect()->route('admin.categories')->with('success','El eje de planificación ha sido eliminada correctamente y los objetivos han sido migrado a otro eje de planificación');
     }
 
     // ====================================
@@ -719,7 +719,7 @@ class AdminPanelController extends Controller
     }
 
     public function downloadListObjectives(Request $request){
-      return Excel::download(new ObjectivesExport, Carbon::now()->format('Ymd').'-metas.xlsx');
+      return Excel::download(new ObjectivesExport, Carbon::now()->format('Ymd').'-objetivos.xlsx');
     }
 
     public function viewCreateObjective(Request $request){
@@ -751,7 +751,7 @@ class AdminPanelController extends Controller
         $objective->save();
         $objective->organizations()->attach($request->input('organizations'));
 
-        Log::channel('mysql')->info("[{$request->user()->fullname}] ha creado la meta [{$objective->title}]", [
+        Log::channel('mysql')->info("[{$request->user()->fullname}] ha creado el objetivo [{$objective->title}]", [
             'objective_id' => $objective->id,
             'objective_title' => $objective->title,
             'user_id' => $request->user()->id,
@@ -759,7 +759,7 @@ class AdminPanelController extends Controller
             'user_email' => $request->user()->email
             ]);
 
-        return redirect()->route('objectives.manage.index',['objectiveId' => $objective->id])->with('success','¡Nueva meta creada! Ahora le toca configurar la meta');
+        return redirect()->route('objectives.manage.index',['objectiveId' => $objective->id])->with('success','¡Nuevo objetivo creado! Ahora le toca configurar el objetivo');
     }
 
     public function viewImportObjectives(Request $request){
@@ -826,13 +826,13 @@ class AdminPanelController extends Controller
             
         }
 
-        Log::channel('mysql')->info("[{$request->user()->fullname}] ha importado metas", [
+        Log::channel('mysql')->info("[{$request->user()->fullname}] ha importado objetivos", [
             'user_id' => $request->user()->id,
             'user_fullname' => $request->user()->fullname,
             'user_email' => $request->user()->email
             ]);
 
-        return redirect()->route('admin.objectives')->with('success','Se han importado las metas, recuerde ahora tener que configurarlas una por una');
+        return redirect()->route('admin.objectives')->with('success','Se han importado los objetivos, recuerde ahora tener que configurarlas una por una');
     }
 
     public function viewLogs(Request $request)

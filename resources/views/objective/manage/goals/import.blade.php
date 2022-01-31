@@ -3,8 +3,8 @@
 @section('panelContent')
 
 <section>
-  <h3 class="is-700">Importar proyectos</h3>
-  <p class="lead">Aqui se pueden importar proyectos a la meta desde un archivo .xlsx</p>
+  <h3 class="is-700">Importar metas</h3>
+  <p class="lead">Aqui se pueden importar metas al objetivo desde un archivo .xlsx</p>
   @if ($errors->any())
     <div class="alert alert-danger">
         <ul class="mb-0">
@@ -24,12 +24,12 @@
     <h5 class="is-700">Especificaciones</h5>
     <p>En las columnas <code>nombre</code>, <code>indicador</code>, <code>unidad_indicador</code>, <code>frecuencia</code>, <code>presupuesto_total</code>, <code>presupuesto_ejecutado</code>, <code>fuente_datos</code>, <code>empresas</code>, va texto de una sola linea.</p>
     <p>En las columna de <code>estado</code> debe ir un unico ID la que pertenece. Solo un numero # debe ser ingresado y <b>es requerido</b>, no puede ser vacio</p>
-    <p>En las columna de <code>distritos</code>, pueden ser vacio, o contener varios ID(s) de los distritos relacionadas. Deben ir separados con "<code>,</code>". Evite 2 comas seguidas. El campo es opcional, lo que significa que puede dejarlo vacio, significando que no hay distritos asociadas al proyecto. Puede ingresar 0, 1, o N distritos. Verifique que los ID(s) existan.</p>
+    <p>En las columna de <code>distritos</code>, pueden ser vacio, o contener varios ID(s) de los distritos relacionadas. Deben ir separados con "<code>,</code>". Evite 2 comas seguidas. El campo es opcional, lo que significa que puede dejarlo vacio, significando que no hay distritos asociadas a la meta. Puede ingresar 0, 1, o N distritos. Verifique que los ID(s) existan.</p>
     @if(config('services.sumen.districts'))
     <p class="text-danger"><b>NOTA: Esta instalación no cuenta con el modulo de distritos.<br>Por favor, deje la columna <code>distrito</code> vacia</b></p>
     @endif
     <p>En las columnas <code>valor_meta_100</code> y <code>valor_inicial</code> deben ser numeros. <code>valor_meta_100</code> debe ser mayor a 0. <code>valor_inicial</code> puede ser 0</p>
-    <p>En las columnas <code>empresas</code>, <code>metas_relacionadas</code>  pueden ser vacio, o contener varios ID(s) de las empresas / metas relacionadas. Deben ir separados con "<code>,</code>". Evite 2 comas seguidas. El campo es opcional, lo que significa que puede dejarlo vacio, significando que no hay empresas/metas asociadas al proyecto. Puede ingresar 0, 1, o N empresas/metas. Verifique que los ID(s) existan. </p>
+    <p>En las columnas <code>empresas</code>, <code>objetivos_relacionados</code>  pueden ser vacio, o contener varios ID(s) de las empresas / objetivos relacionadas. Deben ir separados con "<code>,</code>". Evite 2 comas seguidas. El campo es opcional, lo que significa que puede dejarlo vacio, significando que no hay empresas/objetivos asociadas a la meta. Puede ingresar 0, 1, o N empresas/objetivos. Verifique que los ID(s) existan. </p>
     <p>En la columna de <code>url_mas_info</code> puede incluir una unica URL, que comience con <code>https://</code>. El campo es opciona, lo cual, puede dejarlo vacio de preferir.</p>
     <p>En la columna de <code>hitos</code> puede incluir distintos hitos separados por coma (<code>,</code>) y sin espacios al lado de estos separadores. Cada hitos puede tener 1 a muchas palabras sepradas con un espacio. Un hito puede tener hasta 100 caracteres. Ej: Esto esta bien: <code>hitoA,hitoB,hitoC</code> y esto esta mal: <code>hito1, hito2, hito3</code> </p>
     <p><b>Nota</b>: Evite el uso de emojis o caracteres especiales.</p>
@@ -53,7 +53,7 @@
           <th scope="col">url_mas_info</th>
           <th scope="col">hitos</th>
           <th scope="col">empresas</th>
-          <th scope="col">metas_relacionadas</th>
+          <th scope="col">objetivos_relacionados</th>
         </tr>
       </thead>
       <tbody>
@@ -191,7 +191,7 @@
         @endforeach
       </tbody>
     </table>
-    <h5 class="is-700"><code>metas_relacionadas</code> disponibles</h5>
+    <h5 class="is-700"><code>objetivos_relacionados</code> disponibles</h5>
     <ul>
       <li>Requerido: <span class="text-danger"><b>Si</b></span></li>
       <li>Tipo de dato: Unico</li>
@@ -213,7 +213,7 @@
         @endforeach
       </tbody>
     </table>
-  <h3 class="is-700">Importar proyectos</h3>
+  <h3 class="is-700">Importar metas</h3>
   <p>Ingrese el archivo en el siguiente campo</p>
 
   <form action="{{route('objectives.manage.goals.import.form',['objectiveId' => $objective->id])}}" method="POST" enctype="multipart/form-data">

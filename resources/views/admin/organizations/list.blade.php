@@ -4,7 +4,7 @@
 
 <section>
   <h3 class="is-700">Organizaciones</h3>
-  <p class="lead">En esta sección se podrán cargar organizaciones de la sociedad civil, agrupaciones conformadas por ciudadanos independientes, o bien, cualquier sector que pueda estar asociado a una meta.</p>
+  <p class="lead">En esta sección se podrán cargar organizaciones de la sociedad civil, agrupaciones conformadas por ciudadanos independientes, o bien, cualquier sector que pueda estar asociado a una objetivo.</p>
   @forelse($organizations as $organization)
   <div class="card mb-3 shadow-sm">
     <div class="card-body d-flex align-items-start">

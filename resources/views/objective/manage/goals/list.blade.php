@@ -3,8 +3,8 @@
 @section('panelContent')
 
 <section>
-  <h3 class="is-700">Proyectos de la meta</h3>
-  <p class="lead">A continuación, encontrarás todos los proyectos asociados a tu meta</p>
+  <h3 class="is-700">Metas del objetivo</h3>
+  <p class="lead">A continuación, encontrarás todas las metas asociadas a tu objetivo</p>
   @isManager($objective->id)
   @if(!$objective->goals->isEmpty())
   <div class="my-3">
@@ -30,7 +30,7 @@
   @empty
   <div class="card shadow-sm my-3">
     <div class="card-body text-center">
-      <i class="far fa-surprise"></i>&nbsp;¡No hay proyectos de la meta!
+      <i class="far fa-surprise"></i>&nbsp;¡No hay metas del objetivo!
     </div>
   </div>
   @endforelse

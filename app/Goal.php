@@ -72,16 +72,16 @@ class Goal extends Model
     {
         switch($this->status){
             case 'reached':
-                return 'Alcanzado';
+                return 'Alcanzada';
                 break;
             case 'ongoing':
                 return 'En progreso';
                 break;
             case 'delayed':
-                return 'Demorado';
+                return 'Demorada';
                 break;
             case 'inactive':
-                return 'Inactivo';
+                return 'Inactiva';
                 break;
 
             default:

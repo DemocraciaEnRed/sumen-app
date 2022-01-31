@@ -3,8 +3,8 @@
 @section('adminContent')
 
 <section>
-  <h3 class="is-700">Importar metas</h3>
-  <p class="lead">Aqui se pueden importar metas desde un archivo .xlsx</p>
+  <h3 class="is-700">Importar objetivos</h3>
+  <p class="lead">Aqui se pueden importar objetivos desde un archivo .xlsx</p>
   @if ($errors->any())
     <div class="alert alert-danger">
         <ul class="mb-0">
@@ -26,11 +26,11 @@
     <h5 class="is-700">Especificaciones</h5>
     <p>En las columnas de <code>nombre</code> y <code>descripcion</code> va texto de una sola linea.</p>
     <p>En la columna que especifica el <code>eje_de_planificacion</code>, debe ir el ID del eje de planificación a la que pertenece. Solo un numero # debe ser ingresado y <b>es requerido</b>, no puede ser vacio</p>
-    <p>En la columna de <code>organizaciones</code> pueden ser vacio, o contener varios ID(s) de las organizaciones. Deben ir separados con "<code>,</code>". Evite 2 comas seguidas. El campo es opcional, lo que significa que puede dejarlo vacio, significando que no hay organizaciones asociadas a la meta. Puede ingresar 0, 1, o N organizaciones. Verifique que los ID(s) existan. </p>
+    <p>En la columna de <code>organizaciones</code> pueden ser vacio, o contener varios ID(s) de las organizaciones. Deben ir separados con "<code>,</code>". Evite 2 comas seguidas. El campo es opcional, lo que significa que puede dejarlo vacio, significando que no hay organizaciones asociadas al objetivo. Puede ingresar 0, 1, o N organizaciones. Verifique que los ID(s) existan. </p>
     <p>En la columna de <code>tags</code> puede incluir distintos tags separados por coma (<code>,</code>) y sin espacios al lado de estos separadores. Cada tag puede tener 1 a muchas palabras sepradas con un espacio. Un tag puede tener hasta 100 caracteres. Ej: Esto esta bien: <code>tagA,tagB,tagC</code> y esto esta mal: <code>tag1, tag2 , tag4</code> </p>
     <p><b>Nota</b>: Evite el uso de emojis en títulos o descripción.</p>
     <h5 class="is-700">Ejemplo de planilla</h5>
-    <p>En el siguiente ejemplo se importarian 3 metas.</p>
+    <p>En el siguiente ejemplo se importarian 3 objetivos.</p>
     <table class="table table-bordered table-sm">
       <thead>
         <tr>
@@ -109,7 +109,7 @@
         @endforeach
       </tbody>
     </table>
-  <h3 class="is-700">Importar metas</h3>
+  <h3 class="is-700">Importar objetivos</h3>
   <p>Ingrese el archivo en el siguiente campo</p>
 
   <form action="{{route('admin.objectives.import.form')}}" method="POST" enctype="multipart/form-data">
@@ -121,7 +121,7 @@
   </form>
   @else
   <div class="alert alert-warning" role="alert">
-    No puede importar metas sin eje de planificación. Debe ir al panel de <a href="{{ route('admin.categories') }}">ejes de planificación</a>
+    No puede importar objetivos sin eje de planificación. Debe ir al panel de <a href="{{ route('admin.categories') }}">ejes de planificación</a>
   </div>
   @endif
 </section>

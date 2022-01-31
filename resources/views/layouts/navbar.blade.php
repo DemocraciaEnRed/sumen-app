@@ -19,10 +19,10 @@
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a href="{{ route('objectives') }}" class="nav-link"><i class="fas fa-fw fa-bullseye"></i> Metas</a>
+          <a href="{{ route('objectives') }}" class="nav-link"><i class="fas fa-fw fa-bullseye"></i> Objetivos</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('goals') }}" class="nav-link"><i class="fas fa-fw fa-medal"></i> Proyectos</a>
+          <a href="{{ route('goals') }}" class="nav-link"><i class="fas fa-fw fa-medal"></i> Metas</a>
         </li>
         <li class="nav-item">
           <a href="{{ route('reports') }}" class="nav-link"><i class="far fa-fw fa-copy"></i> Reportes</a>

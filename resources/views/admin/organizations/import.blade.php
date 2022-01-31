@@ -26,7 +26,7 @@
     <p><b>Nota</b>: Evite el uso de emojis o caracteres especiales.</p>
     <p><b>Nota</b>: No podrá subir logos por este metodo. Puede importar y luego asignarles los logos, o hacerlo uno por uno.</p>
     <h5 class="is-700">Ejemplo de planilla</h5>
-    <p>En el siguiente ejemplo se importarian 3 metas.</p>
+    <p>En el siguiente ejemplo se importarian 3 organizaciones.</p>
     <table class="table table-bordered table-sm">
       <thead>
         <tr>

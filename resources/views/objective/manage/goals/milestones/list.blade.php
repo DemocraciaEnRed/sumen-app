@@ -3,8 +3,8 @@
 @section('panelContent')
 
 <section>
-  <h3 class="is-700">Hitos del proyecto</h3>
-  <p class="lead">Un hito es un acontecimiento importante y necesario para el cumplimiento del proyecto, sin embargo, no responde a un indicador concreto ni representa un avance en términos cuantitativos. Podrás hacer reportes para informar el cumplimiento  de estos hitos.</p>
+  <h3 class="is-700">Hitos de la meta</h3>
+  <p class="lead">Un hito es un acontecimiento importante y necesario para el cumplimiento de la meta, sin embargo, no responde a un indicador concreto ni representa un avance en términos cuantitativos. Podrás hacer reportes para informar el cumplimiento de estos hitos.</p>
   @foreach ($goal->milestones as $milestone)
   <div class="card mb-3 shadow-sm">
     <div class="card-body d-flex align-items-center">

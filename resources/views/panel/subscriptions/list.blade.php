@@ -4,7 +4,7 @@
 
 <section>
 <h3 class="is-700">Mis suscripciones</h3>
-<p class="lead">A continuación, podrás ver el listado de metas que estás monitoreando actualmente</p>
+<p class="lead">A continuación, podrás ver el listado de objetivos que estás monitoreando actualmente</p>
  @if(count($subscriptions) > 0)
     @foreach($subscriptions as $objective)
     <div class="card my-3 shadow-sm">
@@ -33,8 +33,8 @@
   @else
     <div class="card mb-3 shadow-sm">
       <div class="card-body text-center">
-        <h6 class="card-title mb-2"><i class="far fa-surprise"></i>&nbsp;No estás suscripto a ningun meta</h6>
-        <p class="text-smaller mb-0">¡Suscribite a tus metas favoritas y recibi notificaciones!</p>
+        <h6 class="card-title mb-2"><i class="far fa-surprise"></i>&nbsp;No estás suscripto a ningun objetivo</h6>
+        <p class="text-smaller mb-0">¡Suscribite a tus objetivos favoritos y recibi notificaciones!</p>
       </div>
     </div>
   @endif

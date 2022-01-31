@@ -79,7 +79,7 @@
 				<input-file name="photos[]" multiple accept="image/*"></input-file>
 			</div>
     <div class="form-group">
-      <label><b>Metas relacionadas</b>&nbsp;<span class="text-smallest text-primary">(Opcional)</span></label>
+      <label><b>Objetivos relacionadas</b>&nbsp;<span class="text-smallest text-primary">(Opcional)</span></label>
       <div>
         @foreach($objectives as $objective)
           <div class="custom-control custom-checkbox form-check-inline">
@@ -95,7 +95,7 @@
         <input type="checkbox" class="custom-control-input" name="notify" id="notify" value="true">
         <label class="custom-control-label is-clickable" for="notify">Notificar a los suscriptores</label>
       </div>
-      <small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema a los suscriptores de las metas seleccionadas, de la creacion del evento invitandolos a verlo.</small>
+      <small class="form-text text-muted">Se le enviará una notificación por email (si lo tienen habilitado) y por sistema a los suscriptores de las objetivos seleccionadas, de la creacion del evento invitandolos a verlo.</small>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Crear</button>

@@ -31,7 +31,7 @@
           </div>
         </div>
       </div>
-      <h4 class="is-400 mb-3">Proyectos en los que participa</h4>
+      <h4 class="is-400 mb-3">Metas en los que participa</h4>
       @forelse ($company->goals as $goal)
       <div class="card my-3 shadow-sm">
         <div class="card-body">
@@ -42,11 +42,11 @@
               <span class="text-{{$goal->status}} rounded-circle is-700 text-smallest ">{{$goal->progress_percentage}}%</span>
             </div>
             <div class="w-100">
-              <span class="text-{{$goal->status}}">Proyecto {{$goal->status_label}}</span>
+              <span class="text-{{$goal->status}}">Meta {{$goal->status_label}}</span>
               <h5 class="is-700 mb-2">
                 <a class="text-dark" href="{{ route('goals.index', ['goalId' => $goal->id]) }}">{{$goal->title}}</a>
               </h5>
-              <span class="text-smaller">Meta: <a href="{{route('objectives.index',['objectiveId' => $goal->objective->id])}}" class="text-dark">{{$goal->objective->title}}</a> <span style="color: {{$goal->objective->category->color}}"><i class="fa-fw {{$goal->objective->category->icon}}"></i>{{$goal->objective->category->title}}</span></span>
+              <span class="text-smaller">Objetivo: <a href="{{route('objectives.index',['objectiveId' => $goal->objective->id])}}" class="text-dark">{{$goal->objective->title}}</a> <span style="color: {{$goal->objective->category->color}}"><i class="fa-fw {{$goal->objective->category->icon}}"></i>{{$goal->objective->category->title}}</span></span>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
       @empty
       <div class="card shadow-sm my-3">
         <div class="card-body text-center">
-          <i class="far fa-surprise"></i>&nbsp;¡No hay proyectos de la meta!
+          <i class="far fa-surprise"></i>&nbsp;¡No hay metas del objetivo!
         </div>
       </div>
       @endforelse
